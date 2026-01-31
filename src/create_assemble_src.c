@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:29:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 03:53:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	create_assemble_src(int fd, t_tree *ast)
 
 static void	put_return(FILE *asm_file)
 {
+	fprintf(asm_file, "\tpop rax\n");
 	fprintf(asm_file, "\tret\n");
 	return ;
 }

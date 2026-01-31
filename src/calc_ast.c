@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 03:26:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:33:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 03:52:21 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	calc_ast(FILE *asm_file, t_tree *node)
 		fprintf(asm_file, "\timul rax, rdi\n");
 		break;
 	case ND_DIV:
-		printf("\tcqo\n");
-		printf("\tidiv rdi\n");
+		fprintf(asm_file, "\tcqo\n");
+		fprintf(asm_file, "\tidiv rdi\n");
 		break;
 	default:
 		return (1);
 	}
-	printf("\tpush rax\n");
+	fprintf(asm_file, "\tpush rax\n");
 	return (0);
 }
