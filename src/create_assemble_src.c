@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 01:25:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 01:46:40 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,6 @@ int	create_assemble_src(int fd, t_token *input)
 		return (EXIT_FAILURE);
 	}
 	put_hedder(asm_file);
-	t_token	*cur = input;
-	while (cur)
-	{
-		if (cur->type == TK_RESERVED)
-			printf("%s\n", cur->data.str);
-		if (cur->type == TK_NUM)
-			printf("%d\n", cur->data.val);
-		cur = cur->next;
-	}
 	if (put_operations(asm_file, input) != 0)
 	{
 		fclose(asm_file);

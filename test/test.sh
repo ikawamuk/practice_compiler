@@ -26,6 +26,7 @@ make re > /dev/null
 assert 0 0
 assert 42 42
 assert 21 "5+20-4"
-assert 9 "-1+0+10"
+assert 9 "1+0+10-2"
+assert 9 "1 + 2 - 3 +  4  +  5"
 
 echo OK
