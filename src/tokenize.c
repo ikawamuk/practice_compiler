@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 04:12:38 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 04:15:42 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static t_token	*new_token(t_tk_type type, char **str_p)
 	if (type == TK_NUM)
 		new->val = strtol(*str_p, str_p, 10);
 	else
-		while (**str_p && !isspace(**str_p) && !isdigit((**str_p)))
+		// while (**str_p && !isspace(**str_p) && !isdigit((**str_p)))
 			(*str_p)++;
 	new->next = NULL;
 	return (new);

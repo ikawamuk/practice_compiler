@@ -30,5 +30,6 @@ assert 9 "1+0+10-2"
 assert 9 "1 + 2 - 3 +  4  +  5"
 assert 2 "1 + 3 - 2"
 assert 32 "  3 * 6+2 * 7  "
+assert 6 "4 * (2 + 1) / ((1 * 1) + 1)"
 
 echo OK
