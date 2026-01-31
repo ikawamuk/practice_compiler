@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 00:00:34 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 01:09:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 void			clear_token(t_token *cur);
 static int		tokenize_recursive(char *str, t_token **list_p);
-static t_token	*new_token(t_tk_type type, char *str);
+static t_token	*new_token(t_tk_type type, char **str_p);
 
 int	tokenize(char *str, t_token **list_p)
 {
-	if (tokenize_recursize(str, list_p) != 0)
+	if (tokenize_recursive(str, list_p) != 0)
 	{
 		clear_token(*list_p);
 		return (EXIT_FAILURE);
@@ -47,13 +47,15 @@ static int	tokenize_recursive(char *str, t_token **list_p)
 		fprintf(stderr, "Ccc: error: invalid character '%c'\n", *str);
 		return (EXIT_FAILURE);
 	}
-	*list_p = new_token(type, str);
-	if (*list_p)
+	*list_p = new_token(type, &str);
+	if (!*list_p)
 		return (EXIT_FAILURE);
-	return (tokenize_recursive(str, (*list_p)->next));
+	if (type == TK_EOF)
+		return (EXIT_SUCCESS);
+	return (tokenize_recursive(str, &(*list_p)->next));
 }
 
-static t_token	*new_token(t_tk_type type, char *str)
+static t_token	*new_token(t_tk_type type, char **str_p)
 {
 	t_token	*new;
 
@@ -62,9 +64,12 @@ static t_token	*new_token(t_tk_type type, char *str)
 		return (NULL);
 	new->type = type;
 	if (type == TK_NUM)
-		new->data.val = strtol(str, &str, 10);
-	else
-		new->data.str = str;
+		new->data.val = strtol(*str_p, str_p, 10);
+	else if (type == TK_RESERVED)
+	{
+		new->data.op = (*str_p)[0];
+		(*str_p)++;
+	}
 	new->next = NULL;
 	return (new);
 }

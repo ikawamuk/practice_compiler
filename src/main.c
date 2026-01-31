@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 23:02:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 01:05:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int		file_to_token_list(char *file_path, t_token *head);
+int		file_to_token_list(char *file_path, t_token **list_p);
 int		compile(t_token *input);
 void	clear_token(t_token *cur);
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	token_list = NULL;
-	if (file_to_token_list(argv[1], token_list) != 0)
+	if (file_to_token_list(argv[1], &token_list) != 0)
 		return (EXIT_FAILURE);
 	if (compile(token_list) != 0)
 	{

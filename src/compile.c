@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:54:37 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 01:14:15 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 #include <unistd.h>
 
 int	assemble(char *);
-int	create_assemble_src(int fd, char *input);
+int	create_assemble_src(int fd, t_token *input);
 
 int	compile(t_token *input)
 {
-	static char	asm_file_name[] = "./Ccc_XXXXXX.s";
+	static char	asm_file_name[] = "./asm/Ccc_XXXXXX.s";
 	int			fd;
 
 	fd = mkstemps(asm_file_name, 2);
