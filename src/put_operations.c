@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:05:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 01:12:19 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 01:17:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	put_operations(FILE *asm_file, t_token *list)
 	{
 		if (list->type == TK_RESERVED)
 		{
-			op = list->data.op;
+			op = list->data.str[0];
 			list = list->next;
 			if (op == '+')
 				fprintf(asm_file, "\tadd rax, %d\n", list->data.val);

@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/01 01:15:41 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/01 01:26:35 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ $(ASMDIR):
 
 clean:
 	@$(RMDIR) $(OBJDIER)
+	@$(RMDIR) $(ASMDIR)
 
 fclean: clean
 	$(RM) $(NAME)
