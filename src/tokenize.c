@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 02:16:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 04:12:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ static t_tk_type	match_type(char *str)
 {
 	if (!*str)
 		return (TK_EOF);
-	else if (*str == '+' || *str == '-')
+	else if (*str == '+'
+			|| *str == '-'
+			|| *str == '*'
+			|| *str == '/'
+			|| *str == '('
+			|| *str == ')')
 		return (TK_RESERVED);
 	else if (isdigit(*str))
 		return (TK_NUM);
