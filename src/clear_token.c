@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:59:48 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 01:17:32 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 01:56:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	clear_token(t_token *cur)
 	while (cur)
 	{
 		next = cur->next;
-		if (cur->type == TK_RESERVED)
-			free(cur->data.str);
 		free(cur);
 		cur = next;
 	}
