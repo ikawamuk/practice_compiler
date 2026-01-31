@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 01:16:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 02:15:13 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 typedef enum {
 	TK_RESERVED,
 	TK_NUM,
-	TK_EOF
+	TK_EOF,
+	TK_ERROR
 }	t_tk_type;
 
 typedef struct s_token t_token;
@@ -25,10 +26,8 @@ typedef struct s_token t_token;
 struct s_token
 {
 	t_tk_type	type;
-	union {
-		int		val;
-		char	*str;
-	}			data;
+	int		val;
+	char	*str;
 	t_token		*next;
 };
 

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 01:56:04 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 02:16:55 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <ctype.h>
 #include <string.h>
 
-void			clear_token(t_token *cur);
-static int		tokenize_recursive(char *str, t_token **list_p);
-static t_token	*new_token(t_tk_type type, char **str_p);
+static t_tk_type	match_type(char *str);
+void				clear_token(t_token *cur);
+static int			tokenize_recursive(char *str, t_token **list_p);
+static t_token		*new_token(t_tk_type type, char **str_p);
 // static char		*dup_token(char *str);
 
 t_token *tokenize(char *str)
@@ -39,13 +40,8 @@ static int	tokenize_recursive(char *str, t_token **list_p)
 
 	while (isspace(*str))
 		str++;
-	if (!*str)
-		type = TK_EOF;
-	else if (*str == '+' || *str == '-')
-		type = TK_RESERVED;
-	else if (isdigit(*str))
-		type = TK_NUM;
-	else
+	type = match_type(str);
+	if (type == TK_ERROR)
 	{
 		fprintf(stderr, "Ccc: error: invalid character '%c'\n", *str);
 		return (EXIT_FAILURE);
@@ -58,6 +54,17 @@ static int	tokenize_recursive(char *str, t_token **list_p)
 	return (tokenize_recursive(str, &(*list_p)->next));
 }
 
+static t_tk_type	match_type(char *str)
+{
+	if (!*str)
+		return (TK_EOF);
+	else if (*str == '+' || *str == '-')
+		return (TK_RESERVED);
+	else if (isdigit(*str))
+		return (TK_NUM);
+	return (TK_ERROR);
+}
+
 static t_token	*new_token(t_tk_type type, char **str_p)
 {
 	t_token	*new;
@@ -66,14 +73,12 @@ static t_token	*new_token(t_tk_type type, char **str_p)
 	if (!new)
 		return (NULL);
 	new->type = type;
+	new->str = *str_p;
 	if (type == TK_NUM)
-		new->data.val = strtol(*str_p, str_p, 10);
-	else if (type == TK_RESERVED)
-	{
-		new->data.str = *str_p;
-		while (!isspace(**str_p) && !isdigit((**str_p)))
+		new->val = strtol(*str_p, str_p, 10);
+	else
+		while (**str_p && !isspace(**str_p) && !isdigit((**str_p)))
 			(*str_p)++;
-	}
 	new->next = NULL;
 	return (new);
 }

@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/01 01:26:35 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/01 02:05:42 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 			create_assemble_src.c \
 			put_operations.c \
 			assemble.c \
+			error_at.c \
 		) \
 
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))

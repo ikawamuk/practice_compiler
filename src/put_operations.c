@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 00:05:14 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 01:17:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 02:49:31 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,36 @@
 
 bool	consume_number(t_token **token_p);
 bool	consume_op(t_token **token_p, char op);
+void	error_at(char *input_str, char *location, char *err_msg);
 
 int	put_operations(FILE *asm_file, t_token *list)
 {
+	t_token	*cur;
 	char	op;
 
-	if (list->type != TK_NUM)
+	cur = list;
+	if (cur->type != TK_NUM)
 	{
-		fprintf(stderr, "Ccc: error: expression must start with a number\n");
+		error_at(list->str, cur->str, "Ccc: error: expression must start with a number\n");
 		return (EXIT_FAILURE);
 	}
-	fprintf(asm_file, "\tmov rax, %d\n", list->data.val);
-	while (list->type != TK_EOF)
+	fprintf(asm_file, "\tmov rax, %d\n", cur->val);
+	cur = cur->next;
+	while (cur->type != TK_EOF)
 	{
-		if (list->type == TK_RESERVED)
-		{
-			op = list->data.str[0];
-			list = list->next;
-			if (op == '+')
-				fprintf(asm_file, "\tadd rax, %d\n", list->data.val);
-			else if (op == '-')
-				fprintf(asm_file, "\tsub rax, %d\n", list->data.val);
-		}
-		list = list->next;
+		if (cur->type != TK_RESERVED)
+			return (error_at(list->str, cur->str, "Ccc: error: expected an operator after a number\n"), EXIT_FAILURE);
+		op = cur->str[0];
+		cur = cur->next;
+		if (cur->type != TK_NUM)
+			return (error_at(list->str, cur->str, "Ccc: error: expected a number after an opearation\n"), EXIT_FAILURE);
+		if (op == '+')
+			fprintf(asm_file, "\tadd rax, %d\n", cur->val);
+		else if (op == '-')
+			fprintf(asm_file, "\tsub rax, %d\n", cur->val);
+		cur = cur->next;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 

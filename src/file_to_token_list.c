@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_at.c                                         :+:      :+:    :+:   */
+/*   file_to_token_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 01:50:12 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 02:05:53 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/01 02:28:13 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/01 02:34:16 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "token.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-void	error_at(char *input_str, char *location, char *err_msg)
+char	*read_in_bulk(const char *file_path);
+t_token *tokenize(char *str);
+
+t_token	*file_to_token_list(char *file_path)
 {
-	const int	pos = location - input_str;
+	t_token	*token_list;
+	char	*input_str;
 
-	fprintf(stderr, "%s\n", input_str);
-	fprintf(stderr, "%*s", pos, " ");
-	fprintf(stderr, "^ ");
-	fprintf(stderr, "%s\n", err_msg);
-	return ;
+	input_str = read_in_bulk(file_path);
+	if (!input_str)
+		return (NULL);
+	token_list = tokenize(input_str);
+	if (!token_list)
+	{
+		free(input_str);
+		return (NULL);
+	}
+	return (token_list);
 }

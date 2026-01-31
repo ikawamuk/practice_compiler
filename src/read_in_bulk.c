@@ -6,37 +6,48 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:24 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 21:39:25 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 02:23:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-static FILE	*xfopen(const char *file_path, const char *mode);
 static size_t	get_file_size(FILE *fp);
+static char		*read_file_content(FILE *input_file);
 
 char	*read_in_bulk(const char *file_path)
 {
 	FILE	*input_file;
-	size_t	size;
 	char	*buffer;
 
-	input_file = xfopen(file_path, "r");
-	size = get_file_size(input_file);
-	buffer = malloc(size + 1);
-	if (buffer == NULL)
+	input_file = fopen(file_path, "r");
+	if (!input_file)
+		return (NULL);
+	buffer = read_file_content(input_file);
+	if (!buffer)
 	{
 		fclose(input_file);
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
+	fclose(input_file);
+	return (buffer);
+}
+
+static char	*read_file_content(FILE *input_file)
+{
+	char	*buffer;
+	size_t	size;
+
+	size = get_file_size(input_file);
+	buffer = calloc(size + 1, sizeof(char));
+	if (buffer == NULL)
+		return (NULL);
 	if (fread(buffer, sizeof(char), size, input_file) != size)
 	{
 		free(buffer);
-		fclose(input_file);
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
-	fclose(input_file);
 	return (buffer);
 }
 
@@ -49,16 +60,4 @@ static size_t	get_file_size(FILE *fp)
 	size = ftell(fp);
 	rewind(fp);
 	return ((size_t)size);
-}
-
-static FILE	*xfopen(const char *file_path, const char *mode)
-{
-	FILE	*fp = fopen(file_path, mode);
-
-	if (!fp)
-	{
-		fprintf(stderr, "Failed to open the file\n");
-		exit(EXIT_FAILURE);
-	}
-	return (fp);
 }
