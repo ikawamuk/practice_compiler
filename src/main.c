@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:03:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/01/31 22:38:55 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,11 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	input = read_in_bulk(argv[1]);
-	return (compile(input));
+	if (compile(input) != 0)
+	{
+		free(input);
+		return (EXIT_FAILURE);
+	}
+	free(input);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:20:29 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/01/31 22:38:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ int	compile(char *input)
 
 	fd = mkstemps(asm_file_name, 2);
 	if (fd == -1)
+		return (EXIT_FAILURE);
+	if (create_assemble_src(fd, input) != 0)
 	{
-		free(input);
-		exit(EXIT_FAILURE);
+		close(fd);
+		return (EXIT_FAILURE);
 	}
-	create_assemble_src(fd, input);
+	close(fd);
 	return (assemble(asm_file_name));
 }

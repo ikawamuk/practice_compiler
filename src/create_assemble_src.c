@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:25:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/01/31 22:35:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,19 @@ int	create_assemble_src(int fd, char *input)
 	asm_file = fdopen(fd, "w");
 	if (!asm_file)
 	{
-		close(fd);
-		free(input);
 		fprintf(stderr, "Ccc: error: failed to open the file\n");
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 	put_hedder(asm_file);
-	if (put_operations(asm_file, input) == -1)
+	if (put_operations(asm_file, input) != 0)
 	{
 		fclose(asm_file);
-		close(fd);
-		free(input);
 		fprintf(stderr, "Ccc: error: invalid character\n");
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 	put_return(asm_file);
 	fclose(asm_file);
-	close(fd);
-	free(input);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	put_operations(FILE *asm_file, char *line)
