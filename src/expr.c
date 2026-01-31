@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:56:46 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 04:09:04 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 04:27:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_tree	*new_node_op(t_nd_type type, t_tree *lhs, t_tree *rhs);
 t_tree	*new_node_num(int val);
 t_tree	*pri(t_token **list_p);
 t_tree	*mul(t_token **list_p);
+t_tree	*unary(t_token **list_p);
 
 t_tree	*expr(t_token **list_p)
 {
@@ -41,18 +42,27 @@ t_tree	*expr(t_token **list_p)
 
 t_tree	*mul(t_token **list_p)
 {
-	t_tree	*node = pri(list_p);
+	t_tree	*node = unary(list_p);
 	if (!node)
 		return (NULL);
 	while (1)
 	{
 		if (consume_op(list_p, '*'))
-			node = new_node_op(ND_MUL, node, pri(list_p));
+			node = new_node_op(ND_MUL, node, unary(list_p));
 		else if (consume_op(list_p, '/'))
-			node = new_node_op(ND_DIV, node, pri(list_p));
+			node = new_node_op(ND_DIV, node, unary(list_p));
 		else
 			return (node);
 	}
+}
+
+t_tree	*unary(t_token **list_p)
+{
+	if (consume_op(list_p, '+'))
+		return (pri(list_p));
+	if (consume_op(list_p, '-'))
+		return (new_node_op(ND_SUB, new_node_num(0), pri(list_p)));
+	return (pri(list_p));
 }
 
 t_tree	*pri(t_token **list_p)
