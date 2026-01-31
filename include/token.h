@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ccc_define.h                                       :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:50:22 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/01/31 22:50:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CCC_DEFINE
-# define CCC_DEFINE
+#ifndef TOKEN_H
+# define TOKEN_H
 
-# define ASMFILE_NAME "Ccc.s"
+
+typedef enum {
+	TK_RESERVED,
+	TK_NUM,
+	TK_EOF
+}	t_tk_type;
+
+typedef struct s_token t_token;
+
+struct s_token
+{
+	t_tk_type	type;
+	union {
+		int		val;
+		char	*str;
+	}			data;
+	t_token		*next;
+};
 
 #endif

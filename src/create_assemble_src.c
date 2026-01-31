@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:35:38 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/01/31 22:47:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	create_assemble_src(int fd, char *input)
 	if (put_operations(asm_file, input) != 0)
 	{
 		fclose(asm_file);
-		fprintf(stderr, "Ccc: error: invalid character\n");
 		return (EXIT_FAILURE);
 	}
 	put_return(asm_file);
@@ -57,6 +56,7 @@ static int	put_operations(FILE *asm_file, char *line)
 			fprintf(asm_file, "\tsub rax, %ld\n", strtol(line, &line, 10));
 			continue ;
 		}
+		fprintf(stderr, "Ccc: error: invalid character '%c'\n", *line);
 		return (-1);
 	}
 	return (0);

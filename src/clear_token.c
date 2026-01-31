@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ccc_define.h                                       :+:      :+:    :+:   */
+/*   clear_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:50:22 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/01/31 22:59:48 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/01/31 23:00:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CCC_DEFINE
-# define CCC_DEFINE
+#include "token.h"
 
-# define ASMFILE_NAME "Ccc.s"
+void	clear_token(t_token *cur)
+{
+	t_token	*next;
 
-#endif
+	while (cur)
+	{
+		next = cur->next;
+		free(cur);
+		cur = next;
+	}
+	return ;
+}

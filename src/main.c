@@ -6,28 +6,32 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:38:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/01/31 23:02:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "token.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-char	*read_in_bulk(const char *file_path);
-int		compile(char *input);
+int		file_to_token_list(char *file_path, t_token *head);
+int		compile(t_token *input);
+void	clear_token(t_token *cur);
 
 int	main(int argc, char *argv[])
 {
-	char	*input;
+	t_token	*token_list;
 
 	(void)argc;
-	input = read_in_bulk(argv[1]);
-	if (compile(input) != 0)
+	token_list = NULL;
+	if (file_to_token_list(argv[1], token_list) != 0)
+		return (EXIT_FAILURE);
+	if (compile(token_list) != 0)
 	{
-		free(input);
+		clear_token(token_list);
 		return (EXIT_FAILURE);
 	}
-	free(input);
+	clear_token(token_list);
 	return (EXIT_SUCCESS);
 }

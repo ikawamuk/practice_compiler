@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compile.c                                          :+:      :+:    :+:   */
+/*   file_to_token_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/01/31 22:54:37 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/01/31 22:51:24 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/01/31 23:29:55 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _GNU_SOURCE
-#include "ccc_define.h"
 #include "token.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
-int	assemble(char *);
-int	create_assemble_src(int fd, char *input);
+char	*read_in_bulk(const char *file_path);
+int		tokenize(char *str, t_token *list);
 
-int	compile(t_token *input)
+int	file_to_token_list(char *file_path, t_token *list)
 {
-	static char	asm_file_name[] = "./Ccc_XXXXXX.s";
-	int			fd;
+	char	*input_str;
 
-	fd = mkstemps(asm_file_name, 2);
-	if (fd == -1)
-		return (EXIT_FAILURE);
-	if (create_assemble_src(fd, input) != 0)
+	input_str = read_in_bulk(file_path);
+	if (tokenize(input_str, &list) != 0)
 	{
-		close(fd);
+		free(input_str);
 		return (EXIT_FAILURE);
 	}
-	close(fd);
-	return (assemble(asm_file_name));
+	free(input_str);
+	return (EXIT_SUCCESS);
 }
