@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:35:11 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/01 02:57:31 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/01 03:00:28 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
-t_tree	*file_to_ast(char *file_path);
-int		compile(t_tree *ast);
-void	clear_ast(t_tree *node);
-
-int	main(int argc, char *argv[])
+t_tree	*new_node_op(t_nd_type type, t_tree *lhs, t_tree *rhs)
 {
-	t_tree	*ast;
+	t_tree	*new;
 
-	(void)argc;
-	ast = file_to_ast(argv[1]);
-	if (compile(ast) != 0)
-	{
-		clear_ast(ast);
-		return (EXIT_FAILURE);
-	}
-	clear_ast(ast);
-	return (EXIT_SUCCESS);
+	new = calloc(1, sizeof(t_tree));
+	if (!new)
+		return (NULL);
+	new->type = type;
+	new->lhs = lhs;
+	new->rhs = rhs;
+	return (new);
+}
+
+t_tree	*new_node_num(int val)
+{
+	t_tree	*new;
+
+	new = calloc(1, sizeof(t_tree));
+	if (!new)
+		return (NULL);
+	new->type = ND_NUM;
+	new->val = val;
+	return (new);
 }

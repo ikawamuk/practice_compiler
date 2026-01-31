@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   file_to_ast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:35:11 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/01 03:13:16 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/01 03:36:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
-#include <stdio.h>
-#include <string.h>
+#include "token.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-t_tree	*file_to_ast(char *file_path);
-int		compile(t_tree *ast);
-void	clear_ast(t_tree *node);
+t_token	*file_to_token_list(char *file_path);
+t_tree	*expr(t_token *list);
+void	clear_token(t_token *cur);
 
-int	main(int argc, char *argv[])
+t_tree	*file_to_ast(char *file_path)
 {
 	t_tree	*ast;
+	t_token	*token_list;
 
-	(void)argc;
-	ast = file_to_ast(argv[1]);
-	if (compile(ast) != 0)
-	{
-		clear_ast(ast);
-		return (EXIT_FAILURE);
-	}
-	clear_ast(ast);
-	return (EXIT_SUCCESS);
+	token_list = file_to_token_list(file_path);
+	if (!token_list)
+		return (NULL);
+	printf("HERE\n");
+	ast = expr(token_list);
+	clear_token(token_list);
+	return (ast);
 }

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:35:11 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/01 03:00:42 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#ifndef TREE_H
+# define TREE_H
 
-t_tree	*file_to_ast(char *file_path);
-int		compile(t_tree *ast);
-void	clear_ast(t_tree *node);
+typedef enum {
+	ND_ADD,
+	ND_SUB,
+	ND_MUL,
+	ND_DIV,
+	ND_NUM
+}	t_nd_type;
 
-int	main(int argc, char *argv[])
+typedef struct s_tree	t_tree;
+
+struct s_tree
 {
-	t_tree	*ast;
+	t_nd_type	type;
+	t_tree		*rhs;
+	t_tree		*lhs;
+	int			val;
+};
 
-	(void)argc;
-	ast = file_to_ast(argv[1]);
-	if (compile(ast) != 0)
-	{
-		clear_ast(ast);
-		return (EXIT_FAILURE);
-	}
-	clear_ast(ast);
-	return (EXIT_SUCCESS);
-}
+#endif

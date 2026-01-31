@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear_ast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:35:11 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/01 03:34:15 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/01 03:37:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
-t_tree	*file_to_ast(char *file_path);
-int		compile(t_tree *ast);
-void	clear_ast(t_tree *node);
-
-int	main(int argc, char *argv[])
+void	clear_ast(t_tree *node)
 {
-	t_tree	*ast;
-
-	(void)argc;
-	ast = file_to_ast(argv[1]);
-	if (compile(ast) != 0)
-	{
-		clear_ast(ast);
-		return (EXIT_FAILURE);
-	}
-	clear_ast(ast);
-	return (EXIT_SUCCESS);
+	if (node->lhs)
+		clear_ast(node->lhs);
+	if (node->rhs)
+		clear_ast(node->rhs);
+	free(node);
+	return ;
 }
