@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/01 03:36:18 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/01 04:31:57 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,13 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
+TEST = $(addprefix $(TESTDIR)/, test.sh)
+
 SRCDIR = src
 OBJDIR = obj
 INCDIR = include
 ASMDIR = asm
+TESTDIR = test
 
 all:$(NAME)
 
@@ -62,4 +65,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test:
+	@./$(TEST)
+
+.PHONY: all clean fclean re test

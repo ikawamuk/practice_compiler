@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:57:31 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:00:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/01 11:19:14 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_tree	*new_node_op(t_nd_type type, t_tree *lhs, t_tree *rhs)
 {
 	t_tree	*new;
 
+	if (!lhs || !rhs)
+		return (NULL);
 	new = calloc(1, sizeof(t_tree));
 	if (!new)
 		return (NULL);
