@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:08:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/02 12:33:24 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/02 12:35:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_arena
 {
-	char	*buffer;
+	void	*buffer;
 	size_t	size;
 	size_t	offset;
 }	t_arena;
