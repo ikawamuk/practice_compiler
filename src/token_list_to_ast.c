@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_to_ast.c                                      :+:      :+:    :+:   */
+/*   token_list_to_ast.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 03:13:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/02 12:24:49 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/02 12:19:38 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/02 12:33:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "arena.h"
 #include "tree.h"
 #include "token.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-t_token	*file_to_token_list(char *file_path);
-t_tree	*token_list_to_ast(t_token *token_list);
-void	clear_token(t_token *cur);
+t_tree			*expr(void *arena, t_token **list_p);
+static size_t	count_token_list(t_token *list);
 
-t_tree	*file_to_ast(char *file_path)
+t_tree	*token_list_to_ast(t_token *token_list)
 {
-	t_tree	*ast;
-	t_token	*token_list;
+	t_arena	arena;
 
-	token_list = file_to_token_list(file_path);
-	if (!token_list)
+	arena.buffer = malloc(count_token_list(token_list) * sizeof(t_tree));
+	if (!arena.buffer)
 		return (NULL);
-	ast = token_list_to_ast(token_list);
-	clear_token(token_list);
-	return (ast);
+	return (expr(&arena, &token_list));
 }
 
-	// t_token	*cur = token_list;
-	// while (cur)
-	// {
-	// 	printf("str:%s\n", cur->str);
-	// 	cur = cur->next;
-	// }
-	
+static size_t	count_token_list(t_token *list)
+{
+	size_t	count;
+	t_token	*cur = list;
+
+	count = 0;
+	while (cur)
+	{
+		count++;
+		cur = cur->next;
+	}
+	return (count);
+}

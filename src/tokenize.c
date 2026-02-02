@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 04:15:42 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/02 12:34:34 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_token *tokenize(char *str)
 {
 	t_token *list;
 
+	list = NULL;
 	if (tokenize_recursive(str, &list) != 0)
 	{
 		clear_token(list);

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_ast.c                                        :+:      :+:    :+:   */
+/*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 03:34:15 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/02 12:28:39 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/02 12:08:50 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/02 12:33:24 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include <stdlib.h>
+#ifndef ARENA_H
+# define ARENA_H
 
-void	clear_ast(t_tree *root)
+# include <stddef.h>
+
+typedef struct s_arena
 {
-	free(root);
-	return ;
-}
+	char	*buffer;
+	size_t	size;
+	size_t	offset;
+}	t_arena;
+
+#endif

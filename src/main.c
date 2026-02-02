@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:35:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/02 12:24:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	ast = file_to_ast(argv[1]);
+	if (!ast)
+		return (EXIT_FAILURE);
 	if (compile(ast) != 0)
 	{
 		clear_ast(ast);

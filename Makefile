@@ -6,21 +6,23 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/01 04:31:57 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/02 12:32:02 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= Ccc
 
-CC = cc
-CFLAG = -Werror -Wall -Wextra -I$(INCDIR)
+CC = cc 
+CFLAG = -Werror -Wall -Wextra -I$(INCDIR) -fPIE
 RMDIR = $(RM) -rf
 
 SRCS =	$(addprefix $(SRCDIR)/, \
 			main.c \
+			arena.c \
 			clear_token.c \
 			file_to_ast.c \
 			file_to_token_list.c \
+			token_list_to_ast.c \
 			read_in_bulk.c \
 			tokenize.c \
 			node.c \
@@ -57,7 +59,7 @@ $(ASMDIR):
 	@mkdir -p $@
 
 clean:
-	@$(RMDIR) $(OBJDIER)
+	@$(RMDIR) $(OBJDIR)
 	@$(RMDIR) $(ASMDIR)
 
 fclean: clean
