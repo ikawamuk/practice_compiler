@@ -6,14 +6,14 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/02 12:32:02 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/02 13:00:18 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= Ccc
+NAME= ccc
 
 CC = cc 
-CFLAG = -Werror -Wall -Wextra -I$(INCDIR) -fPIE
+CFLAG = -Werror -Wall -Wextra -I$(INCDIR)
 RMDIR = $(RM) -rf
 
 SRCS =	$(addprefix $(SRCDIR)/, \
@@ -69,5 +69,8 @@ re: fclean all
 
 test:
 	@./$(TEST)
+
+debug:fclean
+	$(MAKE) CFLAG="$(CFLAG) -g -O0"
 
 .PHONY: all clean fclean re test

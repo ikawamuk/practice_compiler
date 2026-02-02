@@ -6,13 +6,14 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:57:31 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/02 12:29:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:05:15 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include "tree.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	*alloc(t_arena *arena, size_t size);
 
