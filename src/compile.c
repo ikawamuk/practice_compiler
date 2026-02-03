@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:29:50 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/03 18:40:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	create_assemble_src(int fd, t_tree *ast);
 
 int	compile(t_tree *ast)
 {
-	static char	asm_file_name[] = "./asm/Ccc_XXXXXX.s";
+	static char	asm_file_name[] = ASMFILE_FORMAT;
 	int			fd;
 
 	fd = mkstemps(asm_file_name, 2);

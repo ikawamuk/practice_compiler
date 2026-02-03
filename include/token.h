@@ -6,13 +6,14 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 02:15:13 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/03 18:26:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
+# include <stddef.h>
 
 typedef enum {
 	TK_RESERVED,
@@ -26,8 +27,9 @@ typedef struct s_token t_token;
 struct s_token
 {
 	t_tk_type	type;
-	int		val;
-	char	*str;
+	int			val;
+	const char	*str;
+	size_t		len;
 	t_token		*next;
 };
 

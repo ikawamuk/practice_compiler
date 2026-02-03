@@ -6,13 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 01:50:12 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 02:05:53 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/03 18:29:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void	error_at(char *input_str, char *location, char *err_msg)
+void	error_at(const char *input_str, const char *location, const char *err_msg)
 {
 	const int	pos = location - input_str;
 

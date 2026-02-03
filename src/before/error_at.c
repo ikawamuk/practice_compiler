@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assemble.c                                         :+:      :+:    :+:   */
+/*   error_at.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 18:41:23 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/01 01:50:12 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/03 18:27:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ccc_define.h"
-#include <stdlib.h>
 #include <stdio.h>
 
-int	assemble(char *asm_file_name)
+void	error_at(const char *input_str, const char *location, const char *err_msg)
 {
-	char	cmd[256];
+	const int	pos = location - input_str;
 
-	snprintf(cmd, sizeof(cmd), "cc %s -o c.out", asm_file_name);
-	if (system(cmd) != 0)
-		return (EXIT_FAILURE);
-	// snprintf(cmd, sizeof(cmd), "rm %s", asm_file_name);
-	return (system(cmd));
+	fprintf(stderr, "%s\n", input_str);
+	fprintf(stderr, "%*s", pos, " ");
+	fprintf(stderr, "^ ");
+	fprintf(stderr, "%s\n", err_msg);
+	return ;
 }

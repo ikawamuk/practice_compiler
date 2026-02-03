@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assemble.c                                         :+:      :+:    :+:   */
+/*   new_num_leaf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 18:41:23 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/03 17:37:21 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/03 17:45:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ccc_define.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "arena.h"
+#include "tree.h"
 
-int	assemble(char *asm_file_name)
+t_tree	*new_num_leaf(t_arena *arena, int val)
 {
-	char	cmd[256];
-
-	snprintf(cmd, sizeof(cmd), "cc %s -o c.out", asm_file_name);
-	if (system(cmd) != 0)
-		return (EXIT_FAILURE);
-	// snprintf(cmd, sizeof(cmd), "rm %s", asm_file_name);
-	return (system(cmd));
+	t_tree	*new = aalloc(arena, sizeof(t_tree));
+	if (!new)
+		return (NULL);
+	new->type = ND_NUM;
+	new->val = val;
+	new->lhs = NULL;
+	new->rhs = NULL;
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 03:00:42 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:27:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 # define TREE_H
 
 typedef enum {
-	ND_ADD,
-	ND_SUB,
-	ND_MUL,
-	ND_DIV,
+	ND_ADD, // +
+	ND_SUB, // -
+	ND_MUL, // *
+	ND_DIV, // /
+	ND_EQ, // ==
+	ND_NE, // !=
+	ND_LT, // <
+	ND_LE, // <=
 	ND_NUM
 }	t_nd_type;
 

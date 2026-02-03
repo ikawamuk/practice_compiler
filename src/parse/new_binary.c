@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assemble.c                                         :+:      :+:    :+:   */
+/*   new_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 18:41:23 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/03 16:31:39 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/03 16:42:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ccc_define.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "arena.h"
+#include "tree.h"
 
-int	assemble(char *asm_file_name)
+t_tree	*new_binary(t_arena *arena, t_nd_type type, t_tree *lhs, t_tree *rhs)
 {
-	char	cmd[256];
-
-	snprintf(cmd, sizeof(cmd), "cc %s -o c.out", asm_file_name);
-	if (system(cmd) != 0)
-		return (EXIT_FAILURE);
-	// snprintf(cmd, sizeof(cmd), "rm %s", asm_file_name);
-	return (system(cmd));
+	if (!lhs || !rhs)
+		return (NULL);
+	t_tree	*new = aalloc(arena, sizeof(t_tree));
+	if (!new)
+		return (NULL);
+	new->type = type;
+	new->val = 0;
+	new->lhs = lhs;
+	new->rhs = rhs;
+	return (new);
 }

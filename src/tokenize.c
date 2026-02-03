@@ -6,99 +6,82 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/02 12:34:34 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/03 18:28:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "arena.h"
 #include "token.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 
-static t_tk_type	match_type(char *str);
-void				clear_token(t_token *cur);
-static int			tokenize_recursive(char *str, t_token **list_p);
-static t_token		*new_token(t_tk_type type, char **str_p);
-// static char		*dup_token(char *str);
+void			error_at(const char *input_str, const char *location, const char *err_msg);
+static t_token	*new_token(t_arena *arena, const char **str_p, const char *head);
 
-t_token *tokenize(char *str)
+t_token *tokenize(t_arena *arena, const char *str)
 {
-	t_token *list;
+	const char	*head = str;
+	t_token		dummy_head = {0};
+	t_token		*cur = &dummy_head;
 
-	list = NULL;
-	if (tokenize_recursive(str, &list) != 0)
+	while (*str)
 	{
-		clear_token(list);
+		while (isspace(*str))
+			str++;
+		if (!*str)
+			break ;
+		t_token	*new = new_token(arena, &str, head);
+		if (!new)
+			return (NULL);
+		cur->next = new;
+		cur = cur->next;
+	}
+	t_token *eof = aalloc(arena, sizeof(t_token));
+	if (!eof)
 		return (NULL);
-	}
-	return (list);
+	eof->next = NULL;
+	eof->str = str;
+	eof->type = TK_EOF;
+	cur->next = eof;
+	return (dummy_head.next);
 }
 
-static int	tokenize_recursive(char *str, t_token **list_p)
+static t_token	*new_token(t_arena *arena, const char **str_p, const char *head)
 {
-	t_tk_type	type;
+	t_token		*new;
 
-	while (isspace(*str))
-		str++;
-	type = match_type(str);
-	if (type == TK_ERROR)
-	{
-		fprintf(stderr, "Ccc: error: invalid character '%c'\n", *str);
-		return (EXIT_FAILURE);
-	}
-	*list_p = new_token(type, &str);
-	if (!*list_p)
-		return (EXIT_FAILURE);
-	if (type == TK_EOF)
-		return (EXIT_SUCCESS);
-	return (tokenize_recursive(str, &(*list_p)->next));
-}
-
-static t_tk_type	match_type(char *str)
-{
-	if (!*str)
-		return (TK_EOF);
-	else if (*str == '+'
-			|| *str == '-'
-			|| *str == '*'
-			|| *str == '/'
-			|| *str == '('
-			|| *str == ')')
-		return (TK_RESERVED);
-	else if (isdigit(*str))
-		return (TK_NUM);
-	return (TK_ERROR);
-}
-
-static t_token	*new_token(t_tk_type type, char **str_p)
-{
-	t_token	*new;
-
-	new = calloc(1, sizeof(t_token));
+	new = aalloc(arena, sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->type = type;
-	new->str = *str_p;
-	if (type == TK_NUM)
-		new->val = strtol(*str_p, str_p, 10);
-	else
-		// while (**str_p && !isspace(**str_p) && !isdigit((**str_p)))
-			(*str_p)++;
 	new->next = NULL;
+	new->str = *str_p;
+	if (!memcmp(*str_p, "==", 2) || !memcmp(*str_p, "!=", 2) ||
+		!memcmp(*str_p, "<=", 2) || !memcmp(*str_p, ">=", 2))
+	{
+		new->val = 0;
+		*str_p += 2;
+		new->len = 2;
+		new->type = TK_RESERVED;
+	}
+	else if (strchr("+-*/()<>", **str_p))
+	{
+		new->val = 0;
+		*str_p += 1;
+		new->len = 1;
+		new->type = TK_RESERVED;
+	}
+	else if (isdigit(**str_p))
+	{
+		new->val = strtol(*str_p, (char **)str_p, 10);
+		new->len = *str_p - new->str;
+		new->type = TK_NUM;
+	}
+	else
+	{
+		error_at(head, *str_p, "invalid character");
+		return (NULL);
+	}
 	return (new);
 }
-
-// static char	*dup_token(char *str)
-// {
-// 	char	*token;
-// 	size_t	len;
-
-// 	len = 0;
-// 	while (str[len] && !isspace(str[len]))
-// 		len++;
-// 	token = calloc(len + 1, sizeof(char));
-// 	if (!token)
-// 		return (NULL);
-// 	return (strncpy(token, str, len));
-// }

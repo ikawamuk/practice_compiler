@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_to_token_list.c                               :+:      :+:    :+:   */
+/*   ctx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 02:28:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/01 02:34:16 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/03 13:50:25 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/03 18:06:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef CTX_H
+# define CTX_H
 
-char	*read_in_bulk(const char *file_path);
-t_token *tokenize(char *str);
+# include "arena.h"
+# include "token.h"
+# include "tree.h"
+# include <stdio.h>
 
-t_token	*file_to_token_list(char *file_path)
+typedef struct s_ctx
 {
+	t_arena	arena;
+	// 
+	char	*file_path;
+	FILE	*fp;
+	char	*file_content;
+	// 
 	t_token	*token_list;
-	char	*input_str;
+	t_tree	*ast;
+}	t_ctx;
 
-	input_str = read_in_bulk(file_path);
-	if (!input_str)
-		return (NULL);
-	token_list = tokenize(input_str);
-	if (!token_list)
-	{
-		free(input_str);
-		return (NULL);
-	}
-	return (token_list);
-}
+#endif
