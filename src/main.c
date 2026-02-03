@@ -21,7 +21,6 @@ int		compile(t_tree *ast);
 
 int	main(int argc, char *argv[])
 {
-	int		exit_status;
 	t_ctx	ctx = {0};
 
 	if (argc < 2)
@@ -43,7 +42,8 @@ int	main(int argc, char *argv[])
 	ctx.ast = parse(&ctx.arena, ctx.token_list);
 	if (!ctx.ast)
 		return (clear_arena(&ctx.arena), EXIT_FAILURE);
-	exit_status = compile(ctx.ast);
+	if (compile(ctx.ast) != 0)
+		return (clear_arena(&ctx.arena), EXIT_FAILURE);
 	clear_arena(&ctx.arena);
 	return (EXIT_SUCCESS);
 }

@@ -37,8 +37,9 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				unary.c \
 			) \
 			compile.c \
-			create_assemble_src.c \
-			calc_ast.c \
+			create_asm_file.c \
+			write_assemble_src.c \
+			put_body.c \
 			assemble.c \
 		) \
 

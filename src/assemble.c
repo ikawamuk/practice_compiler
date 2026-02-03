@@ -18,9 +18,10 @@ int	assemble(char *asm_file_name)
 {
 	char	cmd[256];
 
-	snprintf(cmd, sizeof(cmd), "cc %s -o c.out", asm_file_name);
+	snprintf(cmd, sizeof(cmd), "cc %s -o b.out", asm_file_name);
 	if (system(cmd) != 0)
 		return (EXIT_FAILURE);
 	// snprintf(cmd, sizeof(cmd), "rm %s", asm_file_name);
+	printf("assemblecode generated: %s\n", asm_file_name);
 	return (system(cmd));
 }

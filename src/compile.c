@@ -17,22 +17,23 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	assemble(char *);
-int	create_assemble_src(int fd, t_tree *ast);
+int		assemble(char *asm_file_name);
+FILE    *create_asm_file(char *asm_file_name);
+int		write_assemble_src(FILE *asm_file, t_tree *ast);
 
 int	compile(t_tree *ast)
 {
-	static char	asm_file_name[] = ASMFILE_FORMAT;
-	int			fd;
+	char	asm_file_name[] = ASMFILE_FORMAT;
+	FILE	*asm_file;
 
-	fd = mkstemps(asm_file_name, 2);
-	if (fd == -1)
+	asm_file = create_asm_file(asm_file_name);
+	if (!asm_file)
 		return (EXIT_FAILURE);
-	if (create_assemble_src(fd, ast) != 0)
+	if (write_assemble_src(asm_file, ast) != 0)
 	{
-		close(fd);
+		fclose(asm_file);
 		return (EXIT_FAILURE);
 	}
-	close(fd);
+	fclose(asm_file);
 	return (assemble(asm_file_name));
 }

@@ -13,15 +13,15 @@
 #include "tree.h"
 #include <stdio.h>
 
-int	calc_ast(FILE *asm_file, t_tree *node)
+int	put_body(FILE *asm_file, t_tree *node)
 {
 	if (node->type == ND_NUM)
 	{
 		fprintf(asm_file, "\tpush %d\n", node->val);
 		return (0);
 	}
-	calc_ast(asm_file, node->lhs);
-	calc_ast(asm_file, node->rhs);
+	put_body(asm_file, node->lhs);
+	put_body(asm_file, node->rhs);
 	fprintf(asm_file, "\tpop rdi\n");
 	fprintf(asm_file, "\tpop rax\n");
 	switch (node->type) {
@@ -39,25 +39,25 @@ int	calc_ast(FILE *asm_file, t_tree *node)
 		fprintf(asm_file, "\tidiv rdi\n");
 		break;
 	case ND_EQ:
-		fprintf(asm_file, "\tpop rdi\n");
-		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tcmp rax, rdi\n");
 		fprintf(asm_file, "\tsete al\n");
+		fprintf(asm_file, "\tmovzb rax, al\n");
+		break;
 	case ND_NE:
-		fprintf(asm_file, "\tpop rdi\n");
-		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tcmp rax, rdi\n");
 		fprintf(asm_file, "\tsetne al\n");
+		fprintf(asm_file, "\tmovzb rax, al\n");
+		break;
 	case ND_LT:
-		fprintf(asm_file, "\tpop rdi\n");
-		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tcmp rax, rdi\n");
 		fprintf(asm_file, "\tsetl al\n");
+		fprintf(asm_file, "\tmovzb rax, al\n");
+		break;
 	case ND_LE:
-		fprintf(asm_file, "\tpop rdi\n");
-		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tcmp rax, rdi\n");
 		fprintf(asm_file, "\tsetle al\n");
+		fprintf(asm_file, "\tmovzb rax, al\n");
+		break;
 	default:
 		return (1);
 	}
