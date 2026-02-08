@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:08:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 15:30:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:47:19 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_arena
 	t_chunk	*cur;
 }	t_arena;
 
-void	*aalloc(t_arena *arena, size_t size);
-void	afree(t_arena *arena);
-void	clear_arena(t_arena *arena);
+void	*aalloc(size_t size);
+void	afree();
+void	clear_arena();
 
 #endif

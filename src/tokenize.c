@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 16:10:46 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */                                       
+/*   Updated: 2026/02/08 16:22:35 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,46 @@
 #include <string.h>
 
 void			error_at(const char *input_str, const char *location, const char *err_msg);
-static t_token	*new_token(t_arena *arena, const char **str_p, const char *head);
-static t_token *create_token_list(t_arena *arena, const char *str);
+static t_token	*new_token(const char **str_p, const char *head);
+static t_token *create_token_list(const char *str);
 
-t_token	*tokenize(t_arena *arena, const char *str)
+t_token	*tokenize(const char *str)
 {
-	t_token	*token_list = create_token_list(arena, str);
-
+	t_token	*token_list = create_token_list(str);
 	if (!token_list)
 	{
-		clear_arena(arena);
+		clear_arena();
 		exit(EXIT_FAILURE);
 	}
 	return (token_list);
 }
 
-static t_token *create_token_list(t_arena *arena, const char *str)
+static t_token *create_token_list(const char *str)
 {
 	const char	*head = str;
 	t_token		dummy_head = {0};
 	t_token		*cur = &dummy_head;
-
 	while (*str)
 	{
 		while (isspace(*str))
 			str++;
 		if (!*str)
 			break ;
-		t_token	*new = new_token(arena, &str, head);
+		t_token	*new = new_token(&str, head);
 		if (!new)
 			return (NULL);
 		cur->next = new;
 		cur = cur->next;
 	}
-	cur->next = new_eof_token(arena, str);
+	cur->next = new_eof_token(str);
 	if (!cur->next)
 		return (NULL);
 	return (dummy_head.next);
 }
 
-static t_token	*new_eof_token(t_arena *arena, char *str)
+static t_token	*new_eof_token(char *str)
 {
-	t_token *eof = aalloc(arena, sizeof(t_token));
+	t_token *eof = aalloc(sizeof(t_token));
 
 	if (!eof)
 		return (NULL);
@@ -69,17 +67,17 @@ static t_token	*new_eof_token(t_arena *arena, char *str)
 	return (eof);
 }
 
-static t_token	*new_token(t_arena *arena, const char **str_p, const char *head)
+static t_token	*new_token(const char **str_p, const char *head)
 {
 	t_token		*new;
 
-	new = aalloc(arena, sizeof(t_token));
+	new = aalloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
 	new->next = NULL;
 	new->str = *str_p;
-	if (!memcmp(*str_p, "==", 2) || !memcmp(*str_p, "!=", 2) ||
-		!memcmp(*str_p, "<=", 2) || !memcmp(*str_p, ">=", 2))
+	if (!memcmp(*str_p, "==", 2) || !memcmp(*str_p, "!=", 2)
+	|| !memcmp(*str_p, "<=", 2) || !memcmp(*str_p, ">=", 2))
 	{
 		new->val = 0;
 		*str_p += 2;
