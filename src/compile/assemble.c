@@ -6,15 +6,16 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:40:15 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 21:47:53 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ccc_define.h"
+#include "arena.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-int	assemble(char *asm_file_name)
+void	assemble(const char *asm_file_name)
 {
 	char	cmd[256];
 
@@ -23,5 +24,5 @@ int	assemble(char *asm_file_name)
 		exit(EXIT_FAILURE);
 	// snprintf(cmd, sizeof(cmd), "rm %s", asm_file_name);
 	printf("assemblecode generated: %s\n", asm_file_name);
-	exit(system(cmd));
+	exit(EXIT_SUCCESS);
 }
