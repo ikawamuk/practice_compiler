@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:12:04 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:20:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:47:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_token *create_token_list(const char *str)
 static t_token	*new_eof_token(const char *str)
 {
 	t_token *eof = aalloc(sizeof(t_token));
-
 	if (!eof)
 		return (NULL);
 	eof->next = NULL;

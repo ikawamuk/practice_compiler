@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/07 15:15:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:40:15 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	assemble(char *asm_file_name)
 
 	snprintf(cmd, sizeof(cmd), "gcc %s -o b.out", asm_file_name);
 	if (system(cmd) != 0)
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	// snprintf(cmd, sizeof(cmd), "rm %s", asm_file_name);
 	printf("assemblecode generated: %s\n", asm_file_name);
-	return (system(cmd));
+	exit(system(cmd));
 }
