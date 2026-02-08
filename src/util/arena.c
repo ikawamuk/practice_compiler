@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:11:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 16:46:42 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:57:33 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*aalloc(size_t size)
 	return (p);
 }
 
-void	afree()
+void	areset()
 {
 	t_chunk *cur = arena.dummy_head.next;
 
