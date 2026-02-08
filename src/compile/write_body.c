@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_ast.c                                         :+:      :+:    :+:   */
+/*   write_body.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 03:26:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 18:53:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 21:52:09 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
 
-int	put_body(FILE *asm_file, t_tree *node)
+int	write_body(FILE *asm_file, t_tree *node)
 {
 	if (node->type == ND_NUM)
 	{
 		fprintf(asm_file, "\tpush %d\n", node->val);
 		return (0);
 	}
-	put_body(asm_file, node->lhs);
-	put_body(asm_file, node->rhs);
+	write_body(asm_file, node->lhs);
+	write_body(asm_file, node->rhs);
 	fprintf(asm_file, "\tpop rdi\n");
 	fprintf(asm_file, "\tpop rax\n");
 	switch (node->type) {
