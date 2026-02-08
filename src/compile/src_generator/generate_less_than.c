@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_body.c                                       :+:      :+:    :+:   */
+/*   generate_less_than.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 03:26:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 22:20:45 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/08 22:00:11 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/08 22:01:24 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gen_table.h"
 #include <stdio.h>
 
-int	write_body(FILE *asm_file, t_tree *node)
+void	generate_less_than(FILE *asm_file)
 {
-	if (node->type == ND_NUM)
-	{
-		fprintf(asm_file, "\tpush %d\n", node->val);
-		return (0);
-	}
-	write_body(asm_file, node->lhs);
-	write_body(asm_file, node->rhs);
-	fprintf(asm_file, "\tpop rdi\n");
-	fprintf(asm_file, "\tpop rax\n");
-	get_generator(node->type)(asm_file);
-	fprintf(asm_file, "\tpush rax\n");
-	return (0);
+	fprintf(asm_file, "\tcmp rax, rdi\n");
+	fprintf(asm_file, "\tsetl al\n");
+	fprintf(asm_file, "\tmovzb rax, al\n");
 }
