@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:10:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 22:21:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 22:26:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ typedef struct s_nd_gen
 	t_nd_type	type;
 	void		(*gen)(FILE *asm_file);
 }	t_nd_gen;
-
-void	(*get_generator(t_nd_type type))(FILE *);
 
 #endif
