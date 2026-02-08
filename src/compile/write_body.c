@@ -13,29 +13,28 @@
 #include "gen_table.h"
 #include <stdio.h>
 
-void		(*get_generator(t_nd_type type))(FILE *);
+void		(*get_op_generator(t_nd_type type))(FILE *);
 static void	exec_calculation(FILE *asm_file, t_nd_type type);
 
-int	write_body(FILE *asm_file, t_tree *node)
+void	write_body(FILE *asm_file, t_tree *node)
 {
 	if (node->type == ND_NUM)
 	{
 		fprintf(asm_file, "\tpush %d\n", node->val);
-		return (0);
+		return ;
 	}
 	write_body(asm_file, node->lhs);
 	write_body(asm_file, node->rhs);
-	
 	fprintf(asm_file, "\tpop rdi\n");
 	fprintf(asm_file, "\tpop rax\n");
-	
 	exec_calculation(asm_file, node->type);
-	
 	fprintf(asm_file, "\tpush rax\n");
-	return (0);
+	return ;
 }
 
 static void	exec_calculation(FILE *asm_file, t_nd_type type)
 {
-	get_generator(type)(asm_file);
+	void	(*gen)(FILE *) = get_op_generator(type);
+	if (gen)
+		gen(asm_file);
 }

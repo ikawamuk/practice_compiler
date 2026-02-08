@@ -18,14 +18,12 @@
 
 static void	write_hedder(FILE *asm_file);
 static void	write_footer(FILE *asm_file);
-// int			put_operations(FILE *asm_file, t_token *input);
-int			write_body(FILE *asm_file, t_tree *ast);
+void		write_body(FILE *asm_file, t_tree *ast);
 
 int	write_assemble_src(FILE *asm_file, t_tree *ast)
 {
 	write_hedder(asm_file);
-	if (write_body(asm_file, ast) != 0)
-		return (EXIT_FAILURE);
+	write_body(asm_file, ast);
 	write_footer(asm_file);
 	return (EXIT_SUCCESS);
 }

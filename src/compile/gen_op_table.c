@@ -22,7 +22,7 @@ void	generate_not_equal(FILE *asm_file);
 void	generate_less_than(FILE *asm_file);
 void	generate_less_equal(FILE *asm_file);
 
-const t_nd_gen	gen_table[] = {
+static const t_nd_gen	gen_op_table[] = {
 	{ND_ADD, generate_add},
 	{ND_SUB, generate_sub},
 	{ND_MUL, generate_mul},
@@ -33,12 +33,12 @@ const t_nd_gen	gen_table[] = {
 	{ND_LE, generate_less_equal}
 };
 
-void	(*get_generator(t_nd_type type))(FILE *)
+void	(*get_op_generator(t_nd_type type))(FILE *)
 {
-	for (size_t i = 0; i < sizeof(gen_table)/sizeof(t_nd_gen); i++)
+	for (size_t i = 0; i < sizeof(gen_op_table)/sizeof(t_nd_gen); i++)
 	{
-		if (type == gen_table[i].type)
-			return (gen_table[i].gen);
+		if (type == gen_op_table[i].type)
+			return (gen_op_table[i].gen);
 	}
 	return (NULL);
 }
