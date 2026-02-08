@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:11:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 17:09:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:20:26 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static t_chunk	*next_chunk(size_t size);
 void	*aalloc(t_arena *arena, size_t size)
 {
 	size_t	aligned_size = (size + 7)&~7; // round up to 8 bytes
-
 	if (!arena->cur)
 		arena->cur = &arena->dummy_head;
 	if (!arena->cur->buffer

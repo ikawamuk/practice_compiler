@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:03:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 18:28:17 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:10:46 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,21 @@
 
 void			error_at(const char *input_str, const char *location, const char *err_msg);
 static t_token	*new_token(t_arena *arena, const char **str_p, const char *head);
+static t_token *create_token_list(t_arena *arena, const char *str);
 
-t_token *tokenize(t_arena *arena, const char *str)
+t_token	*tokenize(t_arena *arena, const char *str)
+{
+	t_token	*token_list = create_token_list(arena, str);
+
+	if (!token_list)
+	{
+		clear_arena(arena);
+		exit(EXIT_FAILURE);
+	}
+	return (token_list);
+}
+
+static t_token *create_token_list(t_arena *arena, const char *str)
 {
 	const char	*head = str;
 	t_token		dummy_head = {0};
@@ -38,14 +51,22 @@ t_token *tokenize(t_arena *arena, const char *str)
 		cur->next = new;
 		cur = cur->next;
 	}
+	cur->next = new_eof_token(arena, str);
+	if (!cur->next)
+		return (NULL);
+	return (dummy_head.next);
+}
+
+static t_token	*new_eof_token(t_arena *arena, char *str)
+{
 	t_token *eof = aalloc(arena, sizeof(t_token));
+
 	if (!eof)
 		return (NULL);
 	eof->next = NULL;
 	eof->str = str;
 	eof->type = TK_EOF;
-	cur->next = eof;
-	return (dummy_head.next);
+	return (eof);
 }
 
 static t_token	*new_token(t_arena *arena, const char **str_p, const char *head)
