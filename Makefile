@@ -6,14 +6,14 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/08 17:20:53 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/08 17:33:25 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= ccc
 
 CC = cc 
-CFLAG = -Werror -Wall -Wextra -I$(INCDIR)
+CFLAG = -Werror -Wall -Wextra -I$(INCDIR) -g -O0
 RMDIR = $(RM) -rf
 
 SRCS =	$(addprefix $(SRCDIR)/, \
