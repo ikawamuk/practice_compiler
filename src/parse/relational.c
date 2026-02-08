@@ -22,7 +22,6 @@ t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 t_tree	*relational(t_token **token_p)
 {
 	t_tree	*node = add(token_p);
-
 	while (1)
 	{
 		if (is_expected_op("<", *token_p))

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:36:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 16:52:13 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:57:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include "arena.h"
 #include "token.h"
 #include <stdbool.h>
+#include <ctype.h>
+#include <stdio.h>
 
 bool	is_expected_op(const char *op, t_token *token);
-t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 t_tree	*new_num_leaf(int val);
 t_tree	*expr(t_token **token_p);
 
 t_tree	*pri(t_token **token_p)
 {
 	t_tree	*node;
-
 	if (is_expected_op("(", *token_p))
 	{
 		*token_p = (*token_p)->next;
@@ -34,6 +34,12 @@ t_tree	*pri(t_token **token_p)
 			return (node);
 		}
 		// error_at(head, p, "unclosed parenthesis");
+		return (NULL);
+	}
+	if ((*token_p)->type != TK_NUM)
+	{
+		// error_at(head, p, "unclosed parenthesis");
+		fprintf(stderr, "aaa\n");
 		return (NULL);
 	}
 	node = new_num_leaf((*token_p)->val);

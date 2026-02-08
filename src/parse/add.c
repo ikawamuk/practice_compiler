@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:51:56 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 16:51:38 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:50:46 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 t_tree	*add(t_token **token_p)
 {
 	t_tree	*node = mul(token_p);
-
 	while (1)
 	{
 		if (is_expected_op("+", *token_p))
