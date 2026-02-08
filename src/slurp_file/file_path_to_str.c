@@ -6,10 +6,11 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:10:48 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:11:20 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:18:43 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "arena.h"
 #include <stdio.h>
 
 static size_t	get_file_size(FILE *fp);

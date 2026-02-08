@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:12:04 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:12:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:20:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@
 #include <ctype.h>
 #include <string.h>
 
-static t_token *create_token_list(const char *str)
+void			error_at(
+		const char *input_str,
+		const char *location,
+		const char *err_msg);
+static t_token	*new_token(const char **str_p, const char *head);
+static t_token	*new_eof_token(const char *str);
+
+t_token *create_token_list(const char *str)
 {
 	const char	*head = str;
 	t_token		dummy_head = {0};
@@ -40,7 +47,7 @@ static t_token *create_token_list(const char *str)
 	return (dummy_head.next);
 }
 
-static t_token	*new_eof_token(char *str)
+static t_token	*new_eof_token(const char *str)
 {
 	t_token *eof = aalloc(sizeof(t_token));
 

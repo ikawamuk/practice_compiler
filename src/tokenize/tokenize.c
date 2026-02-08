@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "token.h"
+#include "arena.h"
+#include <stdlib.h>
 
 t_token *create_token_list(const char *str);
 

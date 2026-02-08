@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:00:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:22:33 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int	main(int argc, char *argv[])
 	char	*file_content = slurp_file(argv[1]);
 	t_token	*token_list = tokenize(file_content);
 	t_tree	*ast = parse(token_list);
-	compile(ast);
-	clear_arena();
+	if (compile(ast) != 0)
+	{
+		clear_arena();
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

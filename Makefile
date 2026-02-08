@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/03 18:53:58 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/08 17:20:53 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,18 @@ RMDIR = $(RM) -rf
 
 SRCS =	$(addprefix $(SRCDIR)/, \
 			main.c \
-			arena.c \
-			read_in_bulk.c \
-			tokenize.c \
-			error_at.c \
+			$(addprefix util/, \
+				arena.c \
+				error_at.c \
+			) \
+			$(addprefix slurp_file/, \
+				slurp_file.c \
+				file_path_to_str.c \
+			) \
+			$(addprefix tokenize/, \
+				tokenize.c \
+				create_token_list.c \
+			) \
 			$(addprefix parse/, \
 				add.c \
 				expr.c \
@@ -32,15 +40,16 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				equality.c \
 				is_expect_op.c \
 				new_binary.c \
-				new_unary.c \
 				pri.c \
 				unary.c \
 			) \
-			compile.c \
-			create_asm_file.c \
-			write_assemble_src.c \
-			put_body.c \
-			assemble.c \
+			$(addprefix compile/, \
+				compile.c \
+				create_asm_file.c \
+				write_assemble_src.c \
+				put_body.c \
+				assemble.c \
+			) \
 		) \
 
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
