@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 18:34:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 21:19:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 static bool	consumes_digit(t_token *new, const char **str_p);
 static bool	consumes_reserved1(t_token *new, const char **str_p);
 static bool	consumes_reserved2(t_token *new, const char **str_p);
+static bool	consumes_identifer(t_token *new, const char **str_p);
 
 bool	has_filled_token(t_token *new, const char **str_p)
 {
@@ -28,6 +29,20 @@ bool	has_filled_token(t_token *new, const char **str_p)
 		return (true);
 	if (consumes_digit(new, str_p))
 		return (true);
+	if (consumes_identifer(new, str_p))
+		return (true);
+	return (false);
+}
+
+static bool	consumes_identifer(t_token *new, const char **str_p)
+{
+	if ('a' <= **str_p && **str_p <= 'z')
+	{
+		new->val = 0;
+		new->len = 1;
+		new->type = TK_IDENT;
+		return (true);
+	}
 	return (false);
 }
 
@@ -45,7 +60,7 @@ static bool	consumes_digit(t_token *new, const char **str_p)
 
 static bool	consumes_reserved1(t_token *new, const char **str_p)
 {
-	if (strchr("+-*/()<>", **str_p))
+	if (strchr("+-*/()<>;", **str_p))
 	{
 		new->val = 0;
 		*str_p += 1;

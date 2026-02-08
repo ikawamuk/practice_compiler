@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:12:04 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 18:32:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:35:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,6 @@ t_token *create_token_list(const char *str)
 	return (dummy_head.next);
 }
 
-static t_token	*new_eof_token(const char *str)
-{
-	t_token *eof = aalloc(sizeof(t_token));
-	if (!eof)
-		return (NULL);
-	eof->next = NULL;
-	eof->str = str;
-	eof->type = TK_EOF;
-	return (eof);
-}
-
 static t_token	*new_token(const char **str_p, const char *head)
 {
 	t_token		*new;
@@ -71,4 +60,15 @@ static t_token	*new_token(const char **str_p, const char *head)
 		return (NULL);
 	}
 	return (new);
+}
+
+static t_token	*new_eof_token(const char *str)
+{
+	t_token *eof = aalloc(sizeof(t_token));
+	if (!eof)
+		return (NULL);
+	eof->next = NULL;
+	eof->str = str;
+	eof->type = TK_EOF;
+	return (eof);
 }

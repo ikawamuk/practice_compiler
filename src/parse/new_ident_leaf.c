@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr.c                                             :+:      :+:    :+:   */
+/*   new_ident_leaf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 16:09:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 20:45:56 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/08 21:14:28 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/08 21:18:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "arena.h"
 #include "tree.h"
-#include "token.h"
 
-t_tree	*assign(t_token **token_p);
-
-t_tree	*expr(t_token **token_p)
+t_tree	*new_ident_leaf(const char *str)
 {
-	return (assign(token_p));
+	t_tree	*new = aalloc(sizeof(t_tree));
+	if (!new)
+		return (NULL);
+	new->type = ND_LVAR;
+	new->val = 0;
+	new->lhs = NULL;
+	new->rhs = NULL;
+	new->offset = (str[0] - 'a' + 1) * 8;
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 16:27:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 20:37:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef enum {
 	ND_NE, // !=
 	ND_LT, // <
 	ND_LE, // <=
+	ND_ASSIGN, // =
+	ND_LVAR, // local variable
 	ND_NUM
 }	t_nd_type;
 
@@ -33,6 +35,8 @@ struct s_tree
 	t_tree		*rhs;
 	t_tree		*lhs;
 	int			val;
+	int			offset;
+	t_tree		*next;
 };
 
 #endif

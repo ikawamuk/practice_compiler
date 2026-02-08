@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/03 18:26:18 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:36:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef enum {
 	TK_RESERVED,
+	TK_IDENT,
 	TK_NUM,
 	TK_EOF,
 	TK_ERROR

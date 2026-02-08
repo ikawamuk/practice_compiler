@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr.c                                             :+:      :+:    :+:   */
+/*   program.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 16:09:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 20:45:56 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/08 20:40:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include "token.h"
 
-t_tree	*assign(t_token **token_p);
+t_tree	*stmt(t_token **token_p);
 
-t_tree	*expr(t_token **token_p)
+t_tree	*program(t_token **token_p)
 {
-	return (assign(token_p));
+	t_tree	dummy_head = {0};
+	t_tree	*cur = &dummy_head;
+
+	while ((*token_p)->type != TK_EOF)
+	{
+		cur->next = stmt(token_p);
+		cur = cur->next;
+	}
+	return (dummy_head.next);
 }
