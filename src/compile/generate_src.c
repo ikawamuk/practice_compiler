@@ -6,11 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 21:44:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 21:46:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 21:48:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
+#include "arena.h"
 #include <stdlib.h>
 #include <stdio.h>
 

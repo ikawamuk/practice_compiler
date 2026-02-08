@@ -1,8 +1,11 @@
 
 #include "ccc_define.h"
+#include "arena.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+
+FILE	*create_random_fp(char *asm_file_name);
 
 FILE	*open_asm_file(char *asm_file_name)
 {
