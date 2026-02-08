@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:36:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:57:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/08 17:58:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ t_tree	*pri(t_token **token_p)
 			return (node);
 		}
 		// error_at(head, p, "unclosed parenthesis");
+		fprintf(stderr, "unclosed parenthesis");
 		return (NULL);
 	}
 	if ((*token_p)->type != TK_NUM)
 	{
 		// error_at(head, p, "unclosed parenthesis");
-		fprintf(stderr, "aaa\n");
+		fprintf(stderr, "invalid token\n");
 		return (NULL);
 	}
 	node = new_num_leaf((*token_p)->val);
