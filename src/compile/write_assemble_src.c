@@ -18,19 +18,28 @@
 
 static void	write_hedder(FILE *asm_file);
 static void	write_footer(FILE *asm_file);
-void		write_body(FILE *asm_file, t_tree *ast);
+void		generate(FILE *asm_file, t_tree *ast);
 
 int	write_assemble_src(FILE *asm_file, t_tree *ast)
 {
+	t_tree	*next;
 	write_hedder(asm_file);
-	write_body(asm_file, ast);
+	while (ast)
+	{
+		next = ast->next;
+		generate(asm_file, ast);
+		fprintf(asm_file, "\tpop rax\n");
+		ast = next;
+	}
 	write_footer(asm_file);
 	return (EXIT_SUCCESS);
 }
 
 static void	write_footer(FILE *asm_file)
 {
-	fprintf(asm_file, "\tpop rax\n");
+	// fprintf(asm_file, "\tpop rax\n");
+	fprintf(asm_file, "\tmov rsp, rbp\n");
+	fprintf(asm_file, "\tpop rbp\n");
 	fprintf(asm_file, "\tret\n");
 	return ;
 }

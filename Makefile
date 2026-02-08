@@ -56,8 +56,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				generate_src.c \
 				write_assemble_src.c \
 				write_body.c \
-				gen_table.c \
-				$(addprefix src_generator/, \
+				gen_op_table.c \
+				$(addprefix src_generator_op/, \
 					generate_add.c \
 					generate_equal.c \
 					generate_less_than.c \
