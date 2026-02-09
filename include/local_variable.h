@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ident.c                                            :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:11:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 21:18:47 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/08 18:36:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include "token.h"
+#ifndef LOCAL_VARIABLE_H
+# define LOCAL_VARIABLE_H
 
-t_tree	*new_ident_leaf(const t_token *token);
+#include  "token.h"
 
-t_tree	*ident(t_token **token_p)
+typedef struct s_lvar   t_lvar;
+
+struct s_lvar
 {
-	t_tree	*node = new_ident_leaf(*token_p);
-	*token_p = (*token_p)->next;
-	return (node);
-}
+    const char      *name;
+    size_t          len;
+    int             offset;
+    t_lvar          *next;
+};
+
+#endif

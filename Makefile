@@ -49,6 +49,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				relational.c \
 				stmt.c \
 				unary.c \
+				local_variable.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

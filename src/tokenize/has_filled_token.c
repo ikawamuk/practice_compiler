@@ -36,11 +36,13 @@ bool	has_filled_token(t_token *new, const char **str_p)
 
 static bool	consumes_identifer(t_token *new, const char **str_p)
 {
-	if ('a' <= **str_p && **str_p <= 'z')
+	if (isalpha(**str_p))
 	{
+		const char	*head = *str_p;
+		while (isalpha(**str_p))
+			(*str_p)++;
 		new->val = 0;
-		*str_p += 1;
-		new->len = 1;
+		new->len = *str_p - head;
 		new->type = TK_IDENT;
 		return (true);
 	}

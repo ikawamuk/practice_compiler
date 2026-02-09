@@ -12,8 +12,13 @@
 
 #include "arena.h"
 #include "tree.h"
+#include "local_variable.h"
+#include <stdio.h>
 
-t_tree	*new_ident_leaf(const char *str)
+t_lvar  *find_lvar(const t_token *token);
+int 	push_lval(const t_token *token);
+
+t_tree	*new_ident_leaf(const t_token *token)
 {
 	t_tree	*new = aalloc(sizeof(t_tree));
 	if (!new)
@@ -22,6 +27,10 @@ t_tree	*new_ident_leaf(const char *str)
 	new->val = 0;
 	new->lhs = NULL;
 	new->rhs = NULL;
-	new->offset = (str[0] - 'a' + 1) * 8;
+	t_lvar	*lvar = find_lvar(token);
+	if (lvar)
+		new->offset = lvar->offset;
+	else
+		new->offset = push_lval(token);
 	return (new);
 }
