@@ -12,7 +12,7 @@
 
 #include "tree.h"
 #include "token.h"
-
+#include <stdio.h>
 t_tree	*stmt(t_token **token_p);
 
 t_tree	*program(t_token **token_p)

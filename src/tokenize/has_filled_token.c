@@ -16,13 +16,17 @@
 #include <string.h>
 #include <stdlib.h>
 
+bool 	   is_identifier_char(char c);
 static bool	consumes_digit(t_token *new, const char **str_p);
 static bool	consumes_reserved1(t_token *new, const char **str_p);
 static bool	consumes_reserved2(t_token *new, const char **str_p);
 static bool	consumes_identifer(t_token *new, const char **str_p);
+static bool	consumes_return(t_token *new, const char **str_p);
 
 bool	has_filled_token(t_token *new, const char **str_p)
 {
+	if (consumes_return(new, str_p))
+		return (true);
 	if (consumes_reserved2(new, str_p))
 		return (true);
 	if (consumes_reserved1(new, str_p))
@@ -34,12 +38,27 @@ bool	has_filled_token(t_token *new, const char **str_p)
 	return (false);
 }
 
+#include <stdio.h>
+
+static bool	consumes_return(t_token *new, const char **str_p)
+{
+	if (!memcmp(*str_p, "return", 6) && !is_identifier_char((*str_p)[6]))
+	{
+		new->val = 0;
+		*str_p += 6;
+		new->len = 6;
+		new->type = TK_RETURN;
+		return (true);
+	}
+	return (false);
+}
+
 static bool	consumes_identifer(t_token *new, const char **str_p)
 {
-	if (isalpha(**str_p))
+	if (is_identifier_char(**str_p))
 	{
 		const char	*head = *str_p;
-		while (isalpha(**str_p))
+		while (is_identifier_char(**str_p))
 			(*str_p)++;
 		new->val = 0;
 		new->len = *str_p - head;

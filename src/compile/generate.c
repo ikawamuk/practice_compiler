@@ -21,6 +21,17 @@ static void	generate_operator(FILE *asm_file, const t_tree *node);
 
 void	generate(FILE *asm_file, const t_tree *node)
 {
+	if (!node)
+		return ;
+	if (node->type == ND_RETURN)
+	{
+		generate(asm_file, node->lhs);
+		fprintf(asm_file, "\tpop rax\n");
+		fprintf(asm_file, "\tmov rsp, rbp\n");
+		fprintf(asm_file, "\tpop rbp\n");
+		fprintf(asm_file, "\tret\n");
+		return ;
+	}
 	if (node->type == ND_NUM)
 	{
 		fprintf(asm_file, "\tpush %d\n", node->val);

@@ -17,6 +17,7 @@
 
 typedef enum {
 	TK_RESERVED,
+	TK_RETURN,
 	TK_IDENT,
 	TK_NUM,
 	TK_EOF,

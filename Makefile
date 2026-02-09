@@ -30,6 +30,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				tokenize.c \
 				create_token_list.c \
 				has_filled_token.c \
+				is_identifier_char.c \
 			) \
 			$(addprefix parse/, \
 				add.c \

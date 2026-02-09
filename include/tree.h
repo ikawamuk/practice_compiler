@@ -24,7 +24,8 @@ typedef enum {
 	ND_LE, // <=
 	ND_ASSIGN, // = assign
 	ND_LVAR, // local variable
-	ND_NUM
+	ND_NUM,
+	ND_RETURN
 }	t_nd_type;
 
 typedef struct s_tree	t_tree;
