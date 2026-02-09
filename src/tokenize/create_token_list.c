@@ -14,6 +14,7 @@
 #include "token.h"
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 static t_token	*new_token(const char **str_p, const char *head);
 bool			has_filled_token(t_token *new, const char **str_p);

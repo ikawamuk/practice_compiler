@@ -11,12 +11,15 @@
 /* ************************************************************************** */
 
 #include "gen_table.h"
+#include "arena.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void		(*get_op_generator(t_nd_type type))(FILE *);
-static void	exec_calculation(FILE *asm_file, t_nd_type type);
+void	generate_left_value(FILE *asm_file, const t_tree *node);
+static void	generate_operator(FILE *asm_file, const t_tree *node);
 
-void	generate(FILE *asm_file, t_tree *node)
+void	generate(FILE *asm_file, const t_tree *node)
 {
 	if (node->type == ND_NUM)
 	{
@@ -25,14 +28,15 @@ void	generate(FILE *asm_file, t_tree *node)
 	}
 	if (node->type == ND_LVAR)
 	{
-		fprintf(asm_file, "\tmov rax, rbp\n");
-		fprintf(asm_file, "\tsub rax, %d\n", node->offset);
+		generate_left_value(asm_file, node);
+		fprintf(asm_file, "\tpop rax\n");
+		fprintf(asm_file, "\tmov rax, [rax]\n");
 		fprintf(asm_file, "\tpush rax\n");
 		return ;
 	}
 	if (node->type == ND_ASSIGN)
 	{
-		generate(asm_file, node->lhs);
+		generate_left_value(asm_file, node->lhs);
 		generate(asm_file, node->rhs);
 		fprintf(asm_file, "\tpop rdi\n");
 		fprintf(asm_file, "\tpop rax\n");
@@ -40,18 +44,33 @@ void	generate(FILE *asm_file, t_tree *node)
 		fprintf(asm_file, "\tpush rdi\n");
 		return ;
 	}
+	generate_operator(asm_file, node);
+	return ;
+}
+
+/*
+@brief push local value's address on stack.
+*/
+void	generate_left_value(FILE *asm_file, const t_tree *node)
+{
+	if (node->type != ND_LVAR)
+	{
+		fprintf(stderr, "left operand of assignment should be left value.\n");
+		fclose(asm_file);
+		clear_arena();
+		exit(EXIT_FAILURE);
+	}
+	fprintf(asm_file, "\tmov rax, rbp\n");
+	fprintf(asm_file, "\tsub rax, %d\n", node->offset);
+	fprintf(asm_file, "\tpush rax\n");
+}
+
+static void	generate_operator(FILE *asm_file, const t_tree *node)
+{
 	generate(asm_file, node->lhs);
 	generate(asm_file, node->rhs);
 	fprintf(asm_file, "\tpop rdi\n");
 	fprintf(asm_file, "\tpop rax\n");
-	exec_calculation(asm_file, node->type);
+	get_op_generator(node->type)(asm_file);
 	fprintf(asm_file, "\tpush rax\n");
-	return ;
-}
-
-static void	exec_calculation(FILE *asm_file, t_nd_type type)
-{
-	void	(*gen)(FILE *) = get_op_generator(type);
-	if (gen)
-		gen(asm_file);
 }

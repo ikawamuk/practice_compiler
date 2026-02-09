@@ -22,7 +22,7 @@ typedef enum {
 	ND_NE, // !=
 	ND_LT, // <
 	ND_LE, // <=
-	ND_ASSIGN, // =
+	ND_ASSIGN, // = assign
 	ND_LVAR, // local variable
 	ND_NUM
 }	t_nd_type;

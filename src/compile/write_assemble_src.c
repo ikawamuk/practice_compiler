@@ -24,6 +24,9 @@ int	write_assemble_src(FILE *asm_file, t_tree *ast)
 {
 	t_tree	*next;
 	write_hedder(asm_file);
+	fprintf(asm_file, "\tpush rbp\n");
+	fprintf(asm_file, "\tmov rbp, rsp\n");
+	fprintf(asm_file, "\tsub rsp, 208\n");
 	while (ast)
 	{
 		next = ast->next;

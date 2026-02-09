@@ -39,6 +39,7 @@ static bool	consumes_identifer(t_token *new, const char **str_p)
 	if ('a' <= **str_p && **str_p <= 'z')
 	{
 		new->val = 0;
+		*str_p += 1;
 		new->len = 1;
 		new->type = TK_IDENT;
 		return (true);
@@ -60,7 +61,7 @@ static bool	consumes_digit(t_token *new, const char **str_p)
 
 static bool	consumes_reserved1(t_token *new, const char **str_p)
 {
-	if (strchr("+-*/()<>;", **str_p))
+	if (strchr("+-*/()<>;=", **str_p))
 	{
 		new->val = 0;
 		*str_p += 1;
