@@ -16,12 +16,12 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 bool	is_expected_op(const char *op, t_token *token);
 t_tree	*new_num_leaf(int val);
 t_tree	*expr(t_token **token_p);
-t_tree	*num(t_token **token_p);
-t_tree	*ident(t_token **token_p);
+t_tree	*value(t_token **token_p);
 
 t_tree	*pri(t_token **token_p)
 {
@@ -37,12 +37,9 @@ t_tree	*pri(t_token **token_p)
 		}
 		// error_at(head, p, "unclosed parenthesis");
 		fprintf(stderr, "unclosed parenthesis");
+		clear_arena();
+		exit(EXIT_FAILURE);
 		return (NULL);
 	}
-	if ((*token_p)->type == TK_NUM)
-		return (num(token_p));
-	if ((*token_p)->type == TK_IDENT)
-		return (ident(token_p));
-	fprintf(stderr, "unexpected token\n");
-	return (NULL);
+	return (value(token_p));
 }

@@ -1,2 +1,2 @@
 aa = 5;
-return ;
+return 2;

@@ -12,8 +12,10 @@
 
 #include "tree.h"
 #include "token.h"
+#include "arena.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 bool	is_expected_op(const char *op, t_token *token);
 t_tree	*expr(t_token **token_p);
@@ -37,5 +39,6 @@ t_tree	*stmt(t_token **token_p)
 		return (node);
 	}
 	fprintf(stderr, "expected \';\'\n");
-	return (NULL);
+	clear_arena();
+	exit(EXIT_FAILURE);
 }

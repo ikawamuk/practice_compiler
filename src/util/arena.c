@@ -57,7 +57,7 @@ static t_chunk	*next_chunk(size_t size)
 {
 	t_chunk	*next = malloc(sizeof(t_chunk));
 	if (!next)
-		return (NULL);
+		return (perror("malloc"), NULL);
 	next->buffer = malloc(size * sizeof(char));
 	if (!next->buffer)
 		return (perror("malloc"), free(next), NULL);

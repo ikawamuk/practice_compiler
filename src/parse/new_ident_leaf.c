@@ -14,6 +14,7 @@
 #include "tree.h"
 #include "local_variable.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 t_lvar  *find_lvar(const t_token *token);
 int 	push_lval(const t_token *token);
@@ -22,7 +23,10 @@ t_tree	*new_ident_leaf(const t_token *token)
 {
 	t_tree	*new = aalloc(sizeof(t_tree));
 	if (!new)
-		return (NULL);
+	{
+		clear_arena();
+		exit(EXIT_FAILURE);
+	}
 	new->type = ND_LVAR;
 	new->val = 0;
 	new->lhs = NULL;
