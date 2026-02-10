@@ -22,7 +22,7 @@ static t_arena	arena = {0};
 void	*aalloc(size_t size)
 {
 	if (size == 0)
-		return (NULL);
+		size = !size;
 	size_t	aligned_size = (size + 7)&~7; // round up to 8 bytes
 	if (!arena.cur)
 		arena.cur = &arena.dummy_head;
