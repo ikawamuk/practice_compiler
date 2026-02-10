@@ -16,6 +16,7 @@
 # include <stddef.h>
 
 # define MIN_ARENA_SIZE 4096
+
 typedef struct s_chunk	t_chunk;
 
 struct s_chunk
@@ -33,7 +34,7 @@ typedef struct s_arena
 }	t_arena;
 
 void	*aalloc(size_t size);
-void	afree();
-void	clear_arena();
+void	areset(void);
+void	clear_arena(void);
 
 #endif
