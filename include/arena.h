@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 
+# define MIN_ARENA_SIZE 4096
 typedef struct s_chunk	t_chunk;
 
 struct s_chunk

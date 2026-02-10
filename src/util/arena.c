@@ -13,6 +13,7 @@
 #include "arena.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 static t_chunk	*next_chunk(size_t size);
 
@@ -23,12 +24,12 @@ void	*aalloc(size_t size)
 	size_t	aligned_size = (size + 7)&~7; // round up to 8 bytes
 	if (!arena.cur)
 		arena.cur = &arena.dummy_head;
-	if (!arena.cur->buffer
+	while (!arena.cur->buffer
 		|| arena.cur->offset + aligned_size > arena.cur->size)
 	{
 		if (!arena.cur->next)
 		{
-			size_t	next_size = aligned_size + arena.cur->size * 2;
+			size_t	next_size = max(aligned_size + arena.cur->size * 2, MIN_ARENA_SIZE);
 			t_chunk	*next = next_chunk(next_size);
 			if (!next)
 				return (NULL);
@@ -50,7 +51,7 @@ void	areset()
 		cur->offset = 0;
 		cur = cur->next;
 	}
-	arena.cur = arena.dummy_head.next;
+	arena.cur = &arena.dummy_head;
 }
 
 static t_chunk	*next_chunk(size_t size)
