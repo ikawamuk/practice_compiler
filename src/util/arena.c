@@ -21,6 +21,8 @@ static t_arena	arena = {0};
 
 void	*aalloc(size_t size)
 {
+	if (size == 0)
+		return (NULL);
 	size_t	aligned_size = (size + 7)&~7; // round up to 8 bytes
 	if (!arena.cur)
 		arena.cur = &arena.dummy_head;
@@ -29,7 +31,9 @@ void	*aalloc(size_t size)
 	{
 		if (!arena.cur->next)
 		{
-			size_t	next_size = max(aligned_size + arena.cur->size * 2, MIN_ARENA_SIZE);
+			size_t next_size = MAX(MIN_ARENA_SIZE, arena.cur->size * 2);
+			while (next_size < aligned_size)
+				next_size *= 2;
 			t_chunk	*next = next_chunk(next_size);
 			if (!next)
 				return (NULL);
