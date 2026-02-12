@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_expect_op.c                                     :+:      :+:    :+:   */
+/*   consumes_reserved.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 16:17:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 15:30:45 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/12 15:36:21 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/12 15:37:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include <stdbool.h>
-#include <string.h>
 
-bool	is_expected_op(const char *op, t_token *token)
+static bool	consumes_return(t_token *new, const char **str_p);
+
+bool	consumes_reserved(t_token *new, const char **str_p)
 {
-	return (token->type == TK_OPERATOR
-		&& strlen(op) == token->len
-		&& !memcmp(op, token->str, token->len)
-	);
+	if (consumes_return(new, str_p))
+		return (true);
+	return (false);
+}
+
+static bool	consumes_return(t_token *new, const char **str_p)
+{
+	if (!memcmp(*str_p, "return", 6) && !is_identifier_char((*str_p)[6]))
+	{
+		new->val = 0;
+		*str_p += 6;
+		new->len = 6;
+		new->type = TK_RETURN;
+		return (true);
+	}
+	return (false);
 }

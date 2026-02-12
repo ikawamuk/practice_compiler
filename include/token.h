@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 18:36:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 15:30:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stddef.h>
 
 typedef enum {
-	TK_RESERVED,
 	TK_RETURN,
+	TK_OPERATOR,
 	TK_IDENT,
 	TK_NUM,
 	TK_EOF,
