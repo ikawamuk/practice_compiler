@@ -15,7 +15,7 @@
 #include "tree.h"
 #include <stdlib.h>
 
-t_tree	*new_unary(t_nd_type type, t_tree *child_node)
+t_tree	*new_unary(t_nd_type type, t_tree *child)
 {
 	t_tree	*new = aalloc(sizeof(t_tree));
 	if (!new)
@@ -24,7 +24,6 @@ t_tree	*new_unary(t_nd_type type, t_tree *child_node)
 		exit(EXIT_FAILURE);
 	}
 	new->type = type;
-	new->val = 0;
-	new->child = child_node;
+	new->child = child;
 	return (new);
 }

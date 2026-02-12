@@ -34,22 +34,25 @@ struct s_tree
 {
 	t_nd_type	type;
 	t_tree		*next;
-	t_tree		*childlen[4];
-	// num
-	int			val;
-	// local variable
-	int			offset;
+	union {
+		// return, 
+		t_tree	*child;
+		// operator
+		struct {
+			t_tree	*lhs;
+			t_tree	*rhs;
+		};
+		// if, while
+		struct {
+			t_tree	*cond;
+			t_tree	*then;
+			t_tree	*els;
+		};
+		// num
+		int	val;
+		// local variable
+		int	offset;
+	};
 };
-
-// return
-# define child childlen[0]
-// operator
-# define lhs childlen[0]
-# define rhs childlen[1]
-// if, while
-# define cond childlen[0]
-# define then childlen[1]
-# define els childlen[2]
-
 
 #endif

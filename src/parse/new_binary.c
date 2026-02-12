@@ -16,8 +16,6 @@
 
 t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs)
 {
-	// if (!lhs || !rhs)
-	// 	return (NULL);
 	t_tree	*new = aalloc(sizeof(t_tree));
 	if (!new)
 	{
@@ -25,7 +23,6 @@ t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs)
 		exit(EXIT_FAILURE);
 	}
 	new->type = type;
-	new->val = 0;
 	new->lhs = lhs;
 	new->rhs = rhs;
 	return (new);

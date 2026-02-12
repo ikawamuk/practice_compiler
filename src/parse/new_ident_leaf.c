@@ -28,7 +28,6 @@ t_tree	*new_ident_leaf(const t_token *token)
 		exit(EXIT_FAILURE);
 	}
 	new->type = ND_LVAR;
-	new->val = 0;
 	t_lvar	*lvar = find_lvar(token);
 	if (lvar)
 		new->offset = lvar->offset;
