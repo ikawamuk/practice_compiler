@@ -25,7 +25,7 @@ void	generate(FILE *asm_file, const t_tree *node)
 		return ;
 	if (node->type == ND_RETURN)
 	{
-		generate(asm_file, node->lhs);
+		generate(asm_file, node->child[0]);
 		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tmov rsp, rbp\n");
 		fprintf(asm_file, "\tpop rbp\n");
@@ -47,8 +47,8 @@ void	generate(FILE *asm_file, const t_tree *node)
 	}
 	if (node->type == ND_ASSIGN)
 	{
-		generate_left_value(asm_file, node->lhs);
-		generate(asm_file, node->rhs);
+		generate_left_value(asm_file, node->child[0]);
+		generate(asm_file, node->child[1]);
 		fprintf(asm_file, "\tpop rdi\n");
 		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tmov [rax], rdi\n");
@@ -78,8 +78,8 @@ void	generate_left_value(FILE *asm_file, const t_tree *node)
 
 static void	generate_operator(FILE *asm_file, const t_tree *node)
 {
-	generate(asm_file, node->lhs);
-	generate(asm_file, node->rhs);
+	generate(asm_file, node->child[0]);
+	generate(asm_file, node->child[1]);
 	fprintf(asm_file, "\tpop rdi\n");
 	fprintf(asm_file, "\tpop rax\n");
 	get_op_generator(node->type)(asm_file);

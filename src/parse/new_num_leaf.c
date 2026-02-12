@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:37:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 16:52:37 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 17:22:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_tree	*new_num_leaf(int val)
 	}
 	new->type = ND_NUM;
 	new->val = val;
-	new->lhs = NULL;
-	new->rhs = NULL;
+	new->child[0] = NULL;
+	new->child[1] = NULL;
 	return (new);
 }

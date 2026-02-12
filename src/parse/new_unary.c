@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_ident_leaf.c                                   :+:      :+:    :+:   */
+/*   new_unary.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:14:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 17:19:24 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/12 16:59:29 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/12 17:22:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "arena.h"
 #include "tree.h"
-#include "local_variable.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-t_lvar  *find_lvar(const t_token *token);
-int 	push_lval(const t_token *token);
-
-t_tree	*new_ident_leaf(const t_token *token)
+t_tree	*new_unary(t_nd_type type, t_tree *child)
 {
 	t_tree	*new = aalloc(sizeof(t_tree));
 	if (!new)
@@ -27,12 +23,8 @@ t_tree	*new_ident_leaf(const t_token *token)
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
-	new->type = ND_LVAR;
+	new->type = type;
 	new->val = 0;
-	t_lvar	*lvar = find_lvar(token);
-	if (lvar)
-		new->offset = lvar->offset;
-	else
-		new->offset = push_lval(token);
+	new->child[0] = child;
 	return (new);
 }

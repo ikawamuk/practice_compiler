@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 16:14:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 17:08:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 bool	is_expected_op(const char *op, t_token *token);
 t_tree	*expr(t_token **token_p);
-t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
+t_tree	*new_unary(t_nd_type type, t_tree *child);
 
 t_tree	*stmt(t_token **token_p)
 {
@@ -28,7 +28,8 @@ t_tree	*stmt(t_token **token_p)
 	if ((*token_p)->type == TK_RETURN)
 	{
 		(*token_p) = (*token_p)->next;
-		node = new_binary(ND_RETURN, expr(token_p), NULL);
+		node = new_unary(ND_RETURN, expr(token_p));
+		node = node->next;
 	}
 	else
 		node = expr(token_p);
