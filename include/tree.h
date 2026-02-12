@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 17:21:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 18:00:12 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,22 @@ struct s_tree
 {
 	t_nd_type	type;
 	t_tree		*next;
-	// operator
-	t_tree		*child[4];
+	t_tree		*childlen[4];
 	// num
 	int			val;
 	// local variable
 	int			offset;
-	// if, while
-	
 };
+
+// return
+# define child childlen[0]
+// operator
+# define lhs childlen[0]
+# define rhs childlen[1]
+// if, while
+# define cond childlen[0]
+# define then childlen[1]
+# define els childlen[2]
+
 
 #endif
