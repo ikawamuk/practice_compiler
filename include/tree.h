@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 20:37:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:13:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TREE_H
 
 typedef enum {
+	ND_NUM,
 	ND_ADD, // +
 	ND_SUB, // -
 	ND_MUL, // *
@@ -22,9 +23,8 @@ typedef enum {
 	ND_NE, // !=
 	ND_LT, // <
 	ND_LE, // <=
-	ND_ASSIGN, // = assign
+	ND_ASSIGN, // = 
 	ND_LVAR, // local variable
-	ND_NUM,
 	ND_RETURN
 }	t_nd_type;
 
@@ -33,11 +33,16 @@ typedef struct s_tree	t_tree;
 struct s_tree
 {
 	t_nd_type	type;
+	t_tree		*next;
+	// operator
 	t_tree		*rhs;
 	t_tree		*lhs;
+	// num
 	int			val;
+	// local variable
 	int			offset;
-	t_tree		*next;
+	// if, while
+	
 };
 
 #endif

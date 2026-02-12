@@ -6,12 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:33:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 15:35:26 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:34:21 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include <stdbool.h>
+#include <string.h>
 
 static bool	consumes_operator1(t_token *new, const char **str_p);
 static bool	consumes_operator2(t_token *new, const char **str_p);
@@ -27,9 +28,8 @@ bool	consumes_operator(t_token *new, const char **str_p)
 
 static bool	consumes_operator1(t_token *new, const char **str_p)
 {
-	if (strchr("+-*/()<>;=", **str_p))
+	if (strchr("+-*/()<>;={}", **str_p))
 	{
-		new->val = 0;
 		*str_p += 1;
 		new->len = 1;
 		new->type = TK_OPERATOR;
@@ -43,7 +43,6 @@ static bool	consumes_operator2(t_token *new, const char **str_p)
 	if (!memcmp(*str_p, "==", 2) || !memcmp(*str_p, "!=", 2)
 	|| !memcmp(*str_p, "<=", 2) || !memcmp(*str_p, ">=", 2))
 	{
-		new->val = 0;
 		*str_p += 2;
 		new->len = 2;
 		new->type = TK_OPERATOR;

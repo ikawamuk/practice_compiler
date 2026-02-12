@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/12 15:35:54 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/12 16:34:41 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				create_token_list.c \
 				has_filled_token.c \
 				consumes_operator.c \
+				consumes_reserved.c \
 				is_identifier_char.c \
 			) \
 			$(addprefix parse/, \
@@ -50,7 +51,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				program.c \
 				relational.c \
 				stmt.c \
-				unary.c \
+				term.c \
 				local_variable.c \
 				value.c \
 			) \

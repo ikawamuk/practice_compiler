@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unary.c                                            :+:      :+:    :+:   */
+/*   term.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:42:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:50:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:15:12 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	is_expected_op(const char *op, t_token *token);
 t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 t_tree	*new_num_leaf(int val);
 
-t_tree	*unary(t_token **token_p)
+t_tree	*term(t_token **token_p)
 {
 	if (is_expected_op("+", *token_p))
 	{

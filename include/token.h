@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 15:30:10 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/12 16:12:08 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ typedef struct s_token t_token;
 struct s_token
 {
 	t_tk_type	type;
-	int			val;
 	const char	*str;
 	size_t		len;
 	t_token		*next;
+	// for digit
+	int			val;
 };
 
 #endif
