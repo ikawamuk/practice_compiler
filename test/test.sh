@@ -42,5 +42,6 @@ assert 3 "a=3; return a;"
 assert 8 "aa = 3; zzz = 5; return aa + zzz;"
 assert 1 "return 1; 2; 3;"
 assert 2 "1; return 2; 3;"
+assert 8 "foo123=3; bar=5; return foo123+bar;"
 
 echo OK
