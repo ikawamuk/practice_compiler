@@ -31,7 +31,8 @@ void	*aalloc(size_t size)
 	{
 		if (!arena.cur->next)
 		{
-			size_t next_size = MAX(MIN_ARENA_SIZE, arena.cur->size * 2);
+			size_t next_size = MIN_ARENA_SIZE > arena.cur->size * 2
+							 ? MIN_ARENA_SIZE : arena.cur->size * 2;
 			while (next_size < aligned_size)
 				next_size *= 2;
 			t_chunk	*next = next_chunk(next_size);

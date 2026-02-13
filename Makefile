@@ -43,6 +43,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				is_expect_op.c \
 				mul.c \
 				new_binary.c \
+				new_unary.c \
 				new_ident_leaf.c \
 				new_num_leaf.c \
 				num.c \
