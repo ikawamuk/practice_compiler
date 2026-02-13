@@ -17,7 +17,7 @@
 
 t_tree	*pri(t_token **token_p);
 bool	is_expected_op(const char *op, t_token *token);
-t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
+t_tree	*new_unary(t_nd_type type, t_tree *child);
 t_tree	*new_num_leaf(int val);
 
 t_tree	*term(t_token **token_p)
@@ -30,7 +30,7 @@ t_tree	*term(t_token **token_p)
 	if (is_expected_op("-", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		return (new_binary(ND_SUB, new_num_leaf(0), pri(token_p)));
+		return (new_unary(ND_NEG,  pri(token_p)));
 	}
 	return (pri(token_p));
 }

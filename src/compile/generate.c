@@ -23,15 +23,6 @@ void	generate(FILE *asm_file, const t_tree *node)
 {
 	if (!node)
 		return ;
-	if (node->type == ND_RETURN)
-	{
-		generate(asm_file, node->child);
-		fprintf(asm_file, "\tpop rax\n");
-		fprintf(asm_file, "\tmov rsp, rbp\n");
-		fprintf(asm_file, "\tpop rbp\n");
-		fprintf(asm_file, "\tret\n");
-		return ;
-	}
 	if (node->type == ND_NUM)
 	{
 		fprintf(asm_file, "\tpush %d\n", node->val);
@@ -42,6 +33,29 @@ void	generate(FILE *asm_file, const t_tree *node)
 		generate_left_value(asm_file, node);
 		fprintf(asm_file, "\tpop rax\n");
 		fprintf(asm_file, "\tmov rax, [rax]\n");
+		fprintf(asm_file, "\tpush rax\n");
+		return ;
+	}
+	if (node->type == ND_RETURN)
+	{
+		generate(asm_file, node->child);
+		fprintf(asm_file, "\tpop rax\n");
+		fprintf(asm_file, "\tmov rsp, rbp\n");
+		fprintf(asm_file, "\tpop rbp\n");
+		fprintf(asm_file, "\tret\n");
+		return ;
+	}
+	if (node->type == ND_EXPR_STMT)
+	{
+		generate(asm_file, node->child);
+		fprintf(asm_file, "\tadd rsp, 8\n");
+		return ;
+	}
+	if (node->type == ND_NEG)
+	{
+		generate(asm_file, node->child);
+		fprintf(asm_file, "\tpop rax\n");
+		fprintf(asm_file, "\tneg rax\n");
 		fprintf(asm_file, "\tpush rax\n");
 		return ;
 	}

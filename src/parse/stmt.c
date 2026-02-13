@@ -29,10 +29,9 @@ t_tree	*stmt(t_token **token_p)
 	{
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_RETURN, expr(token_p));
-		node = node->next;
 	}
 	else
-		node = expr(token_p);
+		node = new_unary(ND_EXPR_STMT, expr(token_p));
 	if (is_expected_op(";", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
