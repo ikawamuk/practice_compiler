@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:36:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 16:00:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 21:35:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_tree	*new_num_leaf(int val);
 t_tree	*expr(t_token **token_p);
 t_tree	*value(t_token **token_p);
 
+/*
+primary	= value | "(" expr ")"
+*/
 t_tree	*pri(t_token **token_p)
 {
 	t_tree	*node;

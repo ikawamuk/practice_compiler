@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr.c                                             :+:      :+:    :+:   */
+/*   new_if.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 16:09:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 21:29:49 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/14 20:44:57 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/14 20:57:58 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "arena.h"
 #include "tree.h"
-#include "token.h"
+#include <stdlib.h>
+#include <stdbool.h>
 
-t_tree	*assign(t_token **token_p);
+bool	is_expected(const char *op, t_token *token);
 
-/*
-expr	= assign
-*/
-t_tree	*expr(t_token **token_p)
+t_tree	*new_if(t_tree *cond, t_tree *then, t_tree *els)
 {
-	return (assign(token_p));
+	t_tree	*new = aalloc(sizeof(t_tree));
+	if (!new)
+	{
+		clear_arena();
+		exit(EXIT_FAILURE);
+	}
+	new->type = ND_IF;
+	new->cond = cond;
+	new->then = then;
+	new->els = els;
+	return (new);
 }

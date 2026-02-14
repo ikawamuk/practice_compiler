@@ -9,6 +9,9 @@
 t_tree	*num(t_token **token_p);
 t_tree	*ident(t_token **token_p);
 
+/*
+value	= num | ident
+*/
 t_tree	*value(t_token **token_p)
 {
 	if ((*token_p)->type == TK_NUM)

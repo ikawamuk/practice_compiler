@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 16:00:38 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 21:38:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,27 @@ bool	is_expected(const char *op, t_token *token);
 t_tree	*expr(t_token **token_p);
 t_tree	*new_unary(t_nd_type type, t_tree *child_node);
 t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
+t_tree	*new_if(t_tree *cond, t_tree *then, t_tree *els);
 
+/*
+stmt	= "return" expr ";"
+		| "if" "(" expr ")" stmt ("else" stmt)?
+		| exor ";"
+*/
 t_tree	*stmt(t_token **token_p)
 {
 	t_tree	*node;
 
+	if (is_expected("if", *token_p))
+	{
+		(*token_p) = (*token_p)->next;
+		node = new_if(expr(token_p), stmt(token_p), NULL/*, else() */);
+		return (node);
+	}
 	if (is_expected("return", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_RETURN, expr(token_p));
-	}
-	else if (is_expected("if", *token_p))
-	{
-		(*token_p) = (*token_p)->next;
-		node = new_binary(ND_IF, expr(token_p), stmt(token_p)/*, else() */);
 	}
 	else
 		node = new_unary(ND_EXPR_STMT, expr(token_p));

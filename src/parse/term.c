@@ -20,6 +20,9 @@ bool	is_expected(const char *op, t_token *token);
 t_tree	*new_unary(t_nd_type type, t_tree *child);
 t_tree	*new_num_leaf(int val);
 
+/*
+term	= ("+" | "-")? primary
+*/
 t_tree	*term(t_token **token_p)
 {
 	if (is_expected("+", *token_p))

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 20:12:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 21:41:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	generate_functinon_header(FILE *asm_file, t_program *prog)
 {
 	fprintf(asm_file, "\tpush rbp\n");
 	fprintf(asm_file, "\tmov rbp, rsp\n");
-	fprintf(asm_file, "\tsub rsp, %d\n", prog->var_list->offset);
+	if (prog->var_list)
+		fprintf(asm_file, "\tsub rsp, %d\n", prog->var_list->offset);
 }
 
 static void	write_hedder(FILE *asm_file)
