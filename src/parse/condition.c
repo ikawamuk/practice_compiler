@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_if.c                                           :+:      :+:    :+:   */
+/*   condition.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/14 20:44:57 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 20:57:58 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/14 21:58:33 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/14 22:32:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arena.h"
 #include "tree.h"
+#include "arena.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
 bool	is_expected(const char *op, t_token *token);
+t_tree	*expr(t_token **token_p);
 
-t_tree	*new_if(t_tree *cond, t_tree *then, t_tree *els)
+/*
+condition	= "(" expr ")"
+*/
+t_tree	*condition(t_token **token_p)
 {
-	t_tree	*new = aalloc(sizeof(t_tree));
-	if (!new)
+	if (!is_expected("(", *token_p))
 	{
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
-	new->type = ND_IF;
-	new->cond = cond;
-	new->then = then;
-	new->els = els;
-	return (new);
+	*token_p = (*token_p)->next;
+	t_tree	*cond = expr(token_p);
+	if (!is_expected(")", *token_p))
+	{
+		clear_arena();
+		exit(EXIT_FAILURE);
+	}
+	*token_p = (*token_p)->next;
+	return (cond);
 }

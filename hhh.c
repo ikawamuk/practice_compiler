@@ -1,4 +1,4 @@
 aa = 5;
-if aa > 0
+if (aa > 0)
 	return (aa);
 return (0);

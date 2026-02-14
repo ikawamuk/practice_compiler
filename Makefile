@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/14 20:58:45 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/14 22:25:54 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					new_unary.c \
 					new_ident_leaf.c \
 					new_num_leaf.c \
-					new_if.c \
+					new_control_stmt.c \
 				) \
 				add.c \
 				assign.c \
@@ -57,6 +57,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				term.c \
 				local_variable.c \
 				value.c \
+				condition.c \
+				control_stmt.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

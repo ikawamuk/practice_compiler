@@ -78,7 +78,14 @@ void	generate(FILE *asm_file, const t_tree *node)
 		fprintf(asm_file, "\tpush rdi\n");
 		return ;
 	}
-	generate_operator(asm_file, node);
+	if (ND_ADD <= node->type && node->type <= ND_LE)
+	{
+		generate_operator(asm_file, node);
+		return ;
+	}
+	fprintf(stderr, "unknown node type\n");
+	clear_arena();
+	exit(EXIT_FAILURE);
 	return ;
 }
 
