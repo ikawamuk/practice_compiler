@@ -14,9 +14,10 @@
 #include "arena.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 void		(*get_op_generator(t_nd_type type))(FILE *);
-void	generate_left_value(FILE *asm_file, const t_tree *node);
+void		generate_local_value_address(FILE *asm_file, const t_tree *node);
 static void	generate_operator(FILE *asm_file, const t_tree *node);
 
 
@@ -78,7 +79,7 @@ void	generate(FILE *asm_file, const t_tree *node)
 		fprintf(asm_file, "\tpush rdi\n");
 		return ;
 	}
-	if (ND_ADD <= node->type && node->type <= ND_LE)
+	if (is_operator(node->type))
 	{
 		generate_operator(asm_file, node);
 		return ;
@@ -92,7 +93,7 @@ void	generate(FILE *asm_file, const t_tree *node)
 /*
 @brief push local value's address on stack.
 */
-void	generate_left_value(FILE *asm_file, const t_tree *node)
+void	generate_local_value_address(FILE *asm_file, const t_tree *node)
 {
 	if (node->type != ND_LVAR)
 	{
@@ -114,4 +115,9 @@ static void	generate_operator(FILE *asm_file, const t_tree *node)
 	fprintf(asm_file, "\tpop rax\n");
 	get_op_generator(node->type)(asm_file);
 	fprintf(asm_file, "\tpush rax\n");
+}
+
+static bool	is_operator(t_nd_type type)
+{
+	return (ND_ADD <= type && type <= ND_LE);
 }
