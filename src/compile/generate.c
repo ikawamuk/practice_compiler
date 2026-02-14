@@ -46,26 +46,18 @@ void	generate(FILE *assem_src, const t_tree *node)
 	if (node->type == ND_IF)
 	{
 		size_t	label_else = label_idx++;
+		size_t	label_end = label_idx++;
 
 		generate(assem_src, node->cond);
 		fprintf(assem_src, "\tpop rax\n");
 		fprintf(assem_src, "\tcmp rax, 0\n");
+		fprintf(assem_src, "\tje .L%zu\n", label_else);
+		generate(assem_src, node->then);
+		fprintf(assem_src, "\tjmp .L%zu\n", label_end);
+		fprintf(assem_src, ".L%zu:\n", label_else);
 		if (node->els)
-		{
-			size_t	label_end = label_idx++;
-			fprintf(assem_src, "\tje .L%zu\n", label_else);
-			generate(assem_src, node->then);
-			fprintf(assem_src, "\tjmp .L%zu\n", label_end);
-			fprintf(assem_src, ".L%zu:\n", label_else);
 			generate(assem_src, node->els);
-			fprintf(assem_src, ".L%zu:\n", label_end);
-		}
-		else
-		{
-			fprintf(assem_src, "\tje .L%zu\n", label_else);
-			generate(assem_src, node->then);
-			fprintf(assem_src, ".L%zu:\n", label_else);
-		}
+		fprintf(assem_src, ".L%zu:\n", label_end);
 		return ;
 	}
 	if (node->type == ND_WHILE)
