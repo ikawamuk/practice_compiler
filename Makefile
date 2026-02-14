@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/14 15:44:56 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/14 15:56:41 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,12 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				is_identifier_char.c \
 			) \
 			$(addprefix parse/, \
+				$(addprefix new_node/, \
+					new_binary.c \
+					new_unary.c \
+					new_ident_leaf.c \
+					new_num_leaf.c \
+				) \
 				add.c \
 				assign.c \
 				equality.c \
@@ -41,10 +47,6 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				ident.c \
 				is_expect_op.c \
 				mul.c \
-				new_binary.c \
-				new_unary.c \
-				new_ident_leaf.c \
-				new_num_leaf.c \
 				num.c \
 				parse.c \
 				pri.c \
