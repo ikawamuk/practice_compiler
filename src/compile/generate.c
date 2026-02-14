@@ -29,6 +29,7 @@ void	print_node_type(t_nd_type type);
 
 void	generate(FILE *assem_src, const t_tree *node)
 {
+	static size_t	control_idx = 0;
 	if (!node)
 		return ;
 	if (node->type == ND_NUM)
@@ -44,8 +45,14 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_IF)
 	{
-		printf("HERE!\n");
-		exit(0);
+		size_t	i = control_idx++;
+		generate(assem_src, node->cond);
+		fprintf(assem_src, "\tpop rax\n");
+		fprintf(assem_src, "\tcmp rax, 0\n");
+		fprintf(assem_src, "\tje .Lcontrol%zu\n", i);
+		generate(assem_src, node->then);
+		fprintf(assem_src, ".Lcontrol%zu:\n", i);
+		return ;
 	}
 	if (node->type == ND_WHILE)
 	{
