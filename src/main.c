@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 21:50:19 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 03:27:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_program	*parse(t_token *token_list);
 void	compile(t_program *ast);
 
 void	print_ast(t_tree *ast);
+void	print_token_list(const t_token *token);
 
 int	main(int argc, char *argv[])
 {
@@ -32,6 +33,7 @@ int	main(int argc, char *argv[])
 	}
 	char	*file_content = slurp_file(argv[1]);
 	t_token	*token_list = tokenize(file_content);
+	print_token_list(token_list);
 	t_program	*prog = parse(token_list);
 	compile(prog);
 }
