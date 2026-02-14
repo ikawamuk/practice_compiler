@@ -1,4 +1,4 @@
-	.file	"if.c"
+	.file	"ifif.c"
 	.intel_syntax noprefix
 	.text
 	.globl	main
@@ -14,12 +14,20 @@ main:
 	.cfi_def_cfa_register 6
 	mov	DWORD PTR -4[rbp], 12
 	cmp	DWORD PTR -4[rbp], 1
-	jne	.L2 common
+	jne	.L2
 	mov	DWORD PTR -4[rbp], 11
-
-
-
-.L2: common
+	cmp	DWORD PTR -4[rbp], 0
+	jns	.L3
+	add	DWORD PTR -4[rbp], 100
+	jmp	.L4
+.L3:
+	sub	DWORD PTR -4[rbp], 20
+.L4:
+	add	DWORD PTR -4[rbp], 1
+	jmp	.L5
+.L2:
+	mov	DWORD PTR -4[rbp], 999
+.L5:
 	mov	eax, DWORD PTR -4[rbp]
 	pop	rbp
 	.cfi_def_cfa 7, 8

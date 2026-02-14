@@ -1,9 +1,9 @@
 int main(void)
 {
-    int x = 11;
-    if (x == 12)
-        return (11);
-    else
-        x = x + 1;
-    return (x);
+	int x = 12;
+	if (x == 1)
+		x = 11;
+	else
+		x = 13;
+	return (x);
 }

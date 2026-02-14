@@ -1,4 +1,4 @@
-	.file	"if.c"
+	.file	"relation.c"
 	.intel_syntax noprefix
 	.text
 	.globl	main
@@ -12,14 +12,11 @@ main:
 	.cfi_offset 6, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	mov	DWORD PTR -4[rbp], 12
-	cmp	DWORD PTR -4[rbp], 1
-	jne	.L2 common
-	mov	DWORD PTR -4[rbp], 11
-
-
-
-.L2: common
+	mov	DWORD PTR -8[rbp], 99
+	cmp	DWORD PTR -8[rbp], 99
+	sete	al
+	movzx	eax, al
+	mov	DWORD PTR -4[rbp], eax
 	mov	eax, DWORD PTR -4[rbp]
 	pop	rbp
 	.cfi_def_cfa 7, 8
