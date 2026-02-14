@@ -46,8 +46,7 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_IF)
 	{
-		generate_if(assem_src, node, label_idx);
-		label_idx += 2;
+		generate_if(assem_src, node, label_idx++);
 		return ;
 	}
 	if (node->type == ND_WHILE)
