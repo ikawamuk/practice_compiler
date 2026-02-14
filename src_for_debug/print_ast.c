@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 19:57:30 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:59:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	print_ast(t_tree *ast)
 	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT)
 	{
 		print_ast(ast->child);
-		print_ast(ast->next);
+		if (ast->next)
+			print_ast(ast->next);
 		return ;
 	}
 	if (ND_ADD <= ast->type && ast->type <= ND_ASSIGN)

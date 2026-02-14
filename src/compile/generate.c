@@ -19,6 +19,9 @@ void		(*get_op_generator(t_nd_type type))(FILE *);
 void	generate_left_value(FILE *asm_file, const t_tree *node);
 static void	generate_operator(FILE *asm_file, const t_tree *node);
 
+
+void	print_node_type(t_nd_type type);
+
 void	generate(FILE *asm_file, const t_tree *node)
 {
 	if (!node)
@@ -43,6 +46,12 @@ void	generate(FILE *asm_file, const t_tree *node)
 		fprintf(asm_file, "\tmov rsp, rbp\n");
 		fprintf(asm_file, "\tpop rbp\n");
 		fprintf(asm_file, "\tret\n");
+		return ;
+	}
+	if (node->type == ND_EXPR_STMT)
+	{
+		generate(asm_file, node->child);
+		fprintf(asm_file, "\tpop rax\n");
 		return ;
 	}
 	if (node->type == ND_EXPR_STMT)
