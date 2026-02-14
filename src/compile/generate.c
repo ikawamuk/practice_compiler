@@ -16,14 +16,16 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void		(*get_op_generator(t_nd_type type))(FILE *);
-void		generate_local_value_address(FILE *assem_src, const t_tree *node);
-void		generate_load(FILE *assem_src);
-void		generate_return(FILE *assem_src);
-void		generate_negative(FILE *assem_src);
-void		generate_assign(FILE *assem_src);
+void		generate_num(FILE *assem_src, const t_tree *node);
+void		generate_local_variable(FILE *assem_src, const t_tree *node);
+void		generate_if(FILE *assem_src, const t_tree *node, size_t label_idx);
+void		generate_return(FILE *assem_src, const t_tree *node);
+void		generate_expr_stmt(FILE *assem_src, const t_tree *node);
+void		generate_negative(FILE *assem_src, const t_tree *node);
+void		generate_assign(FILE *assem_src, const t_tree *node);
+void		generate_operator(FILE *assem_src, const t_tree *node);
 static bool	is_operator(t_nd_type type);
-static void	generate_operator(FILE *assem_src, t_nd_type type);
+
 
 void	print_node_type(t_nd_type type);
 
@@ -34,30 +36,18 @@ void	generate(FILE *assem_src, const t_tree *node)
 		return ;
 	if (node->type == ND_NUM)
 	{
-		fprintf(assem_src, "\tpush %d\n", node->value);
+		generate_num(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_LVAR)
 	{
-		generate_local_value_address(assem_src, node);
-		generate_load(assem_src);
+		generate_local_variable(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_IF)
 	{
-		size_t	label_else = label_idx++;
-		size_t	label_end = label_idx++;
-
-		generate(assem_src, node->cond);
-		fprintf(assem_src, "\tpop rax\n");
-		fprintf(assem_src, "\tcmp rax, 0\n");
-		fprintf(assem_src, "\tje .L%zu\n", label_else);
-		generate(assem_src, node->then);
-		fprintf(assem_src, "\tjmp .L%zu\n", label_end);
-		fprintf(assem_src, ".L%zu:\n", label_else);
-		if (node->els)
-			generate(assem_src, node->els);
-		fprintf(assem_src, ".L%zu:\n", label_end);
+		generate_if(assem_src, node, label_idx);
+		label_idx += 2;
 		return ;
 	}
 	if (node->type == ND_WHILE)
@@ -67,55 +57,33 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_RETURN)
 	{
-		generate(assem_src, node->child);
-		generate_return(assem_src);
+		generate_return(assem_src, node->child);
 		return ;
 	}
 	if (node->type == ND_EXPR_STMT)
 	{
-		generate(assem_src, node->child);
-		fprintf(assem_src, "\tadd rsp, 8\n");
+		generate_expr_stmt(assem_src, node->child);
 		return ;
 	}
 	if (node->type == ND_NEG)
 	{
-		generate(assem_src, node->child);
-		generate_negative(assem_src);
+		generate_negative(assem_src, node->child);
 		return ;
 	}
 	if (node->type == ND_ASSIGN)
 	{
-		if (node->lhs->type != ND_LVAR)
-		{
-			fprintf(stderr, "left operand of assignment should be left value.\n");
-			fclose(assem_src);
-			clear_arena();
-			exit(EXIT_FAILURE);
-		}
-		generate_local_value_address(assem_src, node->lhs);
-		generate(assem_src, node->rhs);
-		generate_assign(assem_src);
+		generate_assign(assem_src, node);
 		return ;
 	}
 	if (is_operator(node->type))
 	{
-		generate(assem_src, node->lhs);
-		generate(assem_src, node->rhs);
-		generate_operator(assem_src, node->type);
+		generate_operator(assem_src, node);
 		return ;
 	}
 	fprintf(stderr, "unknown node type\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
 	return ;
-}
-
-static void	generate_operator(FILE *assem_src, t_nd_type type)
-{
-	fprintf(assem_src, "\tpop rdi\n");
-	fprintf(assem_src, "\tpop rax\n");
-	get_op_generator(type)(assem_src);
-	fprintf(assem_src, "\tpush rax\n");
 }
 
 static bool	is_operator(t_nd_type type)

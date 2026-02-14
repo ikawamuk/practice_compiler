@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/14 23:47:56 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/15 02:47:03 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				generate.c \
 				gen_op_table.c \
 				$(addprefix src_generator/, \
+					generate_num.c \
+					generate_operator.c \
 					generate_add.c \
 					generate_equal.c \
 					generate_less_than.c \
@@ -76,10 +78,12 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_mul.c \
 					generate_sub.c \
 					generate_local_value_address.c \
-					generate_load.c \
+					generate_local_variable.c \
+					generate_expr_stmt.c \
 					generate_return.c \
 					generate_assign.c \
 					generate_negative.c \
+					generate_if.c \
 				) \
 				assemble.c \
 			) \
