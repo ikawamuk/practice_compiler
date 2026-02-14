@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/14 22:25:54 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/14 23:47:56 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,11 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 			) \
 			$(addprefix compile/, \
 				compile.c \
-				create_asm_file.c \
+				create_assem_src.c \
 				write_assemble_src.c \
 				generate.c \
 				gen_op_table.c \
-				$(addprefix src_generator_op/, \
+				$(addprefix src_generator/, \
 					generate_add.c \
 					generate_equal.c \
 					generate_less_than.c \
@@ -75,6 +75,11 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_less_equal.c \
 					generate_mul.c \
 					generate_sub.c \
+					generate_local_value_address.c \
+					generate_load.c \
+					generate_return.c \
+					generate_assign.c \
+					generate_negative.c \
 				) \
 				assemble.c \
 			) \
