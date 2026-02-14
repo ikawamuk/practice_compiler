@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 04:18:09 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:38:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	write_body(FILE *assem_src, t_function *prog);
 static void	generate_functinon_header(FILE *assem_src, t_function *prog);
 static void	write_functinon_footer(FILE *assem_src);
 void		generate(FILE *assem_src, const t_tree *ast);
+void		generate_block(FILE *assem_src, const t_tree *node);
 
 void	write_assemble_src(FILE *assem_src, t_function *prog)
 {
@@ -34,13 +35,7 @@ void	print_node_type(t_nd_type type);
 static void	write_body(FILE *assem_src, t_function *prog)
 {
 	generate_functinon_header(assem_src, prog);
-	t_tree	*ast = prog->ast;
-	while (ast)
-	{
-		t_tree	*next = ast->next;
-		generate(assem_src, ast);
-		ast = next;
-	}
+	generate_block(assem_src, prog->ast->child);
 	write_functinon_footer(assem_src);
 }
 

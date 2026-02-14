@@ -25,6 +25,7 @@ void		generate_expr_stmt(FILE *assem_src, const t_tree *node);
 void		generate_negative(FILE *assem_src, const t_tree *node);
 void		generate_assign(FILE *assem_src, const t_tree *node);
 void		generate_operator(FILE *assem_src, const t_tree *node);
+void		generate_block(FILE *assem_src, const t_tree *node);
 static bool	is_operator(t_nd_type type);
 
 
@@ -62,7 +63,7 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_BLOCK)
 	{
-		generate(assem_src, node->child);
+		generate_block(assem_src, node->child);
 		return ;
 	}
 	if (node->type == ND_EXPR_STMT)

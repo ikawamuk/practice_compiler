@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/15 03:53:20 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/15 04:36:10 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				local_variable.c \
 				value.c \
 				condition.c \
-				control_stmt.c \
 				block.c \
 			) \
 			$(addprefix compile/, \
@@ -86,6 +85,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_negative.c \
 					generate_if.c \
 					generate_while.c \
+					generate_block.c \
 				) \
 				assemble.c \
 			) \

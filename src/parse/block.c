@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:44:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 04:15:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:23:06 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ t_tree	*block(t_token **token_p)
 		cur->next = stmt(token_p);
 		cur = cur->next;
 	}
-	*token_p = (*token_p)->next;
 	return (new_unary(ND_BLOCK, dummy_head.next));
 }
