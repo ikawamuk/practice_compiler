@@ -6,46 +6,38 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 21:28:55 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:14:45 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "program.h"
+#include "function.h"
 #include "tree.h"
 #include "token.h"
 #include "arena.h"
 #include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
-static t_tree	*create_ast(t_token **token_p);
 t_tree			*stmt(t_token **token_p);
 t_lvar			*get_list(void);
 void			clear_list_stack(void);
+t_tree			*block(t_token **token_p);
+bool			is_expected(const char *op, t_token *token);
 
-t_program	*program(t_token **token_p)
+t_function	*program(t_token **token_p)
 {
-	t_program	*prog = aalloc(sizeof(t_program));
-	if (!prog)
+	t_function	*main_function = aalloc(sizeof(t_function));
+	if (!main_function)
 		return (NULL);
-	prog->ast = create_ast(token_p);
-	prog->var_list = get_list();
-	clear_list_stack();
-	return (prog);
-}
-
-void	print_ast(t_tree *ast);
-
-/*
-ast	= stmt*
-*/
-static t_tree	*create_ast(t_token **token_p)
-{
-	t_tree	dummy_head = {0};
-	t_tree	*cur = &dummy_head;
-
-	while ((*token_p)->type != TK_EOF)
+	if (is_expected("{", *token_p))
 	{
-		cur->next = stmt(token_p);
-		cur = cur->next;
+		*token_p = (*token_p)->next;
+		main_function->ast = block(token_p);
+		main_function->var_list = get_list();
+		clear_list_stack();
+		return (main_function);
 	}
-	return (dummy_head.next);
+	fprintf(stderr, "expected \'{\'\n");
+	clear_arena();
+	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/15 03:18:05 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/15 03:53:20 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				value.c \
 				condition.c \
 				control_stmt.c \
+				block.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

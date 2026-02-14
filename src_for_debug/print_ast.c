@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 19:59:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 03:57:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum {
 	ND_RETURN,
 	ND_IF,
 	ND_WHILE,
+	ND_BLOCK
 }	t_nd_type;
 */
 void	print_node_type(t_nd_type type)
@@ -51,6 +52,7 @@ void	print_node_type(t_nd_type type)
 		"ND_RETURN",
 		"ND_IF",
 		"ND_WHILE",
+		"ND_BLOCK"
 	};
 	for (size_t i = 0; i < sizeof(table) / sizeof(*table); i++)
 		if (type == i)
@@ -62,7 +64,7 @@ void	print_ast(t_tree *ast)
 	print_node_type(ast->type);
 	if (ast->type == ND_NUM || ast->type == ND_NEG || ast->type == ND_LVAR)
 		return ;
-	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT)
+	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT || ast->type == ND_BLOCK)
 	{
 		print_ast(ast->child);
 		if (ast->next)

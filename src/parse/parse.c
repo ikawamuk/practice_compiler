@@ -6,25 +6,25 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:05:04 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 18:43:50 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 04:17:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include "arena.h"
 #include "token.h"
-#include "program.h"
+#include "function.h"
 #include <stdlib.h>
 
-t_program	*program(t_token **token_p);
+t_function	*program(t_token **token_p);
 
-t_program	*parse(t_token *token_list)
+t_function	*parse(t_token *token_list)
 {
-	t_program	*prog = program(&token_list);
-	if (!prog)
+	t_function	*main_function = program(&token_list);
+	if (!main_function)
 	{
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
-	return (prog);
+	return (main_function);
 }

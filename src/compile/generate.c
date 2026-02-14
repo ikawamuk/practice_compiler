@@ -60,6 +60,11 @@ void	generate(FILE *assem_src, const t_tree *node)
 		generate_return(assem_src, node->child);
 		return ;
 	}
+	if (node->type == ND_BLOCK)
+	{
+		generate(assem_src, node->child);
+		return ;
+	}
 	if (node->type == ND_EXPR_STMT)
 	{
 		generate_expr_stmt(assem_src, node->child);

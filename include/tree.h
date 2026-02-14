@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 18:33:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 03:51:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum {
 	ND_RETURN,
 	ND_IF,
 	ND_WHILE,
+	ND_BLOCK
 }	t_nd_type;
 
 typedef struct s_tree	t_tree;
@@ -41,7 +42,7 @@ struct s_tree
 	t_nd_type	type;
 	t_tree		*next;
 	union {
-		// return, 
+		// return, block
 		t_tree	*child;
 		// operator
 		struct {
