@@ -42,6 +42,16 @@ void	generate(FILE *assem_src, const t_tree *node)
 		generate_load(assem_src);
 		return ;
 	}
+	if (node->type == ND_IF)
+	{
+		printf("HERE!\n");
+		exit(0);
+	}
+	if (node->type == ND_WHILE)
+	{
+		printf("HERE while!\n");
+		exit(0);
+	}
 	if (node->type == ND_RETURN)
 	{
 		generate(assem_src, node->child);
