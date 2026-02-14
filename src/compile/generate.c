@@ -19,6 +19,7 @@
 void		generate_num(FILE *assem_src, const t_tree *node);
 void		generate_local_variable(FILE *assem_src, const t_tree *node);
 void		generate_if(FILE *assem_src, const t_tree *node, size_t label_idx);
+void		generate_while(FILE *assem_src, const t_tree *node, size_t label_idx);
 void		generate_return(FILE *assem_src, const t_tree *node);
 void		generate_expr_stmt(FILE *assem_src, const t_tree *node);
 void		generate_negative(FILE *assem_src, const t_tree *node);
@@ -51,8 +52,8 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_WHILE)
 	{
-		printf("HERE while!\n");
-		exit(0);
+		generate_while(assem_src, node, label_idx++);
+		return ;
 	}
 	if (node->type == ND_RETURN)
 	{
