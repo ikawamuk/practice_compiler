@@ -16,7 +16,7 @@
 #include <stdbool.h>
 
 t_tree	*add(t_token **token_p);
-bool	is_expected_op(const char *op, t_token *token);
+bool	is_expected(const char *op, t_token *token);
 t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 
 t_tree	*relational(t_token **token_p)
@@ -24,22 +24,22 @@ t_tree	*relational(t_token **token_p)
 	t_tree	*node = add(token_p);
 	while (1)
 	{
-		if (is_expected_op("<", *token_p))
+		if (is_expected("<", *token_p))
 		{
 			*token_p = (*token_p)->next;
 			node = new_binary(ND_LT, node, add(token_p));
 		}
-		else if (is_expected_op("<=", *token_p))
+		else if (is_expected("<=", *token_p))
 		{
 			*token_p = (*token_p)->next;
 			node = new_binary(ND_LE, node, add(token_p));
 		}
-		else if (is_expected_op(">", *token_p))
+		else if (is_expected(">", *token_p))
 		{
 			*token_p = (*token_p)->next;
 			node = new_binary(ND_LT, add(token_p), node);
 		}
-		else if (is_expected_op(">=", *token_p))
+		else if (is_expected(">=", *token_p))
 		{
 			*token_p = (*token_p)->next;
 			node = new_binary(ND_LE, node, add(token_p));

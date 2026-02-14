@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:36:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 21:13:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 15:28:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-bool	is_expected_op(const char *op, t_token *token);
+bool	is_expected(const char *op, t_token *token);
 t_tree	*new_num_leaf(int val);
 t_tree	*expr(t_token **token_p);
 t_tree	*value(t_token **token_p);
@@ -26,11 +26,11 @@ t_tree	*value(t_token **token_p);
 t_tree	*pri(t_token **token_p)
 {
 	t_tree	*node;
-	if (is_expected_op("(", *token_p))
+	if (is_expected("(", *token_p))
 	{
 		*token_p = (*token_p)->next;
 		node = expr(token_p);
-		if (is_expected_op(")", *token_p))
+		if (is_expected(")", *token_p))
 		{
 			*token_p = (*token_p)->next;
 			return (node);

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 18:00:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 15:31:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef enum {
 	ND_LVAR, // local variable
 	ND_EXPR_STMT,
 	ND_RETURN,
+	ND_IF,
+	ND_WHILE,
 }	t_nd_type;
 
 typedef struct s_tree	t_tree;

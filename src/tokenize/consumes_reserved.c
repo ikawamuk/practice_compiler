@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:36:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 15:25:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 15:47:16 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 bool		is_identifier_char(char c);
 static bool	consumes_key_word(t_token *new, const char **str_p);
+static bool	consumes_signle_letter_punctuator(t_token *new, const char **str_p);
 
 bool	consumes_reserved(t_token *new, const char **str_p)
 {
@@ -40,13 +41,13 @@ static bool	consumes_signle_letter_punctuator(t_token *new, const char **str_p)
 
 static bool	consumes_key_word(t_token *new, const char **str_p)
 {
-	const char	key_words[] = {
+	const char	*key_words[] = {
 		"==", "!=", "<=", ">=",
 		"return", "if", "else", "while"
 	};
-	for (int i = 0; i < sizeof(key_words) / sizeof(*key_words); i++)
+	for (size_t i = 0; i < sizeof(key_words) / sizeof(*key_words); i++)
 	{
-		int	len = strlen(key_words[i]);
+		size_t	len = strlen(key_words[i]);
 		if (!memcmp(*str_p, key_words[i], len) && !is_identifier_char((*str_p)[len]))
 		{
 			*str_p += len;
