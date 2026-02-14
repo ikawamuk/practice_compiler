@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_src.c                                     :+:      :+:    :+:   */
+/*   program.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:44:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 21:48:54 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/14 16:36:36 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/14 18:51:45 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include "arena.h"
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef PROGRAM_H
+# define PROGRAM_H
 
-int	write_assemble_src(FILE *asm_file, t_tree *ast);
+# include "tree.h"
+# include "local_variable.h"
 
-void	generate_src(FILE *asm_file, t_tree *ast)
+typedef struct s_program
 {
-	if (write_assemble_src(asm_file, ast) != 0)
-	{
-		fclose(asm_file);
-		clear_arena();
-		exit(EXIT_FAILURE);
-	}
-}
+	t_tree	*ast;
+	t_lvar	*var_list;
+}	t_program;
+
+#endif

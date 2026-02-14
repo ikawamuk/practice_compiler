@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:45:07 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 16:00:46 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 19:23:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_tree	*equality(t_token **token_p);
 t_tree	*assign(t_token **token_p)
 {
 	t_tree	*node = equality(token_p);
-
 	if (is_expected("=", *token_p))
 	{
 		(*token_p) = (*token_p)->next;

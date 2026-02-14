@@ -25,7 +25,7 @@ void	generate(FILE *asm_file, const t_tree *node)
 		return ;
 	if (node->type == ND_NUM)
 	{
-		fprintf(asm_file, "\tpush %d\n", node->val);
+		fprintf(asm_file, "\tpush %d\n", node->value);
 		return ;
 	}
 	if (node->type == ND_LVAR)
@@ -86,7 +86,7 @@ void	generate_left_value(FILE *asm_file, const t_tree *node)
 		exit(EXIT_FAILURE);
 	}
 	fprintf(asm_file, "\tmov rax, rbp\n");
-	fprintf(asm_file, "\tsub rax, %d\n", node->offset);
+	fprintf(asm_file, "\tsub rax, %d\n", node->local_var->offset);
 	fprintf(asm_file, "\tpush rax\n");
 }
 

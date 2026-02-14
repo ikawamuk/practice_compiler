@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 16:01:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 18:55:16 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #include <stdio.h>
 
-static t_lvar   *local_list = NULL;
+static t_lvar	*local_list = NULL;
 
-t_lvar  *find_lvar(const t_token *token)
+t_lvar	*find_lvar(const t_token *token)
 {
 	for (t_lvar *cur = local_list; cur; cur = cur->next)
 	{
@@ -30,15 +30,30 @@ t_lvar  *find_lvar(const t_token *token)
 	return (NULL);
 }
 
-int push_lval(const t_token *token)
+t_lvar	*push_lval(const t_token *token)
 {
-	t_lvar  *new = aalloc(sizeof(t_lvar));
+	t_lvar *new = aalloc(sizeof(t_lvar));
 	if (!new)
-		return (-1);
+		return (NULL);
 	new->name = token->str;
 	new->len = token->len;
 	new->offset = local_list ? local_list->offset + 8 : 8;
 	new->next = local_list;
 	local_list = new;
-	return (new->offset);
+	return (new);
+}
+
+// size_t	get_()
+// {
+	
+// }
+
+t_lvar	*get_list(void)
+{
+	return (local_list);
+}
+
+void	clear_list_stack(void)
+{
+	local_list = NULL;
 }

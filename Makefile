@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/14 15:56:41 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/14 19:56:03 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,6 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 			$(addprefix compile/, \
 				compile.c \
 				create_asm_file.c \
-				generate_src.c \
 				write_assemble_src.c \
 				generate.c \
 				gen_op_table.c \
@@ -77,6 +76,10 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				assemble.c \
 			) \
 		) \
+
+SRCS	+=	$(addprefix src_for_debug/, \
+				print_ast.c \
+			) \
 
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
