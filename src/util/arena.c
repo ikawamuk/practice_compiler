@@ -6,11 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:11:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 17:29:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 15:04:47 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -43,6 +44,7 @@ void	*aalloc(size_t size)
 		arena.cur = arena.cur->next;
 	}
 	void	*p = arena.cur->buffer + arena.cur->offset;
+	memset(p, 0, aligned_size);
 	arena.cur->offset += aligned_size;
 	return (p);
 }
