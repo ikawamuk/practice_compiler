@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 21:41:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,54 +16,54 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static void	write_hedder(FILE *asm_file);
-static void	write_footer(FILE *asm_file);
-static void	write_body(FILE *asm_file, t_program *prog);
-static void	generate_functinon_header(FILE *asm_file, t_program *prog);
-void		generate(FILE *asm_file, const t_tree *ast);
+static void	write_hedder(FILE *assem_src);
+static void	write_footer(FILE *assem_src);
+static void	write_body(FILE *assem_src, t_program *prog);
+static void	generate_functinon_header(FILE *assem_src, t_program *prog);
+void		generate(FILE *assem_src, const t_tree *ast);
 
-void	write_assemble_src(FILE *asm_file, t_program *prog)
+void	write_assemble_src(FILE *assem_src, t_program *prog)
 {
-	write_hedder(asm_file);
-	write_body(asm_file, prog);
-	write_footer(asm_file);
+	write_hedder(assem_src);
+	write_body(assem_src, prog);
+	write_footer(assem_src);
 	return ;
 }
 
 void	print_node_type(t_nd_type type);
 
-static void	write_body(FILE *asm_file, t_program *prog)
+static void	write_body(FILE *assem_src, t_program *prog)
 {
-	generate_functinon_header(asm_file, prog);
+	generate_functinon_header(assem_src, prog);
 	t_tree	*ast = prog->ast;
 	while (ast)
 	{
 		t_tree	*next = ast->next;
-		generate(asm_file, ast);
+		generate(assem_src, ast);
 		ast = next;
 	}
 }
 
-static void	generate_functinon_header(FILE *asm_file, t_program *prog)
+static void	generate_functinon_header(FILE *assem_src, t_program *prog)
 {
-	fprintf(asm_file, "\tpush rbp\n");
-	fprintf(asm_file, "\tmov rbp, rsp\n");
+	fprintf(assem_src, "\tpush rbp\n");
+	fprintf(assem_src, "\tmov rbp, rsp\n");
 	if (prog->var_list)
-		fprintf(asm_file, "\tsub rsp, %d\n", prog->var_list->offset);
+		fprintf(assem_src, "\tsub rsp, %d\n", prog->var_list->offset);
 }
 
-static void	write_hedder(FILE *asm_file)
+static void	write_hedder(FILE *assem_src)
 {
-	fprintf(asm_file, ".intel_syntax noprefix\n.globl main\n");
-	fprintf(asm_file, "main:\n");
+	fprintf(assem_src, ".intel_syntax noprefix\n.globl main\n");
+	fprintf(assem_src, "main:\n");
 	return ;
 }
 
-static void	write_footer(FILE *asm_file)
+static void	write_footer(FILE *assem_src)
 {
-	fprintf(asm_file, "\tmov rsp, rbp\n");
-	fprintf(asm_file, "\tpop rbp\n");
-	fprintf(asm_file, "\tmov rax, 0\n");
-	fprintf(asm_file, "\tret\n");
+	fprintf(assem_src, "\tmov rsp, rbp\n");
+	fprintf(assem_src, "\tpop rbp\n");
+	fprintf(assem_src, "\tmov rax, 0\n");
+	fprintf(assem_src, "\tret\n");
 	return ;
 }

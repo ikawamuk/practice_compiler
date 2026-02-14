@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_div.c                                     :+:      :+:    :+:   */
+/*   generate_negative.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:58:21 by ikawamuk          #+#    #+#             */
+/*   Created: 2026/02/14 22:59:50 by ikawamuk          #+#    #+#             */
 /*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "tree.h"
 #include <stdio.h>
 
-void	generate_div(FILE *assem_src)
+void	generate_negative(FILE *assem_src, const t_tree *node)
 {
-	fprintf(assem_src, "\tcqo\n");
-	fprintf(assem_src, "\tidiv rdi\n");
+	fprintf(assem_src, "\tpop rax\n");
+	fprintf(assem_src, "\tneg rax\n");
+	fprintf(assem_src, "\tpush rax\n");
 }

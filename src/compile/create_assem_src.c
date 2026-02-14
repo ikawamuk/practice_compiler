@@ -5,25 +5,25 @@
 #include <unistd.h>
 #include <stdio.h>
 
-FILE	*create_random_fp(char *asm_file_name);
+FILE	*create_random_fp(char *assem_src_name);
 
-FILE	*open_asm_file(char *asm_file_name)
+FILE	*open_assem_src(char *assem_src_name)
 {
-	FILE	*asm_file = create_random_fp(asm_file_name);
-	if (!asm_file)
+	FILE	*assem_src = create_random_fp(assem_src_name);
+	if (!assem_src)
 	{
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
-	return (asm_file);
+	return (assem_src);
 }
 
-FILE	*create_random_fp(char *asm_file_name)
+FILE	*create_random_fp(char *assem_src_name)
 {
 	int			fd;
 	FILE		*fp;
 
-	fd = mkstemps(asm_file_name, 2);
+	fd = mkstemps(assem_src_name, 2);
 	if (fd == -1)
 	{
 		fprintf(stderr, "Ccc: error: failed to open the file\n");

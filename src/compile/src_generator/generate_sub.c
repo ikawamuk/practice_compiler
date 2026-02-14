@@ -6,13 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 21:57:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/08 22:01:17 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void	generate_sub(FILE *asm_file)
+void	generate_sub(FILE *assem_src)
 {
-	fprintf(asm_file, "\tsub rax, rdi\n");
+	fprintf(assem_src, "\tsub rax, rdi\n");
 }

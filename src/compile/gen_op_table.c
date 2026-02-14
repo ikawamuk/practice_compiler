@@ -6,21 +6,21 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:07:27 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 19:03:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gen_table.h"
 #include <stdio.h>
 
-void	generate_add(FILE *asm_file);
-void	generate_sub(FILE *asm_file);
-void	generate_mul(FILE *asm_file);
-void	generate_div(FILE *asm_file);
-void	generate_equal(FILE *asm_file);
-void	generate_not_equal(FILE *asm_file);
-void	generate_less_than(FILE *asm_file);
-void	generate_less_equal(FILE *asm_file);
+void	generate_add(FILE *assem_src);
+void	generate_sub(FILE *assem_src);
+void	generate_mul(FILE *assem_src);
+void	generate_div(FILE *assem_src);
+void	generate_equal(FILE *assem_src);
+void	generate_not_equal(FILE *assem_src);
+void	generate_less_than(FILE *assem_src);
+void	generate_less_equal(FILE *assem_src);
 
 static const t_nd_gen	gen_op_table[] = {
 	{ND_ADD, generate_add},
