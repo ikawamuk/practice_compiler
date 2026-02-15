@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 09:19:37 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:53:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	print_ast(t_tree *ast)
 		print_ast(ast->rhs);
 		return ;
 	}
-	if (ND_IF || ND_WHILE)
+	if (ast->type == ND_IF || ast->type == ND_WHILE)
 	{
 		print_ast(ast->cond);
 		print_ast(ast->then);

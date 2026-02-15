@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 05:31:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:52:43 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,7 @@ t_tree	*stmt(t_token **token_p)
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_RETURN, expr(token_p));
 	}
-	else if ((*token_p)->type == TK_IF)
-	{
-		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_IF, expr(token_p));
-	}
-	else if ((*token_p)->type == TK_ELSE)
-	{
-		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_ELSE, expr(token_p));
-	}
-	else if ((*token_p)->type == TK_ELSE)
+	else if ((*token_p)->type == TK_RESERVED)
 	{
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_IF, expr(token_p));
