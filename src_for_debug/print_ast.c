@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 03:57:18 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 09:19:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	print_node_type(t_nd_type type)
 		"ND_RETURN",
 		"ND_IF",
 		"ND_WHILE",
-		"ND_BLOCK"
+		"ND_BLOCK",
+		"ND_FUNC_CALL"
 	};
 	for (size_t i = 0; i < sizeof(table) / sizeof(*table); i++)
 		if (type == i)
@@ -62,7 +63,8 @@ void	print_node_type(t_nd_type type)
 void	print_ast(t_tree *ast)
 {
 	print_node_type(ast->type);
-	if (ast->type == ND_NUM || ast->type == ND_NEG || ast->type == ND_LVAR)
+	if (ast->type == ND_NUM || ast->type == ND_NEG
+	|| ast->type == ND_LVAR || ast->type == ND_FUNC_CALL)
 		return ;
 	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT || ast->type == ND_BLOCK)
 	{
@@ -77,10 +79,12 @@ void	print_ast(t_tree *ast)
 		print_ast(ast->rhs);
 		return ;
 	}
-	if (ND_IF)
+	if (ND_IF || ND_WHILE)
 	{
 		print_ast(ast->cond);
 		print_ast(ast->then);
+		if (ast->els)
+			print_ast(ast->els);
 	}
 	return ;
 }

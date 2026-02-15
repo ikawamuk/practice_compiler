@@ -1,9 +1,9 @@
 {
-	a = 5;
-	if (a > 0)
+	i = 0;
+	while (i < 2)
 	{
-		a = a + 1;
-		a = a * 2;
+		func();
+		i = i + 1;
 	}
-	return a;
+	return i;
 }

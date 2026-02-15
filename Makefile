@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/15 04:36:10 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/15 05:38:43 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,14 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					new_ident_leaf.c \
 					new_num_leaf.c \
 					new_control_stmt.c \
+					new_func_call_leaf.c \
 				) \
 				add.c \
 				assign.c \
 				equality.c \
 				expr.c \
 				ident.c \
-				is_expect.c \
+				is_expected.c \
 				mul.c \
 				num.c \
 				parse.c \
@@ -59,6 +60,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				value.c \
 				condition.c \
 				block.c \
+				func_call.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

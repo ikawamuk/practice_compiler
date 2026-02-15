@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 04:22:41 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 05:27:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ t_function	*program(t_token **token_p)
 		main_function->ast = block(token_p);
 		main_function->var_list = get_list();
 		clear_list_stack();
-		return (main_function);
+		if (is_expected("}", *token_p))
+			return (main_function);
+		fprintf(stderr, "expected \'}\'\n");
+		clear_arena();
+		exit(EXIT_FAILURE);
 	}
 	fprintf(stderr, "expected \'{\'\n");
 	clear_arena();

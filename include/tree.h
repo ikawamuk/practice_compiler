@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 03:51:20 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/15 05:15:09 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef enum {
 	ND_RETURN,
 	ND_IF,
 	ND_WHILE,
-	ND_BLOCK
+	ND_BLOCK,
+	ND_FUNC_CALL
 }	t_nd_type;
 
 typedef struct s_tree	t_tree;
@@ -59,6 +60,12 @@ struct s_tree
 		int	value;
 		// local variable
 		t_lvar	*local_var;
+		// function
+		struct {
+			char	*func_name;
+			size_t	name_len;
+		};
+		
 	};
 };
 
