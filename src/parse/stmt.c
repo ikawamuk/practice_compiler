@@ -26,6 +26,9 @@ t_tree	*block(t_token **token_p);
 t_tree	*new_control_stmt(t_nd_type type, t_tree *cond, t_tree *then);
 t_tree	*condition(t_token **token_p);
 
+
+void	print_token_type(t_tk_type type);
+
 /*
 stmt	= "while" "(" expr ")" stmt
 		| "if" "(" expr ")" stmt ("else" stmt)?
@@ -85,6 +88,8 @@ t_tree	*stmt(t_token **token_p)
 		node->next = NULL;
 		return (node);
 	}
+	print_token_type((*token_p)->type);
+	printf("str: %s\n", (*token_p)->str);
 	fprintf(stderr, "expected \';\'\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
