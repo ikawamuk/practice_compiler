@@ -72,6 +72,21 @@ t_tree	*stmt(t_token **token_p)
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_RETURN, expr(token_p));
 	}
+	else if ((*token_p)->type == TK_IF)
+	{
+		(*token_p) = (*token_p)->next;
+		node = new_unary(ND_IF, expr(token_p));
+	}
+	else if ((*token_p)->type == TK_ELSE)
+	{
+		(*token_p) = (*token_p)->next;
+		node = new_unary(ND_ELSE, expr(token_p));
+	}
+	else if ((*token_p)->type == TK_ELSE)
+	{
+		(*token_p) = (*token_p)->next;
+		node = new_unary(ND_IF, expr(token_p));
+	}
 	else
 		node = new_unary(ND_EXPR_STMT, expr(token_p));
 	if (is_expected(";", *token_p))
