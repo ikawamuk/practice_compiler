@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 05:27:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:42:21 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stdlib.h>
 
 t_tree			*stmt(t_token **token_p);
-t_lvar			*get_list(void);
+t_lvar			*get_var_list(void);
 void			clear_list_stack(void);
 t_tree			*block(t_token **token_p);
 bool			is_expected(const char *op, t_token *token);
@@ -33,7 +33,7 @@ t_function	*program(t_token **token_p)
 	{
 		*token_p = (*token_p)->next;
 		main_function->ast = block(token_p);
-		main_function->var_list = get_list();
+		main_function->var_list = get_var_list();
 		clear_list_stack();
 		if (is_expected("}", *token_p))
 			return (main_function);

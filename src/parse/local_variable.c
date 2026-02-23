@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 18:55:16 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/22 19:39:06 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_lvar	*push_lval(const t_token *token)
 	
 // }
 
-t_lvar	*get_list(void)
+t_lvar	*get_var_list(void)
 {
 	return (local_list);
 }
