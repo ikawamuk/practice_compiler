@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 18:32:27 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/24 13:15:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ typedef struct s_lvar   t_lvar;
 
 struct s_lvar
 {
-const char	*name;
-size_t		len;
-int			offset;
-t_lvar		*next;
+	const char	*name;
+	size_t		len;
+	int			offset;
+	t_lvar		*next;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 05:34:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 09:15:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/24 13:15:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_tree	*func_call(t_token **token_p)
 {
 	const char	*func_name = (*token_p)->str;
 	size_t		len = (*token_p)->len;
-	*token_p = (*token_p)->next->next;
+	*token_p = (*token_p)->next->next; // next: "(", next's next: ")"
 	if (is_expected(")", *token_p))
 	{
 		*token_p = (*token_p)->next;

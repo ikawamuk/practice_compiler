@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/15 05:38:43 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/24 13:09:52 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_if.c \
 					generate_while.c \
 					generate_block.c \
+					generate_func_call.c \
 				) \
 				assemble.c \
 			) \

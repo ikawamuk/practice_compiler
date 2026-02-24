@@ -26,6 +26,7 @@ void		generate_negative(FILE *assem_src, const t_tree *node);
 void		generate_assign(FILE *assem_src, const t_tree *node);
 void		generate_operator(FILE *assem_src, const t_tree *node);
 void		generate_block(FILE *assem_src, const t_tree *node);
+void		generate_func_call(FILE *assem_src, const t_tree *node);
 static bool	is_operator(t_nd_type type);
 
 
@@ -44,6 +45,11 @@ void	generate(FILE *assem_src, const t_tree *node)
 	if (node->type == ND_LVAR)
 	{
 		generate_local_variable(assem_src, node);
+		return ;
+	}
+	if (node->type == ND_FUNC_CALL)
+	{
+		generate_func_call(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_IF)
