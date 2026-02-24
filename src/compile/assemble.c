@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/24 13:51:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	assemble(const char *assem_src_name)
 {
 	char	cmd[256];
 
-	snprintf(cmd, sizeof(cmd), "gcc %s -o b.out", assem_src_name);
+	snprintf(cmd, sizeof(cmd), "gcc -c %s", assem_src_name);
 	if (system(cmd) != 0)
 		exit(EXIT_FAILURE);
-	// snprintf(cmd, sizeof(cmd), "rm %s", assem_src_name);
 	printf("assemblecode generated: %s\n", assem_src_name);
-	exit(EXIT_SUCCESS);
+	// snprintf(cmd, sizeof(cmd), "rm %s", assem_src_name);
 }

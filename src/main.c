@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/24 13:24:07 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/24 13:51:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*slurp_file(const char *file_path);
-t_token *tokenize(const char *str);
+char		*slurp_file(const char *file_path);
+t_token 	*tokenize(const char *str);
 t_function	*parse(t_token *token_list);
-void	compile(t_function *ast);
+char		*compile(t_function *ast);
+int			assemble(char *assem_src_name);
 
 void	print_ast(t_tree *ast);
 void	print_token_list(const t_token *token);
@@ -34,6 +35,9 @@ int	main(int argc, char *argv[])
 	char	*file_content = slurp_file(argv[1]);
 	t_token	*token_list = tokenize(file_content);
 	t_function	*main_function = parse(token_list);
-	print_ast(main_function->ast);
-	compile(main_function);
+	// print_ast(main_function->ast);
+	char	*asm_file_name = compile(main_function);
+	assemble(asm_file_name);
+	link(asm_file_name, argv + 2);
+	free(asm_file_name);
 }
