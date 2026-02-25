@@ -34,7 +34,7 @@ stmt	= "while" "(" expr ")" stmt
 		| "if" "(" expr ")" stmt ("else" stmt)?
 		| "return" expr ";"
 		| exor ";"
-		| "{" block "}"
+		| block
 */
 t_tree	*stmt(t_token **token_p)
 {
@@ -57,29 +57,13 @@ t_tree	*stmt(t_token **token_p)
 		}
 		return (node);
 	}
-	if (is_expected("{", *token_p))
-	{
-		(*token_p) = (*token_p)->next;
-		node = block(token_p);
-		if (is_expected("}", *token_p))
-		{
-			(*token_p) = (*token_p)->next;
-			return (node);
-		}
-		fprintf(stderr, "expected \'}\'\n");
-		clear_arena();
-		exit(EXIT_FAILURE);
-	}
 	if (is_expected("return", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_RETURN, expr(token_p));
 	}
-	else if ((*token_p)->type == TK_RESERVED)
-	{
-		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_IF, expr(token_p));
-	}
+	if (is_expected("{", *token_p))
+		return (block(token_p));
 	else
 		node = new_unary(ND_EXPR_STMT, expr(token_p));
 	if (is_expected(";", *token_p))

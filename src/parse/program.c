@@ -29,19 +29,8 @@ t_function	*program(t_token **token_p)
 	t_function	*main_function = aalloc(sizeof(t_function));
 	if (!main_function)
 		return (NULL);
-	if (is_expected("{", *token_p))
-	{
-		*token_p = (*token_p)->next;
-		main_function->ast = block(token_p);
-		main_function->var_list = get_var_list();
-		clear_list_stack();
-		if (is_expected("}", *token_p))
-			return (main_function);
-		fprintf(stderr, "expected \'}\'\n");
-		clear_arena();
-		exit(EXIT_FAILURE);
-	}
-	fprintf(stderr, "expected \'{\'\n");
-	clear_arena();
-	exit(EXIT_FAILURE);
+	main_function->ast = block(token_p);
+	main_function->var_list = get_var_list();
+	clear_list_stack();
+	return (main_function);
 }

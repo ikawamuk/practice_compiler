@@ -47,7 +47,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				assign.c \
 				equality.c \
 				expr.c \
-				ident.c \
+				variable.c \
 				is_expected.c \
 				mul.c \
 				num.c \

@@ -61,7 +61,10 @@ struct s_tree
 		// local variable
 		t_lvar	*local_var;
 		// function
-		char	*func_name;
+		struct {
+			char	*func_name;
+			t_tree	*args;
+		};
 	};
 };
 

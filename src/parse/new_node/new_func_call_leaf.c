@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-t_tree	*new_func_call_leaf(const char *func_name, size_t len)
+t_tree	*new_func_call_leaf(const char *func_name, size_t len, t_tree *args)
 {
 	t_tree	*new = aalloc(sizeof(t_tree));
 	if (!new)
@@ -29,5 +29,6 @@ t_tree	*new_func_call_leaf(const char *func_name, size_t len)
 	new->type = ND_FUNC_CALL;
 	new->func_name = aalloc(len + 1);
 	strncpy(new->func_name, func_name, len);
+	new->args = args;
 	return (new);
 }
