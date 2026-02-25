@@ -16,13 +16,13 @@
 
 char		*file_path_to_str(const char *file_path);
 
-char	*slurp_file(const char *file_path)
+char	*read_src(const char *file_path)
 {
-	char	*file_content = file_path_to_str(file_path);
+	char *file_content = file_path_to_str(file_path);
 	if (!file_content)
 	{
-		clear_arena();
-		exit(EXIT_FAILURE);
+		perror("read_src");
+		return (NULL);
 	}
 	return (file_content);
 }

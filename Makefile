@@ -18,12 +18,13 @@ RMDIR = $(RM) -rf
 
 SRCS =	$(addprefix $(SRCDIR)/, \
 			main.c \
+			run_compiler.c \
 			$(addprefix util/, \
 				arena.c \
 				error_at.c \
 			) \
-			$(addprefix slurp_file/, \
-				slurp_file.c \
+			$(addprefix read_src/, \
+				read_src.c \
 				file_path_to_str.c \
 			) \
 			$(addprefix tokenize/, \
@@ -90,8 +91,10 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_block.c \
 					generate_func_call.c \
 				) \
-				assemble.c \
 			) \
+			assemble.c \
+			link.c \
+			replace_file_extention.c \
 		) \
 
 SRCS	+=	$(addprefix src_for_debug/, \

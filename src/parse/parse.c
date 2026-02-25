@@ -15,6 +15,7 @@
 #include "token.h"
 #include "function.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 t_function	*program(t_token **token_p);
 
@@ -23,8 +24,8 @@ t_function	*parse(t_token *token_list)
 	t_function	*main_function = program(&token_list);
 	if (!main_function)
 	{
-		clear_arena();
-		exit(EXIT_FAILURE);
+		perror("parse");
+		return (NULL);
 	}
 	return (main_function);
 }

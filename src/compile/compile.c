@@ -25,9 +25,12 @@ void	write_assemble_src(FILE *assem_src, t_function *main_function);
 char	*compile(t_function *main_function)
 {
 	char	*assem_src_name = strdup(ASMFILE_FORMAT);
+	if (!assem_src_name)
+		return (perror("malloc"), NULL);
 	FILE	*assem_src = open_assem_src(assem_src_name);
 	write_assemble_src(assem_src, main_function);
 	fclose(assem_src);
 	clear_arena();
-	return (assem_src);
+	printf("Assemble src generated: %s\n", assem_src_name);
+	return (assem_src_name);
 }

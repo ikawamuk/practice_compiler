@@ -13,6 +13,7 @@
 #include "token.h"
 #include "arena.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 t_token *create_token_list(const char *str);
 
@@ -21,8 +22,8 @@ t_token	*tokenize(const char *str)
 	t_token	*token_list = create_token_list(str);
 	if (!token_list)
 	{
-		clear_arena();
-		exit(EXIT_FAILURE);
+		perror("tokenize");
+		return (NULL);
 	}
 	return (token_list);
 }

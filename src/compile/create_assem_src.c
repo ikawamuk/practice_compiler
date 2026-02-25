@@ -13,6 +13,7 @@ FILE	*open_assem_src(char *assem_src_name)
 	if (!assem_src)
 	{
 		clear_arena();
+		free(assem_src);
 		exit(EXIT_FAILURE);
 	}
 	return (assem_src);

@@ -12,49 +12,35 @@
 
 #include "arena.h"
 #include <stdio.h>
+#include <aio.h>
 
-static size_t	get_file_size(FILE *fp);
+static ssize_t	get_file_size(FILE *fp);
 
 char	*file_path_to_str(const char *file_path)
 {
 	FILE	*fp = fopen(file_path, "rb");
 	if (!fp)
-	{
-		fprintf(stderr, "failed to open file\n");
 		return (NULL);
-	}
-	size_t	size = get_file_size(fp);
-	if (size == 0)
+	ssize_t	size = get_file_size(fp);
+	if (size < 0)
 		return (NULL);
 	char	*buffer = aalloc(size + 1);
 	if (!buffer)
 		return (fclose(fp), NULL);
-	if (fread(buffer, sizeof(char), size, fp) != size)
-	{
-		fclose(fp);
-		fprintf(stderr, "failed to read file\n");
-		return (NULL);
-	}
+	if (fread(buffer, sizeof(char), (size_t)size, fp) != (size_t)size)
+		return (fclose(fp), NULL);
 	fclose(fp);
 	buffer[size] = '\0';
 	return (buffer);
 }
 
-static size_t	get_file_size(FILE *fp)
+static ssize_t	get_file_size(FILE *fp)
 {
 	rewind(fp);
 	fseek(fp, 0, SEEK_END);
-	long	size = ftell(fp);
+	ssize_t	size = (ssize_t)ftell(fp);
 	if (size == -1)
-	{
-		fprintf(stderr, "failed to get file size\n");
-		return (0);
-	}
+		return (-1);
 	rewind(fp);
-	if (size == 0)
-	{
-		fprintf(stderr, "no content in file\n");
-		return (0);
-	}
-	return ((size_t)size);
+	return (size);
 }
