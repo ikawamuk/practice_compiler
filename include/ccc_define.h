@@ -13,6 +13,6 @@
 #ifndef CCC_DEFINE
 # define CCC_DEFINE
 
-# define ASMFILE_FORMAT "./asm/ccc_XXXXXX.s"
+# define ASMFILE_FORMAT "./ccc_XXXXXX.s"
 
 #endif
