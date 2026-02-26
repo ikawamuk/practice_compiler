@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:09:09 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/26 22:22:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/26 22:30:34 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		generate_func_call(FILE *assem_src, const t_tree *node)
 	};
 	for (int i = argc - 1; i >= 0; i--)
 		fprintf(assem_src, "\tpop %s\n", arg_registers[i]);
+	// need 16bytes alinement!;
 	fprintf(assem_src, "\tcall %s\n", node->func_name);
 	fprintf(assem_src, "\tpush rax\n");
 }
