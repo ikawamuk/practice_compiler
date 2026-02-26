@@ -16,22 +16,22 @@ int	run_compiler(char **argv)
 {
 	char	*file_content = read_src(argv[1]);
 	if (!file_content)
-        return (clear_arena(), EXIT_FAILURE);
+		return (clear_arena(), EXIT_FAILURE);
 	t_token	*token_list = tokenize(file_content);
-    if (!token_list)
-        return (clear_arena(), EXIT_FAILURE);
-    t_function	*main_function = parse(token_list);
-    if (!main_function)
-        return (clear_arena(), EXIT_FAILURE);
-    char	*assem_src_name = compile(main_function);
-    if (!assem_src_name)
-        return (clear_arena(), EXIT_FAILURE);
-    char	*obj_name = assemble(assem_src_name);
-    if (!obj_name)
-        return (free(assem_src_name), EXIT_FAILURE);
-    free(assem_src_name);
-    if (link(obj_name, argv + 2) < 0)
-        return (free(obj_name), EXIT_FAILURE);
-    free(obj_name);
-    return (EXIT_SUCCESS);
+	if (!token_list)
+		return (clear_arena(), EXIT_FAILURE);
+	t_function	*main_function = parse(token_list);
+	if (!main_function)
+		return (clear_arena(), EXIT_FAILURE);
+	char	*assem_src_name = compile(main_function);
+	if (!assem_src_name)
+		return (clear_arena(), EXIT_FAILURE);
+	char	*obj_name = assemble(assem_src_name);
+	if (!obj_name)
+		return (free(assem_src_name), EXIT_FAILURE);
+	free(assem_src_name);
+	if (link(obj_name, argv + 2) < 0)
+		return (free(obj_name), EXIT_FAILURE);
+	free(obj_name);
+	return (EXIT_SUCCESS);
 }

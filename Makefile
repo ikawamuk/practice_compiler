@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/24 13:09:52 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/26 22:02:52 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				expr.c \
 				variable.c \
 				is_expected.c \
+				ident.c \
 				mul.c \
 				num.c \
 				parse.c \
@@ -62,6 +63,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				condition.c \
 				block.c \
 				func_call.c \
+				func_args.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \
@@ -109,24 +111,24 @@ TEST = $(addprefix $(TESTDIR)/, test.sh)
 SRCDIR = src
 OBJDIR = obj
 INCDIR = include
-ASMDIR = asm
+OUTDIR = out
 TESTDIR = test
 
 all:$(NAME)
 
-$(NAME):$(OBJS) | $(ASMDIR)
+$(NAME):$(OBJS) | $(OUTDIR)
 	$(CC) $(CFLAG) $^ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAG) -c $< -o $@
 
-$(ASMDIR):
+$(OUTDIR):
 	@mkdir -p $@
 
 clean:
 	@$(RMDIR) $(OBJDIR)
-	@$(RMDIR) $(ASMDIR)
+	@$(RMDIR) $(OUTDIR)
 
 fclean: clean
 	$(RM) $(NAME)
