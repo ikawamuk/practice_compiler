@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/28 06:54:40 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/28 06:56:38 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 			$(addprefix util/, \
 				arena.c \
 				error_at.c \
+				xaalloc.c \
 			) \
 			$(addprefix read_src/, \
 				read_src.c \
