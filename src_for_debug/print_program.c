@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   program.c                                          :+:      :+:    :+:   */
+/*   print_program.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 07:25:10 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/28 07:17:49 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/28 07:46:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "function.h"
 #include <stdio.h>
-t_function	*function(t_token **token_p);
 
-/*
-program	=	function*
-*/
-t_function	*program(t_token **token_p)
+void	print_ast(t_tree *ast);
+
+void	print_program(t_function *program)
 {
-	t_function	head;
-	t_function	*cur = &head;
-
-	cur->next = NULL;
-	while ((*token_p)->type != TK_EOF)
+	for (t_function *cur = program; cur; cur = cur->next)
 	{
-		cur->next = function(token_p);
-		cur = cur->next;
+		printf("function name: %s\n", cur->name);
+		print_ast(cur->node);
 	}
-	return (head.next);
 }

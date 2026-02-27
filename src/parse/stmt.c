@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 21:52:43 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:27:55 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_tree	*stmt(t_token **token_p)
 		node = new_control_stmt(ND_WHILE, condition(token_p), stmt(token_p));
 		return (node);
 	}
-	else if (is_expected("if", *token_p))
+	if (is_expected("if", *token_p))
 	{
 		*token_p = (*token_p)->next;
 		node = new_control_stmt(ND_IF, condition(token_p), stmt(token_p));
@@ -57,13 +57,13 @@ t_tree	*stmt(t_token **token_p)
 		}
 		return (node);
 	}
+	if (is_expected("{", *token_p))
+		return (block(token_p));
 	if (is_expected("return", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_RETURN, expr(token_p));
 	}
-	if (is_expected("{", *token_p))
-		return (block(token_p));
 	else
 		node = new_unary(ND_EXPR_STMT, expr(token_p));
 	if (is_expected(";", *token_p))

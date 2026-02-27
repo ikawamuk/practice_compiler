@@ -7,6 +7,8 @@ bool	is_expected(const char *op, t_token *token);
 t_tree	*func_call(t_token **token_p);
 t_tree	*variable(t_token **token_p);
 
+
+#include <stdio.h>
 /*
 ident	= func_call
 		| variable

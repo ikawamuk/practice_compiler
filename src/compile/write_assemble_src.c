@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 03:50:41 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:47:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,19 @@
 
 void		generate_function(FILE *assem_src, t_function *func);
 static void	write_hedder(FILE *assem_src);
+static void	write_body(FILE *assem_src, t_function *prog);
 
 void	write_assemble_src(FILE *assem_src, t_function *prog)
 {
 	write_hedder(assem_src);
-	generate_function(assem_src, prog);
+	write_body(assem_src, prog);
 	return ;
+}
+
+static void	write_body(FILE *assem_src, t_function *prog)
+{
+	for (t_function *cur = prog; cur; cur = cur->next)
+		generate_function(assem_src, cur);
 }
 
 static void	write_hedder(FILE *assem_src)

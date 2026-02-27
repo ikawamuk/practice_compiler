@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:57:46 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:42:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 #include <stdbool.h>
 #include <string.h>
 
-void			*xaalloc(size_t size);
-bool			is_expected(const char *op, t_token *token);
-t_tree			*block(t_token **token_p);
-t_lvar			*get_var_list(void);
-void			clear_list_stack(void);
-static t_tree	*args_declaration(t_token **token_p);
+void				*xaalloc(size_t size);
+bool				is_expected(const char *op, t_token *token);
+t_tree				*block(t_token **token_p);
+t_lvar				*get_var_list(void);
+void				clear_list_stack(void);
+static t_tree		*args_declaration(t_token **token_p);
+static t_function	*new_function(const char *name, t_tree *body, t_lvar *var_list);
+static char			*dup_token_str(t_token *token);
 
 /*
 function	=	ident args_declaration block
@@ -36,14 +38,28 @@ t_function	*function(t_token **token_p)
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
-	t_function	*function = xaalloc(sizeof(t_function));
-	function->name = xaalloc((*token_p)->len + 1);
-	memmove(function->name, (*token_p)->str, (*token_p)->len + 1);
+	char	*name = dup_token_str(*token_p);
 	*token_p = (*token_p)->next;
 	args_declaration(token_p);
-	function->node = block(token_p);
-	function->var_list = get_var_list();
+	t_tree *body = block(token_p);
+	t_function *function = new_function(name, body, get_var_list());
 	clear_list_stack();
+	return (function);
+}
+
+static char	*dup_token_str(t_token *token)
+{
+	char	*str = xaalloc(token->len + 1);
+	strncpy(str, token->str, token->len);
+	return (str);
+}
+
+static t_function	*new_function(const char *name, t_tree *body, t_lvar *var_list)
+{
+	t_function	*function = xaalloc(sizeof(t_function));
+	function->name = name;
+	function->node = body;
+	function->var_list = var_list;
 	return (function);
 }
 

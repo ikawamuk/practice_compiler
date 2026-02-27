@@ -3,7 +3,6 @@
 # include "token.h"
 # include "function.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 char		*read_src(const char *file_path);
 t_token 	*tokenize(const char *str);
@@ -12,7 +11,9 @@ char		*compile(t_function *ast);
 char		*assemble(const char *assem_src_name);
 int 		link(const char *assem_src_file, char **argv);
 
+#include <stdio.h>
 void	print_token_list(const t_token *token);
+void	print_program(t_function *program);
 
 int	run_compiler(char **argv)
 {
@@ -22,11 +23,10 @@ int	run_compiler(char **argv)
 	t_token	*token_list = tokenize(file_content);
 	if (!token_list)
 		return (clear_arena(), EXIT_FAILURE);
-	print_token_list(token_list);
-	t_function	*main_function = parse(token_list);
-	if (!main_function)
+	t_function	*program = parse(token_list);
+	if (!program)
 		return (clear_arena(), EXIT_FAILURE);
-	char	*assem_src_name = compile(main_function);
+	char	*assem_src_name = compile(program);
 	if (!assem_src_name)
 		return (clear_arena(), EXIT_FAILURE);
 	char	*obj_name = assemble(assem_src_name);
