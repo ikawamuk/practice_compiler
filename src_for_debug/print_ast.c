@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 21:53:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 03:55:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	print_ast(t_tree *ast)
 		print_ast(ast->then);
 		if (ast->els)
 			print_ast(ast->els);
+		return ;
 	}
 	return ;
 }

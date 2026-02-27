@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 04:38:10 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 03:50:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,49 +16,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+void		generate_function(FILE *assem_src, t_function *func);
 static void	write_hedder(FILE *assem_src);
-static void	write_body(FILE *assem_src, t_function *prog);
-static void	generate_functinon_header(FILE *assem_src, t_function *prog);
-static void	write_functinon_footer(FILE *assem_src);
-void		generate(FILE *assem_src, const t_tree *ast);
-void		generate_block(FILE *assem_src, const t_tree *node);
 
 void	write_assemble_src(FILE *assem_src, t_function *prog)
 {
 	write_hedder(assem_src);
-	write_body(assem_src, prog);
+	generate_function(assem_src, prog);
 	return ;
-}
-
-void	print_node_type(t_nd_type type);
-
-static void	write_body(FILE *assem_src, t_function *prog)
-{
-	generate_functinon_header(assem_src, prog);
-	generate_block(assem_src, prog->ast->child);
-	write_functinon_footer(assem_src);
 }
 
 static void	write_hedder(FILE *assem_src)
 {
-	fprintf(assem_src, ".intel_syntax noprefix\n.globl main\n");
-	fprintf(assem_src, "main:\n");
+	fprintf(assem_src, ".intel_syntax noprefix\n");
 	return ;
 }
 
-static void	generate_functinon_header(FILE *assem_src, t_function *prog)
-{
-	fprintf(assem_src, "\tpush rbp\n");
-	fprintf(assem_src, "\tmov rbp, rsp\n");
-	if (prog->var_list)
-		fprintf(assem_src, "\tsub rsp, %d\n", prog->var_list->offset);
-}
-
-static void	write_functinon_footer(FILE *assem_src)
-{
-	fprintf(assem_src, "\tmov rsp, rbp\n");
-	fprintf(assem_src, "\tpop rbp\n");
-	fprintf(assem_src, "\tmov rax, 0\n");
-	fprintf(assem_src, "\tret\n");
-	return ;
-}

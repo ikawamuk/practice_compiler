@@ -12,6 +12,8 @@ char		*compile(t_function *ast);
 char		*assemble(const char *assem_src_name);
 int 		link(const char *assem_src_file, char **argv);
 
+void	print_token_list(const t_token *token);
+
 int	run_compiler(char **argv)
 {
 	char	*file_content = read_src(argv[1]);
@@ -20,6 +22,7 @@ int	run_compiler(char **argv)
 	t_token	*token_list = tokenize(file_content);
 	if (!token_list)
 		return (clear_arena(), EXIT_FAILURE);
+	print_token_list(token_list);
 	t_function	*main_function = parse(token_list);
 	if (!main_function)
 		return (clear_arena(), EXIT_FAILURE);

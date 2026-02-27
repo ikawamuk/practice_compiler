@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:22 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/24 13:51:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 01:56:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int argc, char *argv[])
 {
 	if (argc < 2)
 	{
-		fprintf(stderr, "no input file");
+		fprintf(stderr, "no input file\n");
+		fprintf(stderr, "Usage: ccc < C file > < object file ... >\n");
 		return (EXIT_FAILURE);
 	}
 	return (run_compiler(argv));

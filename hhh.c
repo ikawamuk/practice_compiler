@@ -1,3 +1,8 @@
+main(){
+	return (print_ok());
+}
+
+print_ok()
 {
-	print_ok(97, 65);
+	return (101);
 }

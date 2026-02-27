@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:11:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 15:04:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:49:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static t_chunk	*next_chunk(size_t size)
 {
 	t_chunk	*next = malloc(sizeof(t_chunk));
 	if (!next)
-		return (perror("malloc"), NULL);
+		return (NULL);
 	next->buffer = malloc(size * sizeof(char));
 	if (!next->buffer)
-		return (perror("malloc"), free(next), NULL);
+		return (free(next), NULL);
 	next->size = size;
 	next->offset = 0;
 	next->next = NULL;

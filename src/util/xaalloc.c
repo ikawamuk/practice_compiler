@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_unary.c                                        :+:      :+:    :+:   */
+/*   xaalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 16:59:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:55:19 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/28 06:47:28 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/28 06:49:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "arena.h"
-#include "tree.h"
 #include <stdlib.h>
 
-void	*xaalloc(size_t size);
-
-t_tree	*new_unary(t_nd_type type, t_tree *child)
+void	*xaalloc(size_t size)
 {
-	t_tree	*new = xaalloc(sizeof(t_tree));
-	new->type = type;
-	new->child = child;
-	return (new);
+	void	*p = aalloc(size);
+	if (!p)
+	{
+		clear_arena();
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+	return (p);
 }

@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/26 22:02:52 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/28 06:54:40 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 			) \
 			$(addprefix tokenize/, \
 				tokenize.c \
-				create_token_list.c \
 				has_filled_token.c \
 				consumes_reserved.c \
 				is_identifier_char.c \
@@ -64,6 +63,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				block.c \
 				func_call.c \
 				func_args.c \
+				function.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \
@@ -92,6 +92,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_while.c \
 					generate_block.c \
 					generate_func_call.c \
+					generate_function.c \
 				) \
 			) \
 			assemble.c \

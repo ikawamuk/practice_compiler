@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 05:34:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/24 13:15:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 03:26:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_tree	*new_func_call_leaf(const char *func_name, size_t len, t_tree *args);
 t_tree  *func_args(t_token **token_p);
 
 /*
-func_call	=	ident func_args ")"
+func_call	=	ident func_args
 */
 t_tree	*func_call(t_token **token_p)
 {

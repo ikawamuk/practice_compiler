@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ident.c                                            :+:      :+:    :+:   */
+/*   variable.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 21:11:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 18:54:45 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:43:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_lvar	*push_lval(const t_token *token);
 t_tree	*new_ident_leaf(t_lvar *var);
 
 /*
-variable	= ident
+variable	=
 */
 t_tree	*variable(t_token **token_p)
 {

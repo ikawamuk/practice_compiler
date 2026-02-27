@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:31:39 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 15:04:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:55:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 #include "tree.h"
 #include <stdlib.h>
 
+void	*xaalloc(size_t size);
+
 t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs)
 {
-	t_tree	*new = aalloc(sizeof(t_tree));
-	if (!new)
-	{
-		clear_arena();
-		exit(EXIT_FAILURE);
-	}
+	t_tree	*new = xaalloc(sizeof(t_tree));
 	new->type = type;
 	new->lhs = lhs;
 	new->rhs = rhs;

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 05:11:27 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/24 13:19:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:55:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+void	*xaalloc(size_t size);
+
 t_tree	*new_func_call_leaf(const char *func_name, size_t len, t_tree *args)
 {
-	t_tree	*new = aalloc(sizeof(t_tree));
-	if (!new)
-	{
-		clear_arena();
-		exit(EXIT_FAILURE);
-	}
+	t_tree	*new = xaalloc(sizeof(t_tree));
 	new->type = ND_FUNC_CALL;
-	new->func_name = aalloc(len + 1);
+	new->func_name = xaalloc(len + 1);
 	strncpy(new->func_name, func_name, len);
 	new->args = args;
 	return (new);
