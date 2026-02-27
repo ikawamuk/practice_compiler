@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 03:44:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:14:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_tree
 		// num
 		int	value;
 		// local variable
-		t_lvar	*local_var;
+		t_var		*local_var;
 		// function call
 		struct {
 			char	*func_name;

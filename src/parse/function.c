@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 07:42:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:14:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 void				*xaalloc(size_t size);
 bool				is_expected(const char *op, t_token *token);
 t_tree				*block(t_token **token_p);
-t_lvar				*get_var_list(void);
+t_var_list			*get_var_list(void);
 void				clear_list_stack(void);
 static t_tree		*args_declaration(t_token **token_p);
-static t_function	*new_function(const char *name, t_tree *body, t_lvar *var_list);
+static t_function	*new_function(const char *name, t_tree *body, t_var_list *var_list);
 static char			*dup_token_str(t_token *token);
 
 /*
@@ -54,7 +54,7 @@ static char	*dup_token_str(t_token *token)
 	return (str);
 }
 
-static t_function	*new_function(const char *name, t_tree *body, t_lvar *var_list)
+static t_function	*new_function(const char *name, t_tree *body, t_var_list *var_list)
 {
 	t_function	*function = xaalloc(sizeof(t_function));
 	function->name = name;

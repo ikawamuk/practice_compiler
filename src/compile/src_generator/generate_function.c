@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 03:32:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:09:15 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:22:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	generate_functinon_header(FILE *assem_src, t_function *func)
 	fprintf(assem_src, "\tpush rbp\n");
 	fprintf(assem_src, "\tmov rbp, rsp\n");
 	if (func->var_list)
-		fprintf(assem_src, "\tsub rsp, %d\n",func->var_list->offset);
+		fprintf(assem_src, "\tsub rsp, %d\n",func->var_list->var->offset);
 }
 
 static void	generate_functinon_footer(FILE *assem_src)

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 07:02:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:21:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 
 #include  "token.h"
 
-typedef struct s_lvar   t_lvar;
-
-struct s_lvar
+typedef struct s_var
 {
-	const char	*name;
-	int			len;
-	int			offset;
-	t_lvar		*next;
+	char	*name;
+	int		offset;
+}	t_var;
+
+typedef struct s_var_list	t_var_list;
+
+struct s_var_list
+{
+	t_var		*var;
+	t_var_list	*next;
 };
 
 #endif

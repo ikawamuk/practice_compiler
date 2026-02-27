@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:55:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:22:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,32 @@
 
 void	*xaalloc(size_t size);
 
-static t_lvar	*local_list = NULL;
+static t_var_list	*local_list = NULL;
 
-t_lvar	*find_lvar(const t_token *token)
+t_var	*find_var(const t_token *token)
 {
-	for (t_lvar *cur = local_list; cur; cur = cur->next)
+	for (t_var_list *cur = local_list; cur; cur = cur->next)
 	{
-		if (cur->len == token->len
-		&& !memcmp(cur->name, token->str, cur->len))
-			return (cur);
+		if (!strncmp(cur->var->name, token->str, token->len))
+			return (cur->var);
 	}
 	return (NULL);
 }
 
-t_lvar	*push_lval(const t_token *token)
+t_var	*push_lval(const t_token *token)
 {
-	t_lvar *new = xaalloc(sizeof(t_lvar));
-	new->name = token->str;
-	new->len = token->len;
-	new->offset = local_list ? local_list->offset + 8 : 8;
-	new->next = local_list;
-	local_list = new;
+	t_var *new = xaalloc(sizeof(t_var));
+	new->name = xaalloc(token->len + 1);
+	strncpy(new->name, token->str, token->len);
+	new->offset = local_list ? local_list->var->offset + 8 : 8;
+	t_var_list	*tmp = xaalloc(sizeof(t_var_list));
+	tmp->var = new;
+	tmp->next = local_list;
+	local_list = tmp;
 	return (new);
 }
 
-t_lvar	*get_var_list(void)
+t_var_list	*get_var_list(void)
 {
 	return (local_list);
 }
