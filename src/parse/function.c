@@ -6,10 +6,11 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:31:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:55:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "token.h"
 #include "function.h"
 #include "arena.h"
 #include "local_variable.h"
@@ -19,12 +20,12 @@
 #include <string.h>
 
 char				*dup_token_str(t_token *token);
+t_function			*new_function(const char *name, t_tree *body, t_var_list *var_list);
 bool				is_expected(const char *op, t_token *token);
 t_tree				*block(t_token **token_p);
 t_var_list			*get_var_list(void);
 void				clear_list_stack(void);
 static t_tree		*args_declaration(t_token **token_p);
-static t_function	*new_function(const char *name, t_tree *body, t_var_list *var_list);
 
 
 /*
@@ -43,15 +44,6 @@ t_function	*function(t_token **token_p)
 	args_declaration(token_p);
 	t_function *function = new_function(name, block(token_p), get_var_list());
 	clear_list_stack();
-	return (function);
-}
-
-static t_function	*new_function(const char *name, t_tree *body, t_var_list *var_list)
-{
-	t_function	*function = xaalloc(sizeof(t_function));
-	function->name = name;
-	function->node = body;
-	function->var_list = var_list;
 	return (function);
 }
 

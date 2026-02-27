@@ -6,18 +6,19 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:31:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:41:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "token.h"
 #include "local_variable.h"
-#include "arena.h"
 #include <string.h>
 #include <stdlib.h>
 
 #include <stdio.h>
 
-char	*dup_token_str(t_token *token);
+void	*xaalloc(size_t size);
+char	*dup_token_str(const t_token *token);
 
 static t_var_list	*local_list = NULL;
 

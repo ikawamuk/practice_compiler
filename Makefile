@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/28 08:33:55 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/28 08:43:53 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					new_num_leaf.c \
 					new_control_stmt.c \
 					new_func_call_leaf.c \
+					new_function.c \
 				) \
 				add.c \
 				assign.c \

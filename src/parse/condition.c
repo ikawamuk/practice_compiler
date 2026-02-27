@@ -6,10 +6,11 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:58:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 22:32:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:41:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "token.h"
 #include "tree.h"
 #include "arena.h"
 #include <stdlib.h>

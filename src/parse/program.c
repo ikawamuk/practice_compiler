@@ -6,11 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:28:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:41:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "function.h"
+#include "token.h"
 #include <stdio.h>
 
 void		*xaalloc(size_t size);

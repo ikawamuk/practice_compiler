@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 05:11:27 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:32:57 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:37:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+void	*xaalloc(size_t size);
 
 t_tree	*new_func_call_leaf(const char *func_name, t_tree *args)
 {

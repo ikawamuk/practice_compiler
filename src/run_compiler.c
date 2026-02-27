@@ -7,13 +7,13 @@
 char		*read_src(const char *file_path);
 t_token 	*tokenize(const char *str);
 t_func_list	*parse(t_token *token_list);
-char		*compile(t_func_list *ast);
+char		*compile(t_func_list *program);
 char		*assemble(const char *assem_src_name);
 int 		link(const char *assem_src_file, char **argv);
 
 #include <stdio.h>
 void	print_token_list(const t_token *token);
-void	print_program(t_function *program);
+void	print_program(t_func_list *program);
 
 int	run_compiler(char **argv)
 {

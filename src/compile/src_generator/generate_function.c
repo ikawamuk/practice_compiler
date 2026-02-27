@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 03:32:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:22:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:43:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	generate_function(FILE *assem_src, t_function *func)
 {
 	current_func_name = (char *)func->name;
 	generate_functinon_header(assem_src, func);
-	generate_block(assem_src, func->node);
+	generate_block(assem_src, func->body);
 	generate_functinon_footer(assem_src);
 }
 
@@ -38,8 +38,8 @@ static void	generate_functinon_header(FILE *assem_src, t_function *func)
 	fprintf(assem_src, "%s:\n", func->name);
 	fprintf(assem_src, "\tpush rbp\n");
 	fprintf(assem_src, "\tmov rbp, rsp\n");
-	if (func->var_list)
-		fprintf(assem_src, "\tsub rsp, %d\n",func->var_list->var->offset);
+	if (func->locals)
+		fprintf(assem_src, "\tsub rsp, %d\n",func->stack_size);
 }
 
 static void	generate_functinon_footer(FILE *assem_src)
