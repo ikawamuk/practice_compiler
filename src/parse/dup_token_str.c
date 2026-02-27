@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   dup_token_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 16:05:04 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:25:27 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/28 08:30:11 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/28 08:30:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include "arena.h"
 #include "token.h"
-#include "function.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include <string.h>
 
-t_func_list	*program(t_token **token_p);
+void	*xaalloc(size_t size);
 
-t_func_list	*parse(t_token *token_list)
+char	*dup_token_str(t_token *token)
 {
-	t_func_list	*prog = program(&token_list);
-	return (prog);
+	char	*str = xaalloc(token->len + 1);
+	strncpy(str, token->str, token->len);
+	return (str);
 }

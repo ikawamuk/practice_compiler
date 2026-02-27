@@ -6,8 +6,8 @@
 
 char		*read_src(const char *file_path);
 t_token 	*tokenize(const char *str);
-t_function	*parse(t_token *token_list);
-char		*compile(t_function *ast);
+t_func_list	*parse(t_token *token_list);
+char		*compile(t_func_list *ast);
 char		*assemble(const char *assem_src_name);
 int 		link(const char *assem_src_file, char **argv);
 
@@ -23,7 +23,7 @@ int	run_compiler(char **argv)
 	t_token	*token_list = tokenize(file_content);
 	if (!token_list)
 		return (clear_arena(), EXIT_FAILURE);
-	t_function	*program = parse(token_list);
+	t_func_list	*program = parse(token_list);
 	if (!program)
 		return (clear_arena(), EXIT_FAILURE);
 	char	*assem_src_name = compile(program);

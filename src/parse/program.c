@@ -6,26 +6,29 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 07:25:10 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:28:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "function.h"
 #include <stdio.h>
+
+void		*xaalloc(size_t size);
 t_function	*function(t_token **token_p);
 
 /*
 program	=	function*
 */
-t_function	*program(t_token **token_p)
+t_func_list	*program(t_token **token_p)
 {
-	t_function	head;
-	t_function	*cur = &head;
+	t_func_list	head;
+	t_func_list	*cur = &head;
 
 	cur->next = NULL;
 	while ((*token_p)->type != TK_EOF)
 	{
-		cur->next = function(token_p);
+		cur->next = xaalloc(sizeof(t_func_list));
+		cur->next->func = function(token_p);
 		cur = cur->next;
 	}
 	return (head.next);

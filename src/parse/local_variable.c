@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:22:07 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:31:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 
-void	*xaalloc(size_t size);
+char	*dup_token_str(t_token *token);
 
 static t_var_list	*local_list = NULL;
 
@@ -34,8 +34,7 @@ t_var	*find_var(const t_token *token)
 t_var	*push_lval(const t_token *token)
 {
 	t_var *new = xaalloc(sizeof(t_var));
-	new->name = xaalloc(token->len + 1);
-	strncpy(new->name, token->str, token->len);
+	new->name = dup_token_str(token);
 	new->offset = local_list ? local_list->var->offset + 8 : 8;
 	t_var_list	*tmp = xaalloc(sizeof(t_var_list));
 	tmp->var = new;
