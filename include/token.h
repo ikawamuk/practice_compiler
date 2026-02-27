@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 15:19:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:02:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ struct s_token
 {
 	t_tk_type	type;
 	const char	*str;
-	size_t		len;
+	int			len;
 	t_token		*next;
 	// for digit
 	int			val;

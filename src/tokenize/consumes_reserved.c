@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:36:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 03:33:03 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:05:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static bool	consumes_operator(t_token *new, const char **str_p)
 		if (!memcmp(*str_p, operators[i], len))
 		{
 			*str_p += len;
-			new->len = len;
+			new->len = (int)len;
 			new->type = TK_RESERVED;
 			return (true);
 		}
@@ -72,7 +72,7 @@ static bool	consumes_key_word(t_token *new, const char **str_p)
 		if (!memcmp(*str_p, key_words[i], len) && !is_identifier_char((*str_p)[len]))
 		{
 			*str_p += len;
-			new->len = len;
+			new->len = (int)len;
 			new->type = TK_RESERVED;
 			return (true);
 		}

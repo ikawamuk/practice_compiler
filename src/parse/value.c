@@ -21,7 +21,7 @@ t_tree	*value(t_token **token_p)
 		return (num(token_p));
 	if ((*token_p)->type == TK_IDENT)
 		return (ident(token_p));
-	fprintf(stderr, "unexpected token\n");
+	fprintf(stderr, "unexpected token %.*s\n", (*token_p)->len, (*token_p)->str);
 	clear_arena();
 	exit(EXIT_FAILURE);
 }

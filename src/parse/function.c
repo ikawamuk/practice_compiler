@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:50:43 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:57:46 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static t_tree  *args_declaration(t_token **token_p)
 	clear_arena();
 	exit(EXIT_FAILURE);
 }
+
+t_tree	*variable(t_token **token_p);
 
 /*
 variable_list	= (variable ("," variable)*)

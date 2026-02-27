@@ -6,12 +6,13 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 06:47:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:49:20 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:57:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	*xaalloc(size_t size)
 {

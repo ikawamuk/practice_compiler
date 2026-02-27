@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 05:34:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 03:26:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:04:13 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdbool.h>
 
 bool	is_expected(const char *op, t_token *token);
-t_tree	*new_func_call_leaf(const char *func_name, size_t len, t_tree *args);
+t_tree	*new_func_call_leaf(const char *func_name, int len, t_tree *args);
 t_tree  *func_args(t_token **token_p);
 
 /*

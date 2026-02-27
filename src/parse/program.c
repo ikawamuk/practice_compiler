@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:45:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 06:58:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ t_function	*program(t_token **token_p)
 	while ((*token_p)->type != TK_EOF)
 	{
 		cur->next = function(token_p);
-		if (!cur->next)
-			return (NULL);
 		cur = cur->next;
 	}
 	return (cur->next);
