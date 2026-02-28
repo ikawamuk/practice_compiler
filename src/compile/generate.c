@@ -16,6 +16,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+const char	*arg_registers[] = {
+	"rdi", "rsi", "rdx", "rcx", "r8", "r9"
+};
+
 void		generate_num(FILE *assem_src, const t_tree *node);
 void		generate_local_variable(FILE *assem_src, const t_tree *node);
 void		generate_if(FILE *assem_src, const t_tree *node, size_t label_idx);

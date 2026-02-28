@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   function.h                                         :+:      :+:    :+:   */
+/*   arg_registers.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/14 16:36:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 09:13:15 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/28 09:29:49 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/28 09:32:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCTION_H
-# define FUNCTION_H
+#ifndef ARG_REGISTERS_H
+# define ARG_REGISTERS_H
 
-# include "tree.h"
-# include "local_variable.h"
-
-typedef struct s_function	t_function;
-
-struct s_function
-{
-	const char	*name;
-	t_var_list	*params;
-	t_tree		*body;
-	t_var_list	*locals;
-	int			stack_size;
-};
-
-typedef struct s_func_list	t_func_list;
-
-struct s_func_list
-{
-	t_function	*func;
-	t_func_list	*next;
-};
+extern const char	*arg_registers[];
 
 #endif
