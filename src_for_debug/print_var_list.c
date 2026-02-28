@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_expr_stmt.c                               :+:      :+:    :+:   */
+/*   print_var_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 02:42:02 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 22:17:49 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/02/28 22:20:53 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/02/28 22:24:06 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
+#include "local_variable.h"
 #include <stdio.h>
 
-void	generate(FILE *assem_src, const t_tree *node);
+void	print_var(t_var *var);
 
-void	generate_expr_stmt(FILE *assem_src, const t_tree *node)
+void	print_var_list(t_var_list *list)
 {
-	generate(assem_src, node);
-	fprintf(assem_src, "\tadd rsp, 8\n");
-	return ;
+	for (t_var_list *cur = list; cur; cur = cur->next)
+	{
+		print_var(cur->var);
+	}
+}
+
+void	print_var(t_var *var)
+{
+	printf("var name:%s\n", var->name);
+	printf("offset:%d\n", var->offset);
 }

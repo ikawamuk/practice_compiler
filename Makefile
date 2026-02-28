@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/02/28 08:43:53 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/02/28 22:23:14 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ SRCS	+=	$(addprefix src_for_debug/, \
 				print_ast.c \
 				print_token_list.c \
 				print_program.c \
+				print_var_list.c \
 			) \
 
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))

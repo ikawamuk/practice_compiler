@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/24 13:51:25 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 22:30:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <unistd.h>
 #include <wait.h>
 
-char    	*replace_file_extention(const char *file_name, const char *new_extention);
+char		*replace_file_extention(const char *file_name, const char *new_extention);
 static char	*make_obj_name(const char *assem_src_name);
 int 		run_command(char *const args[]);
 

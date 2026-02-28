@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 09:26:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 22:27:06 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_function	*function(t_token **token_p)
 	*token_p = (*token_p)->next;
 	args_declaration(token_p);
 	func_data.params = get_var_list();
-	clear_list_stack();
 	func_data.body = block(token_p);
 	func_data.locals = get_var_list();
 	clear_list_stack();
