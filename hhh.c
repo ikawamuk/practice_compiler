@@ -1,6 +1,6 @@
 main()
 {
-	return (fibo(5));
+	return (fibo(6));
 }
 
 fibo(n)

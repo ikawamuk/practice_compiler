@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 22:54:29 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 23:07:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_var	*find_var(const t_token *token)
 {
 	for (t_var_list *cur = local_list; cur; cur = cur->next)
 	{
-		if (!strncmp(cur->var->name, token->str, token->len))
+		if (strlen(cur->var->name) == (size_t)token->len
+		&& !strncmp(cur->var->name, token->str, token->len))
 			return (cur->var);
 	}
 	return (NULL);

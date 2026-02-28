@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 22:25:00 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/02/28 23:03:57 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ t_func_list	*program(t_token **token_p)
 		cur->next = xaalloc(sizeof(t_func_list));
 		cur->next->func = function(token_p);
 		cur = cur->next;
-		printf("paramss:\n");
-		print_var_list(cur->func->params);
-		printf("locals:\n");
-		print_var_list(cur->func->locals);
-	
 	}
 	return (head.next);
 }
