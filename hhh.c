@@ -1,7 +1,7 @@
 main(){
-	return (print_ok(1, 1));
+	return (func(1, 1));
 }
 
-print_ok(a, b){
+func(a, b){
 	return (a + b + 2);
 }
