@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 03:55:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 01:45:26 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	print_node_type(t_nd_type type)
 	static const char *table[] = {
 		"ND_NUM",
 		"ND_NEG",
+		"ND_ADDRESS", // &
+		"ND_DEREFER", // *
 		"ND_ADD", // +
 		"ND_SUB", // -
 		"ND_MUL", // *
