@@ -43,13 +43,17 @@ t_tree	*stmt(t_token **token_p)
 	if (is_expected("while", *token_p))
 	{
 		*token_p = (*token_p)->next;
-		node = new_control_stmt(ND_WHILE, condition(token_p), stmt(token_p));
+		t_tree	*cond = condition(token_p);
+		t_tree 	*then = stmt(token_p);
+		node = new_control_stmt(ND_WHILE, cond, then);
 		return (node);
 	}
 	if (is_expected("if", *token_p))
 	{
 		*token_p = (*token_p)->next;
-		node = new_control_stmt(ND_IF, condition(token_p), stmt(token_p));
+		t_tree	*cond = condition(token_p);
+		t_tree 	*then = stmt(token_p);
+		node = new_control_stmt(ND_IF, cond, then);
 		if (is_expected("else", *token_p))
 		{
 			*token_p = (*token_p)->next;

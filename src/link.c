@@ -37,8 +37,8 @@ static char	**make_command(char *obj_name, char **extra_objs)
 	int	j = 0;
 	while (j < extra_cnt)
 		args[i++] = extra_objs[j++];
-	args[i++] = "-o";
-	args[i++] = "b.out";
+	// args[i++] = "-o";
+	// args[i++] = "b.out";
 	args[i] = NULL;
 	return (args);
 }

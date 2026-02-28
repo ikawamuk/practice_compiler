@@ -22,7 +22,7 @@ void	generate_if(FILE *assem_src, const t_tree *node, size_t label_idx)
 	fprintf(assem_src, "\tcmp rax, 0\n");
 	fprintf(assem_src, "\tje .Lelse%zu\n", label_idx);
 	generate(assem_src, node->then);
-	fprintf(assem_src, "\tjmp .d%zu\n", label_idx);
+	fprintf(assem_src, "\tjmp .Lend%zu\n", label_idx);
 	fprintf(assem_src, ".Lelse%zu:\n", label_idx);
 	if (node->els)
 		generate(assem_src, node->els);

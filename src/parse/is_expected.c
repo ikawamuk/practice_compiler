@@ -13,11 +13,11 @@
 #include "token.h"
 #include <stdbool.h>
 #include <string.h>
-
+#include <stdio.h>
 bool	is_expected(const char *op, t_token *token)
 {
 	return (token->type == TK_RESERVED
 		&& strlen(op) == (size_t)token->len
-		&& !memcmp(op, token->str, token->len)
+		&& !memcmp(op, token->str, (size_t)token->len)
 	);
 }
