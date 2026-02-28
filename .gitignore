@@ -1,8 +1,9 @@
 *
 !**/
-!*.c
-!*.h
+!src/*.c
+!include/*.h
 !test.sh
 !Makefile
 !.gitignore
+
 sample/*
