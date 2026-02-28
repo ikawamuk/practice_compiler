@@ -23,6 +23,7 @@ int	run_compiler(char **argv)
 	t_token	*token_list = tokenize(file_content);
 	if (!token_list)
 		return (clear_arena(), EXIT_FAILURE);
+	// print_token_list(token_list);
 	t_func_list	*program = parse(token_list);
 	if (!program)
 		return (clear_arena(), EXIT_FAILURE);

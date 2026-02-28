@@ -21,7 +21,7 @@ t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 
 
 /*
-mul	= term ("*" term | "/" term)*
+mul	= term ("*" term | "/" term | "%" term)*
 */
 t_tree	*mul(t_token **token_p)
 {
@@ -37,6 +37,11 @@ t_tree	*mul(t_token **token_p)
 		{
 			*token_p = (*token_p)->next;
 			node = new_binary(ND_DIV, node, term(token_p));
+		}
+		else if (is_expected("%", *token_p))
+		{
+			*token_p = (*token_p)->next;
+			node = new_binary(ND_MOD, node, term(token_p));
 		}
 		else
 			return (node);

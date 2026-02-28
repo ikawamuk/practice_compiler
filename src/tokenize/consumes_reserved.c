@@ -32,7 +32,7 @@ bool	consumes_reserved(t_token *new, const char **str_p)
 
 static bool	consumes_signle_letter_punctuator(t_token *new, const char **str_p)
 {
-	if (strchr("+-*/()<>;={},&*", **str_p))
+	if (strchr("+-*/%()<>;={},&", **str_p))
 	{
 		*str_p += 1;
 		new->len = 1;

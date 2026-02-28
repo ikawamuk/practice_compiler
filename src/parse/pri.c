@@ -39,7 +39,7 @@ t_tree	*pri(t_token **token_p)
 			return (node);
 		}
 		// error_at(head, p, "unclosed parenthesis");
-		fprintf(stderr, "unclosed parenthesis");
+		fprintf(stderr, "unclosed parenthesis\n");
 		clear_arena();
 		exit(EXIT_FAILURE);
 		return (NULL);

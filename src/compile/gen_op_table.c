@@ -17,6 +17,7 @@ void	generate_add(FILE *assem_src);
 void	generate_sub(FILE *assem_src);
 void	generate_mul(FILE *assem_src);
 void	generate_div(FILE *assem_src);
+void	generate_mod(FILE *assem_src);
 void	generate_equal(FILE *assem_src);
 void	generate_not_equal(FILE *assem_src);
 void	generate_less_than(FILE *assem_src);
@@ -27,6 +28,7 @@ static const t_nd_gen	gen_op_table[] = {
 	{ND_SUB, generate_sub},
 	{ND_MUL, generate_mul},
 	{ND_DIV, generate_div},
+	{ND_MOD, generate_mod},
 	{ND_EQ, generate_equal},
 	{ND_NE, generate_not_equal},
 	{ND_LT, generate_less_than},

@@ -82,6 +82,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_less_than.c \
 					generate_not_equal.c \
 					generate_div.c \
+					generate_mod.c \
 					generate_less_equal.c \
 					generate_mul.c \
 					generate_sub.c \

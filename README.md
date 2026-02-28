@@ -31,16 +31,43 @@
 ## 動作例
 
 ```c
-// sample.c--
+
 main() {
-    a = 10;
-    b = 20;
-    return (a + b) * 2;
+    
 }
 
 ```
 
-生成されたアセンブリをアセンブルして実行すると、終了ステータス `60` を返します。
+生成されたファイルを実行すると、終了ステータス `60` を返します。
+
+```c
+
+main()
+{
+	putchar(104);
+	putchar(101);
+	putchar(108);
+	putchar(108);
+	putchar(111);
+	putchar(44);
+	putchar(32);
+	putchar(119);
+	putchar(111);
+	putchar(114);
+	putchar(108);
+	putchar(100);
+	putchar(33);
+	putchar(10);
+}
+
+putchar(c)
+{
+	syscall(1, 1, &c, 1);
+}
+
+```
+
+システムコールを呼び出して標準出力に"hello, world!"を出力します。
 
 ## 📚 参考文献
 
