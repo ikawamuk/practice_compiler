@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:37:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 00:42:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 typedef enum {
 	ND_NUM,
 	ND_NEG,
+	ND_ADDRESS, // &
+	ND_DEREFER, // *
 	ND_ADD, // +
 	ND_SUB, // -
 	ND_MUL, // *

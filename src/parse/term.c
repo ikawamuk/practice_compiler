@@ -35,5 +35,15 @@ t_tree	*term(t_token **token_p)
 		(*token_p) = (*token_p)->next;
 		return (new_unary(ND_NEG, pri(token_p)));
 	}
+	if (is_expected("&", *token_p))
+	{
+		(*token_p) = (*token_p)->next;
+		return (new_unary(ND_ADDRESS, pri(token_p)));
+	}
+	if (is_expected("*", *token_p))
+	{
+		(*token_p) = (*token_p)->next;
+		return (new_unary(ND_DEREFER, pri(token_p)));
+	}
 	return (pri(token_p));
 }

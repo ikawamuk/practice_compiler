@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/01 00:27:17 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/01 01:37:46 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_less_equal.c \
 					generate_mul.c \
 					generate_sub.c \
-					generate_local_value_address.c \
+					generate_local_var_address.c \
 					generate_local_variable.c \
 					generate_expr_stmt.c \
 					generate_return.c \
@@ -97,6 +97,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_func_call.c \
 					generate_function.c \
 					generate_syscall.c \
+					generate_dereference.c \
 				) \
 			) \
 			assemble.c \

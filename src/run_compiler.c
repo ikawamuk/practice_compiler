@@ -26,6 +26,7 @@ int	run_compiler(char **argv)
 	t_func_list	*program = parse(token_list);
 	if (!program)
 		return (clear_arena(), EXIT_FAILURE);
+	print_program(program);
 	char	*assem_src_name = compile(program);
 	if (!assem_src_name)
 		return (clear_arena(), EXIT_FAILURE);
