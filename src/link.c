@@ -21,14 +21,15 @@ int    link(char *obj_name, char **extra_objs)
 		fprintf(stderr, "Error: Failed to link\n");
 		return (-1);
 	}
-    printf("succeeded generate exe file\n");
-    return (0);
+	free(args);
+	printf("succeeded generate exe file\n");
+	return (0);
 }
 
 static char	**make_command(char *obj_name, char **extra_objs)
 {
-    int		extra_cnt = count_str_arr(extra_objs);
-    char	**args = malloc(sizeof(char *) * (extra_cnt + 5));
+	int		extra_cnt = count_str_arr(extra_objs);
+	char	**args = malloc(sizeof(char *) * (extra_cnt + 5));
 	if (!args)
 		return (NULL);
 	int	i = 0;

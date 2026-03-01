@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 22:30:30 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 22:18:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,23 @@ char	*assemble(const char *assem_src_name)
 
 int run_command(char *const args[])
 {
-    pid_t pid = fork();
-    if (pid == -1)
-        return (-1);
-    if (pid == 0)
-    {
-        execvp(args[0], args);
-        perror("execvp");
-        exit(EXIT_FAILURE);
-    }
-    int status;
-    if (waitpid(pid, &status, 0) == -1)
+	pid_t pid = fork();
+	if (pid == -1)
+		return (-1);
+	if (pid == 0)
+	{
+		execvp(args[0], args);
+		perror("execvp");
+		exit(EXIT_FAILURE);
+	}
+	int status;
+	if (waitpid(pid, &status, 0) == -1)
 		return (-1);
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status))
 		return (128 + WTERMSIG(status));
-    return (-1);
+	return (-1);
 }
 
 static char	*make_obj_name(const char *assem_src_name)
