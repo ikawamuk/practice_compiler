@@ -7,7 +7,7 @@ static char	**make_command(char *obj_name, char **extra_objs);
 static int	count_str_arr(char **strarr);
 
 
-int    link(char *obj_name, char **extra_objs)
+int	link(char *obj_name, char **extra_objs)
 {
 	char	**args = make_command(obj_name, extra_objs);
 	if (!args)

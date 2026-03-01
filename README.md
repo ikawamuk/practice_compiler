@@ -127,6 +127,8 @@ typedef s_result
 
 ### commpile
 
+- mkstempsを使ってフォーマットされたランダムな.sファイルに書き込みます
+
 - generateはifの羅列ではなくテーブルをもってループする予定！
 
 - 関数名がsyscallのときは例外的に引数を専用のレジスタに配置し、syscall命令を行う
@@ -134,4 +136,13 @@ typedef s_result
 - generate()のstaticなローカル変数label_idxをつかってwhileやifのラベルにユニークなインデックスを与える
 
 - generate_operatorは共通の処理を行いget_op_generatorで関数ポインタを呼ぶことにした。ベタ書きのほうが読みやすいと言われればそうかもしれないのでココの選択は難しいと感じます。
+
+### assemble
+
+- execvpを使ってgccを呼び出しバイナリを作成。
+
+### link
+
+- 第2引数以降にオブジェクトファイルを受取り、gccを用いてリンクします
+
 
