@@ -6,10 +6,11 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 21:17:49 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:30:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 21:48:42 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "arena.h"
 #include "token.h"
 #include "tree.h"
 #include <stdbool.h>
@@ -17,6 +18,9 @@
 #include <stdlib.h>
 
 bool	is_expected(const char *op, t_token *token);
+t_tree	*new_control_stmt(t_nd_type type, t_tree *cond, t_tree *then);
+t_tree	*condition(t_token **token_p);
+t_tree	*stmt(t_token **token_p);
 
 /*
 if_stmt	= "if" "(" expr ")" stmt ("else" stmt)?

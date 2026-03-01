@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/01 21:35:01 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/01 21:46:19 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				program.c \
 				relational.c \
 				stmt.c \
+				while_stmt.c \
+				if_stmt.c \
 				term.c \
 				local_variable.c \
 				value.c \

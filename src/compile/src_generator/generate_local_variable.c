@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 22:43:39 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 01:36:50 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 22:00:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include <stdio.h>
 
 void	generate_local_var_address(FILE *assem_src, const t_tree *node);
-void	generate_load(FILE *assem_src);
+void	generate_dereference(FILE *assem_src, const t_tree *node);
 
 void	generate_local_variable(FILE *assem_src, const t_tree *node)
 {
 	generate_local_var_address(assem_src, node);
-	generate_load(assem_src);
+	generate_dereference(assem_src, node);
 }
 
 void	generate_load(FILE *assem_src)

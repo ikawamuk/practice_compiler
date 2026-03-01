@@ -24,6 +24,7 @@ const char	*arg_registers[] = {
 void	generate_num(FILE *assem_src, const t_tree *node);
 void	generate_local_variable(FILE *assem_src, const t_tree *node);
 void	generate_local_var_address(FILE *assem_src, const t_tree *node);
+void	generate_dereference(FILE *assem_src, const t_tree *node);
 void	generate_if(FILE *assem_src, const t_tree *node, size_t label_idx);
 void	generate_while(FILE *assem_src, const t_tree *node, size_t label_idx);
 void	generate_return(FILE *assem_src, const t_tree *node);
@@ -60,7 +61,7 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_DEREFER)
 	{
-		generate_local_var_address(assem_src, node->child);
+		generate_dereference(assem_src, node->child);
 		return ;
 	}
 	if (node->type == ND_FUNC_CALL)

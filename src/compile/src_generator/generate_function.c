@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 03:32:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 19:41:32 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 21:42:34 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ static void	generate_function_params(FILE *assem_src, t_function *func)
 {
 	int	i = 0;
 	for (t_var_list *cur = func->locals; i < func->argc; cur = cur->next)
-	{
 		fprintf(assem_src, "\tmov [rbp-%d], %s\n", cur->var->offset, arg_registers[i++]);
-	}
 }
 
 static void	generate_functinon_footer(FILE *assem_src)
