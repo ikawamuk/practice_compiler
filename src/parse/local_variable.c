@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 23:07:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 19:20:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 #include <stdio.h>
 
-void	*xaalloc(size_t size);
-char	*dup_token_str(const t_token *token);
+void				*xaalloc(size_t size);
+char				*dup_token_str(const t_token *token);
+static t_var_list	*create_var_node(const t_token *token, int current_offset);
 
 static t_var_list	*local_list = NULL;
 
@@ -35,13 +36,25 @@ t_var	*find_var(const t_token *token)
 
 t_var	*push_lval(const t_token *token)
 {
-	t_var *new = xaalloc(sizeof(t_var));
-	new->name = dup_token_str(token);
-	new->offset = local_list ? local_list->var->offset + 8 : 8;
-	t_var_list	*tmp = xaalloc(sizeof(t_var_list));
-	tmp->var = new;
-	tmp->next = local_list;
-	local_list = tmp;
+	if (!local_list)
+	{
+		local_list = create_var_node(token, 0);
+		return (local_list->var);
+	}
+	t_var_list *cur = local_list;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = create_var_node(token, cur->var->offset);
+	return (cur->next->var);
+}
+
+static t_var_list	*create_var_node(const t_token *token, int current_offset)
+{
+	t_var *var = xaalloc(sizeof(t_var));
+	var->name = dup_token_str(token);
+	var->offset = current_offset + 8;
+	t_var_list	*new = xaalloc(sizeof(t_var_list));
+	new->var = var;
 	return (new);
 }
 
