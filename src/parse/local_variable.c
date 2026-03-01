@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 19:20:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 19:40:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ static t_var_list	*create_var_node(const t_token *token, int current_offset)
 t_var_list	*get_var_list(void)
 {
 	return (local_list);
+}
+
+int	get_var_list_size(void)
+{
+	int	cnt = 0;
+	for (t_var_list *cur = get_var_list(); cur; cur = cur->next)
+		cnt++;
+	return (cnt);
 }
 
 void	clear_list_stack(void)

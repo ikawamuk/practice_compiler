@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 08:39:08 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 09:21:43 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 19:38:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ t_function	*new_function(t_function func_data)
 {
 	t_function	*function = xaalloc(sizeof(t_function));
 	function->name = func_data.name;
-	function->params = func_data.params;
+	function->argc = func_data.argc;
 	function->body = func_data.body;
 	function->locals = func_data.locals;
-	if (function->params)
-		function->stack_size += function->params->var->offset;
-	if (function->locals)
-		function->stack_size += function->locals->var->offset;
+	t_var_list *cur = func_data.locals;
+	while (cur->next)
+		cur = cur->next;
+	function->stack_size = cur->var->offset;
 	return (function);
 }
+
+

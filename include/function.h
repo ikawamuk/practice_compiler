@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:36:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 09:13:15 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 19:37:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef struct s_function	t_function;
 struct s_function
 {
 	const char	*name;
-	t_var_list	*params;
-	t_tree		*body;
+	int			argc;
 	t_var_list	*locals;
+	t_tree		*body;
 	int			stack_size;
 };
 
