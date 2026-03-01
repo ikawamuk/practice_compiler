@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 21:11:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:20:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 21:35:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_var	*push_lval(const t_token *token);
 t_tree	*new_ident_leaf(t_var *var);
 
 /*
-variable	=
+variable
 */
 t_tree	*variable(t_token **token_p)
 {

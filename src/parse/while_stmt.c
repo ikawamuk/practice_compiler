@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func_call.c                                        :+:      :+:    :+:   */
+/*   while_stmt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 05:34:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:35:12 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/01 21:16:23 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/01 21:29:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arena.h"
-#include "tree.h"
 #include "token.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "tree.h"
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-
-char	*dup_token_str(t_token *token);
 bool	is_expected(const char *op, t_token *token);
-t_tree	*new_func_call_leaf(const char *func_name, t_tree *args);
-t_tree  *called_func_args(t_token **token_p);
 
 /*
-func_call	=	ident func_args
+while_stmt	= "while" "(" expr ")" stmt
 */
-t_tree	*func_call(t_token **token_p)
+t_tree	*while_stmt(t_token **token_p)
 {
-	char	*func_name = dup_token_str(*token_p);
+	if (!is_expected("while", *token_p))
+	{
+		fprintf(stderr, "expected \'while\'\n");
+		clear_arena();
+		exit(EXIT_FAILURE);
+	}
 	*token_p = (*token_p)->next;
-	return (new_func_call_leaf(func_name, called_func_args(token_p)));
+	t_tree	*cond = condition(token_p);
+	t_tree	*then = stmt(token_p);
+	t_tree	*node = new_control_stmt(ND_WHILE, cond, then);
+	return (node);
 }

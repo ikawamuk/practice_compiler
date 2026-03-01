@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/01 19:49:33 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/01 21:35:01 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				condition.c \
 				block.c \
 				func_call.c \
-				func_args.c \
+				called_func_args.c \
 				function.c \
 				dup_token_str.c \
 			) \

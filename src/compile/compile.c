@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 22:20:26 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 20:34:52 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char		*compile(t_func_list *program)
 	FILE	*assem_src = open_assem_src(assem_src_name);
 	write_assemble_src(assem_src, program);
 	fclose(assem_src);
-	clear_arena();
 	printf("Assemble src generated: %s\n", assem_src_name);
 	return (assem_src_name);
 }

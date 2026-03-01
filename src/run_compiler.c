@@ -31,6 +31,7 @@ int	run_compiler(char **argv)
 	char	*assem_src_name = compile(program);
 	if (!assem_src_name)
 		return (clear_arena(), EXIT_FAILURE);
+	clear_arena();
 	char	*obj_name = assemble(assem_src_name);
 	if (!obj_name)
 		return (free(assem_src_name), EXIT_FAILURE);

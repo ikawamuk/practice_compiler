@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:45:56 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 07:07:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/01 21:34:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_tree	*expr(t_token **token_p);
 static t_tree	*expr_list(t_token **token_p);
 
 /*
-func_args   = "(" expr_list? ")"
+called_func_args   = "(" expr_list? ")"
 */
-t_tree  *func_args(t_token **token_p)
+t_tree  *called_func_args(t_token **token_p)
 {
 	if (!is_expected("(", *token_p))
 	{
