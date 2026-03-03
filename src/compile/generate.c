@@ -23,10 +23,10 @@ const char	*arg_registers[] = {
 
 void	generate_num(FILE *assem_src, const t_tree *node);
 void	generate_local_variable(FILE *assem_src, const t_tree *node);
-void	generate_local_var_address(FILE *assem_src, const t_tree *node);
+void	generate_address(FILE *assem_src, const t_tree *node);
 void	generate_dereference(FILE *assem_src, const t_tree *node);
-void	generate_if(FILE *assem_src, const t_tree *node, size_t label_idx);
-void	generate_while(FILE *assem_src, const t_tree *node, size_t label_idx);
+void	generate_if(FILE *assem_src, const t_tree *node);
+void	generate_while(FILE *assem_src, const t_tree *node);
 void	generate_return(FILE *assem_src, const t_tree *node);
 void	generate_expr_stmt(FILE *assem_src, const t_tree *node);
 void	generate_negative(FILE *assem_src, const t_tree *node);
@@ -41,7 +41,6 @@ void	print_node_type(t_nd_type type);
 
 void	generate(FILE *assem_src, const t_tree *node)
 {
-	static size_t	label_idx = 0;
 	if (!node)
 		return ;
 	if (node->type == ND_NUM)
@@ -56,12 +55,12 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_ADDRESS)
 	{
-		generate_local_var_address(assem_src, node->child);
+		generate_address(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_DEREFER)
 	{
-		generate_dereference(assem_src, node->child);
+		generate_dereference(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_FUNC_CALL)
@@ -76,32 +75,32 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	if (node->type == ND_IF)
 	{
-		generate_if(assem_src, node, label_idx++);
+		generate_if(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_WHILE)
 	{
-		generate_while(assem_src, node, label_idx++);
+		generate_while(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_RETURN)
 	{
-		generate_return(assem_src, node->child);
+		generate_return(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_BLOCK)
 	{
-		generate_block(assem_src, node->child);
+		generate_block(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_EXPR_STMT)
 	{
-		generate_expr_stmt(assem_src, node->child);
+		generate_expr_stmt(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_NEG)
 	{
-		generate_negative(assem_src, node->child);
+		generate_negative(assem_src, node);
 		return ;
 	}
 	if (node->type == ND_ASSIGN)
@@ -116,6 +115,7 @@ void	generate(FILE *assem_src, const t_tree *node)
 	}
 	fprintf(stderr, "unknown node type\n");
 	clear_arena();
+	fclose(assem_src);
 	exit(EXIT_FAILURE);
 	return ;
 }

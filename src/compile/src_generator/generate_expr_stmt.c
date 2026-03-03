@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:42:02 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 22:17:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 01:56:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	generate(FILE *assem_src, const t_tree *node);
 
 void	generate_expr_stmt(FILE *assem_src, const t_tree *node)
 {
-	generate(assem_src, node);
+	generate(assem_src, node->child);
 	fprintf(assem_src, "\tadd rsp, 8\n");
 	return ;
 }

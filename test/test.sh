@@ -35,7 +35,7 @@ assert 2 "main(){return 1 + 3 - 2;}"
 assert 32 "main(){return   3 * 6+2 * 7  ;}"
 assert 6 "main(){return 4 * (2 + 1) / ((1 * 1) + 1);}"
 assert 6 "main(){return -3 *-3 + (-6 / (1 + 1));}"
-assert 9 "main(){return 27%18}"
+assert 9 "main(){return 27%18;}"
 
 assert 1 "main(){return 10 == 10 ;}"
 assert 0 "main(){return -10 != (-10);}"

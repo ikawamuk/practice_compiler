@@ -1,6 +1,4 @@
-main( )
-{
-	if (1) return 2;
-	return 3;
+main(){
+	x=7;
+	return *(&x);
 }
-

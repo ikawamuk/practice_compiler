@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/03 15:45:32 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 02:10:15 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	print_ast(t_tree *ast)
 	if (ast->type == ND_NUM || ast->type == ND_NEG
 	|| ast->type == ND_LVAR || ast->type == ND_FUNC_CALL)
 		return ;
-	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT || ast->type == ND_BLOCK)
+	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT
+	|| ast->type == ND_BLOCK || ast->type == ND_ADDRESS || ast->type == ND_DEREFER)
 	{
 		print_ast(ast->child);
 		if (ast->next)

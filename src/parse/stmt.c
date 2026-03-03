@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:48:18 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 01:13:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_tree	*stmt(t_token **token_p)
 		(*token_p) = (*token_p)->next;
 		return (node);
 	}
-	// print_token_type((*token_p)->type);
-	// printf("str: %s\n", (*token_p)->str);
+	print_token_type((*token_p)->type);
+	printf("str: %s\n", (*token_p)->str);
 	fprintf(stderr, "expected \';\'\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
