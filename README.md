@@ -87,7 +87,7 @@ putchar(c)
 
 ---
 
-## something
+## notes
 
 ### main
 - ファイルの入力がないときはメッセージとUsageを表示する
