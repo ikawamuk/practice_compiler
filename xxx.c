@@ -1,5 +1,6 @@
 main( )
 {
-	return (1 + 5);
+	if (1) return 2;
+	return 3;
 }
 
