@@ -6,14 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/03 15:41:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/03 15:45:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
-
-
 
 /*
 typedef enum {
@@ -40,12 +38,6 @@ typedef enum {
 	ND_FUNC_CALL
 }	t_nd_type;
 */
-
-
-
-
-
-
 void	print_node_type(t_nd_type type)
 {
 	static const char *table[] = {
