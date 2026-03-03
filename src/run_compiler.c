@@ -20,6 +20,7 @@ int	run_compiler(char **argv)
 	char	*file_content = read_src(argv[1]);
 	if (!file_content)
 		return (clear_arena(), EXIT_FAILURE);
+	
 	t_token	*token_list = tokenize(file_content);
 	if (!token_list)
 		return (clear_arena(), EXIT_FAILURE);

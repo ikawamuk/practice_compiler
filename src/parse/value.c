@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+void	error_at(const char *location, const char *err_msg);
 t_tree	*num(t_token **token_p);
 t_tree	*ident(t_token **token_p);
 bool	is_expected(const char *op, t_token *token);
@@ -21,7 +22,7 @@ t_tree	*value(t_token **token_p)
 		return (num(token_p));
 	if ((*token_p)->type == TK_IDENT)
 		return (ident(token_p));
-	fprintf(stderr, "unexpected token %.*s\n", (*token_p)->len, (*token_p)->str);
+	error_at((*token_p)->str, "unexpected token %.*s\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
 }

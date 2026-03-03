@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:36:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 00:45:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 04:05:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void	error_at(const char *location, const char *err_msg);
 bool	is_expected(const char *op, t_token *token);
 t_tree	*new_num_leaf(int val);
 t_tree	*expr(t_token **token_p);
@@ -38,8 +39,7 @@ t_tree	*pri(t_token **token_p)
 			*token_p = (*token_p)->next;
 			return (node);
 		}
-		// error_at(head, p, "unclosed parenthesis");
-		fprintf(stderr, "unclosed parenthesis\n");
+		error_at((*token_p)->str, "unclosed parenthesis\n");
 		clear_arena();
 		exit(EXIT_FAILURE);
 		return (NULL);

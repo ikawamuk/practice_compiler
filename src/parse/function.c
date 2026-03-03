@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/03 15:23:32 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 04:04:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 #include <stdbool.h>
 #include <string.h>
 
-char				*dup_token_str(t_token *token);
-t_function			*new_function(t_function func_data);
-bool				is_expected(const char *op, t_token *token);
-t_tree				*block(t_token **token_p);
-t_var_list			*get_var_list(void);
-int					get_var_list_size(void);
-void				clear_list_stack(void);
-static t_tree		*args_declaration(t_token **token_p);
-
+void			error_at(const char *location, const char *err_msg);
+char			*dup_token_str(t_token *token);
+t_function		*new_function(t_function func_data);
+bool			is_expected(const char *op, t_token *token);
+t_tree			*block(t_token **token_p);
+t_var_list		*get_var_list(void);
+int				get_var_list_size(void);
+void			clear_list_stack(void);
+static t_tree	*args_declaration(t_token **token_p);
 
 /*
 function	=	ident args_declaration block // funcn_name(arg1, arg2){ ... ;  ...;}
@@ -36,7 +36,7 @@ t_function	*function(t_token **token_p)
 {
 	if ((*token_p)->type != TK_IDENT)
 	{
-		fprintf(stderr, "expected function declaration\n");
+		error_at((*token_p)->str, "expected function declaration\n");
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
@@ -60,7 +60,7 @@ static t_tree	*args_declaration(t_token **token_p)
 {
 	if (!is_expected("(", *token_p))
 	{
-		fprintf(stderr, "expected \'(\'\n");
+		error_at((*token_p)->str, "expected \'(\'\n");
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
@@ -76,7 +76,7 @@ static t_tree	*args_declaration(t_token **token_p)
 		*token_p = (*token_p)->next;
 		return (node);
 	}
-	fprintf(stderr, "expected \')\'\n");
+	error_at((*token_p)->str, "expected \')\'\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
 }

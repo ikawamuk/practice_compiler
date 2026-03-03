@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func_args.c                                        :+:      :+:    :+:   */
+/*   called_func_args.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:45:56 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:34:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 04:03:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include<stdbool.h>
 
+void	error_at(const char *location, const char *err_msg);
 bool	is_expected(const char *op, t_token *token);
 t_tree	*expr(t_token **token_p);
 static t_tree	*expr_list(t_token **token_p);
@@ -29,7 +30,7 @@ t_tree  *called_func_args(t_token **token_p)
 {
 	if (!is_expected("(", *token_p))
 	{
-		fprintf(stderr, "expected \'(\'\n");
+		error_at((*token_p)->str, "expected \'(\'\n");
 		clear_arena();
 		exit(EXIT_FAILURE);
 	}
@@ -45,7 +46,7 @@ t_tree  *called_func_args(t_token **token_p)
 		*token_p = (*token_p)->next;
 		return (node);
 	}
-	fprintf(stderr, "expected \')\'\n");
+	error_at((*token_p)->str, "expected \')\'\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
 }
