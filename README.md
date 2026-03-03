@@ -78,6 +78,8 @@ putchar(c)
 
 システムコールを呼び出して標準出力に"hello, world!"を出力します。
 
+その他sample_code/にあるソースコードをコンパイルすることができます
+
 ## 📚 参考文献
 
 * [低レイヤを知りたい人のためのCコンパイラ作成入門](https://www.sigbus.info/compilerbook)
