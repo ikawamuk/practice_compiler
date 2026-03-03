@@ -1,4 +1,3 @@
 main(){
-	x=7;
-	return *(&x);
+	return (0);
 }

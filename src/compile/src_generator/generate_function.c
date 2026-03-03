@@ -6,15 +6,15 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 03:32:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/03 14:44:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 03:17:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "function.h"
-#include "arg_registers.h"
 #include <stdio.h>
 
 void		generate_block(FILE *assem_src, const t_tree *node);
+const char	**get_arg_registers(void);
 static void	generate_functinon_header(FILE *assem_src, t_function *prog);
 static void	generate_function_params(FILE *assem_src, t_function *func);
 static void	generate_functinon_footer(FILE *assem_src);
@@ -37,8 +37,8 @@ char	*get_current_func_name(void)
 
 static void	generate_functinon_header(FILE *assem_src, t_function *func)
 {
-	fprintf(assem_src, ".global %s\n", func->name);
-	fprintf(assem_src, "%s:\n", func->name);
+	fprintf(assem_src, ".global %s\n", get_current_func_name());
+	fprintf(assem_src, "%s:\n", get_current_func_name());
 	fprintf(assem_src, "\tpush rbp\n");
 	fprintf(assem_src, "\tmov rbp, rsp\n");
 	fprintf(assem_src, "\tsub rsp, %d\n",func->stack_size);
@@ -48,7 +48,7 @@ static void	generate_function_params(FILE *assem_src, t_function *func)
 {
 	int	i = 0;
 	for (t_var_list *cur = func->locals; i < func->argc; cur = cur->next)
-		fprintf(assem_src, "\tmov [rbp-%d], %s\n", cur->var->offset, arg_registers[i++]);
+		fprintf(assem_src, "\tmov [rbp-%d], %s\n", cur->var->offset, get_arg_registers()[i++]);
 }
 
 static void	generate_functinon_footer(FILE *assem_src)

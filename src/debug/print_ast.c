@@ -6,66 +6,46 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 02:10:15 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 03:05:02 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
 
-/*
-typedef enum {
-	ND_NUM,
-	ND_NEG,
-	ND_ADDRESS, // &
-	ND_DEREFER, // *
-	ND_ADD, // +
-	ND_SUB, // -
-	ND_MUL, // *
-	ND_DIV, // /
-	ND_MOD, // %
-	ND_EQ, // ==
-	ND_NE, // !=
-	ND_LT, // <
-	ND_LE, // <=
-	ND_ASSIGN, // = 
-	ND_LVAR, // local variable
-	ND_EXPR_STMT,
-	ND_RETURN,
-	ND_IF,
-	ND_WHILE,
-	ND_BLOCK,
-	ND_FUNC_CALL
-}	t_nd_type;
-*/
+struct s_nd_str {
+	t_nd_type	type;
+	char		*str;
+};
+
 void	print_node_type(t_nd_type type)
 {
-	static const char *table[] = {
-		"ND_NUM",
-		"ND_NEG",
-		"ND_ADDRESS", // &
-		"ND_DEREFER", // *
-		"ND_ADD", // +
-		"ND_SUB", // -
-		"ND_MUL", // *
-		"ND_DIV", // /
-		"ND_MOD", // %
-		"ND_EQ", // ==
-		"ND_NE", // !=
-		"ND_LT", // <
-		"ND_LE", // <=
-		"ND_ASSIGN", // = 
-		"ND_LVAR", // local variable
-		"ND_EXPR_STMT",
-		"ND_RETURN",
-		"ND_IF",
-		"ND_WHILE",
-		"ND_BLOCK",
-		"ND_FUNC_CALL"
+	static const struct s_nd_str table[] = {
+		{ND_NUM, "ND_NUM"},
+		{ND_NE, "ND_NEG"},
+		{ND_ADDRESS, "ND_ADDRESS"}, // &
+		{ND_DEREFER, "ND_DEREFER"}, // *
+		{ND_ADD, "ND_ADD"}, // +
+		{ND_SUB, "ND_SUB"}, // -
+		{ND_MUL, "ND_MUL"}, // *
+		{ND_DIV, "ND_DIV"}, // /
+		{ND_MOD, "ND_MOD"}, // %
+		{ND_EQ, "ND_EQ"}, // ==
+		{ND_NE, "ND_NE"}, // !=
+		{ND_LT, "ND_LT"}, // <
+		{ND_LE, "ND_LE"}, // <=
+		{ND_ASSIGN, "ND_ASSIGN"}, // = 
+		{ND_LVAR, "ND_LVAR"}, // local variable
+		{ND_EXPR_STMT, "ND_EXPR_STMT"},
+		{ND_RETURN, "ND_RETURN"},
+		{ND_IF, "ND_IF"},
+		{ND_WHILE, "ND_WHILE"},
+		{ND_BLOCK, "ND_BLOCK"},
+		{ND_FUNC_CALL, "ND_FUNC_CALL"}
 	};
 	for (size_t i = 0; i < sizeof(table) / sizeof(*table); i++)
-		if (type == i)
-			printf("type: %s\n", table[i]);
+		if (type == table[i].type)
+			printf("type: %s\n", table[i].str);
 }
 
 void	print_ast(t_tree *ast)

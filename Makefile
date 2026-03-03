@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/04 01:47:18 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/04 02:46:55 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,6 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					generate_block.c \
 					generate_func_call.c \
 					generate_function.c \
-					generate_syscall.c \
 					generate_dereference.c \
 				) \
 			) \

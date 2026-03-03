@@ -133,11 +133,11 @@ typedef s_result
 
 - mkstempsを使ってフォーマットされたランダムな.sファイルに書き込みます
 
-- generateはifの羅列ではなくテーブルをもってループする予定！
+- generateはifの羅列ではなくテーブルをもってループする ~~予定！~~ ようにした。
 
 - 関数名がsyscallのときは例外的に引数を専用のレジスタに配置し、syscall命令を行う
 
-- generate()のstaticなローカル変数label_idxをつかってwhileやifのラベルにユニークなインデックスを与える
+- staticなローカル変数label_idxをつかってwhileやifのラベルにユニークなインデックスを与える
 
 - generate_operatorは共通の処理を行いget_op_generatorで関数ポインタを呼ぶことにした。ベタ書きのほうが読みやすいと言われればそうかもしれないのでココの選択は難しいと感じます。
 

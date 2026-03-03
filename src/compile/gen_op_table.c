@@ -6,11 +6,11 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:07:27 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 02:57:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gen_table.h"
+#include "tree.h"
 #include <stdio.h>
 
 void	generate_add(FILE *assem_src);
@@ -23,7 +23,13 @@ void	generate_not_equal(FILE *assem_src);
 void	generate_less_than(FILE *assem_src);
 void	generate_less_equal(FILE *assem_src);
 
-static const t_nd_gen	gen_op_table[] = {
+struct s_op_gen
+{
+	t_nd_type	type;
+	void		(*gen)(FILE *);
+};
+
+static const struct s_op_gen	gen_op_table[] = {
 	{ND_ADD, generate_add},
 	{ND_SUB, generate_sub},
 	{ND_MUL, generate_mul},
@@ -37,7 +43,7 @@ static const t_nd_gen	gen_op_table[] = {
 
 void	(*get_op_generator(t_nd_type type))(FILE *)
 {
-	for (size_t i = 0; i < sizeof(gen_op_table)/sizeof(t_nd_gen); i++)
+	for (size_t i = 0; i < sizeof(gen_op_table)/sizeof(*gen_op_table); i++)
 	{
 		if (type == gen_op_table[i].type)
 			return (gen_op_table[i].gen);
