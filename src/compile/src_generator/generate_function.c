@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 03:32:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:42:34 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/03 14:44:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	generate_function_params(FILE *assem_src, t_function *func)
 
 static void	generate_functinon_footer(FILE *assem_src)
 {
-	fprintf(assem_src, ".Lreturn.%s:\n", current_func_name);
+	fprintf(assem_src, ".Lreturn.%s:\n", get_current_func_name());
 	fprintf(assem_src, "\tmov rsp, rbp\n");
 	fprintf(assem_src, "\tpop rbp\n");
 	fprintf(assem_src, "\tret\n");

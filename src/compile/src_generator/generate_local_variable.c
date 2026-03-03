@@ -14,12 +14,12 @@
 #include <stdio.h>
 
 void	generate_local_var_address(FILE *assem_src, const t_tree *node);
-void	generate_dereference(FILE *assem_src, const t_tree *node);
+void	generate_load(FILE *assem_src);
 
 void	generate_local_variable(FILE *assem_src, const t_tree *node)
 {
 	generate_local_var_address(assem_src, node);
-	generate_dereference(assem_src, node);
+	generate_load(assem_src);
 }
 
 void	generate_load(FILE *assem_src)

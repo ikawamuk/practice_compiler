@@ -1,6 +1,7 @@
 main()
 {
-	c = 111;
-	return (*(&c));
+	aa = 5;
+	bbb = 100;
+	return (aa + bbb);
 }
 
