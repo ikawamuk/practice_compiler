@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:40:38 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:50:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/03 15:21:04 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		*xaalloc(size_t size);
 t_function	*function(t_token **token_p);
 
 void	print_var_list(t_var_list *list);
+
 /*
 program	=	function*
 */

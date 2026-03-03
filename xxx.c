@@ -1,7 +1,5 @@
-main()
+main( )
 {
-	aa = 5;
-	bbb = 100;
-	return (aa + bbb);
+	return (1 + 5);
 }
 

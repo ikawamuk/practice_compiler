@@ -6,20 +6,26 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 01:45:26 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/03 15:41:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
+
+
+
 /*
 typedef enum {
 	ND_NUM,
 	ND_NEG,
+	ND_ADDRESS, // &
+	ND_DEREFER, // *
 	ND_ADD, // +
 	ND_SUB, // -
 	ND_MUL, // *
 	ND_DIV, // /
+	ND_MOD, // %
 	ND_EQ, // ==
 	ND_NE, // !=
 	ND_LT, // <
@@ -30,9 +36,16 @@ typedef enum {
 	ND_RETURN,
 	ND_IF,
 	ND_WHILE,
-	ND_BLOCK
+	ND_BLOCK,
+	ND_FUNC_CALL
 }	t_nd_type;
 */
+
+
+
+
+
+
 void	print_node_type(t_nd_type type)
 {
 	static const char *table[] = {
@@ -44,6 +57,7 @@ void	print_node_type(t_nd_type type)
 		"ND_SUB", // -
 		"ND_MUL", // *
 		"ND_DIV", // /
+		"ND_MOD", // %
 		"ND_EQ", // ==
 		"ND_NE", // !=
 		"ND_LT", // <

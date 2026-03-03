@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:20:43 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/03 15:23:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_tree		*args_declaration(t_token **token_p);
 
 
 /*
-function	=	ident args_declaration block
+function	=	ident args_declaration block // funcn_name(arg1, arg2){ ... ;  ...;}
 */
 t_function	*function(t_token **token_p)
 {
