@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 05:11:27 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 08:37:25 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:23:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*xaalloc(size_t size);
 t_tree	*new_func_call_leaf(const char *func_name, t_tree *args)
 {
 	t_tree	*new = xaalloc(sizeof(t_tree));
-	new->type = ND_FUNC_CALL;
+	new->node_type = ND_FUNC_CALL;
 	new->func_name = func_name;
 	new->args = args;
 	return (new);

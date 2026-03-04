@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:36:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 00:41:00 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:23:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	consumes_signle_letter_punctuator(t_token *new, const char **str_p)
 	{
 		*str_p += 1;
 		new->len = 1;
-		new->type = TK_RESERVED;
+		new->node_type = TK_RESERVED;
 		return (true);
 	}
 	return (false);
@@ -54,7 +54,7 @@ static bool	consumes_operator(t_token *new, const char **str_p)
 		{
 			*str_p += len;
 			new->len = (int)len;
-			new->type = TK_RESERVED;
+			new->node_type = TK_RESERVED;
 			return (true);
 		}
 	}
@@ -73,7 +73,7 @@ static bool	consumes_key_word(t_token *new, const char **str_p)
 		{
 			*str_p += len;
 			new->len = (int)len;
-			new->type = TK_RESERVED;
+			new->node_type = TK_RESERVED;
 			return (true);
 		}
 	}

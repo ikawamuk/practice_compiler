@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_ident_leaf.c                                   :+:      :+:    :+:   */
+/*   type.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:14:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 12:23:04 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/04 12:11:17 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/04 12:13:34 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arena.h"
-#include "tree.h"
-#include "local_variable.h"
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef TYPE_H
+# define TYPE_H
 
-void	*xaalloc(size_t size);
+typedef enum {
+	TYPE_INT
+}	t_type_kind;
 
-t_tree	*new_ident_leaf(t_var *var)
+typedef struct s_type	t_data_type;
+
+struct s_type
 {
-	t_tree	*new = xaalloc(sizeof(t_tree));
-	new->node_type = ND_LVAR;
-	new->local_var = var;
-	return (new);
-}
+	t_type_kind	kind;
+	t_data_type	*base;
+};
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 21:08:09 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:14:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TREE_H
 
 # include "local_variable.h"
+# include "data_type.h"
 
 typedef enum {
 	ND_NUM,
@@ -43,8 +44,9 @@ typedef struct s_tree	t_tree;
 
 struct s_tree
 {
-	t_nd_type	type;
+	t_nd_type	node_type;
 	t_tree		*next;
+	t_data_type	data_type;
 	union {
 		// return, block
 		t_tree	*child;
