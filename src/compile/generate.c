@@ -58,12 +58,12 @@ void	generate(FILE *assem_src, const t_tree *node)
 {
 	if (!node)
 		return ;
-	if (is_operator(node->type))
+	if (is_operator(node->node_type))
 	{
 		generate_operator(assem_src, node);
 		return ;
 	}
-	get_generator(node->type)(assem_src, node);
+	get_generator(node->node_type)(assem_src, node);
 }
 
 static void	(*get_generator(t_nd_type type))(FILE *, const t_tree *)

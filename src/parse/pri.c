@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:36:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 04:05:22 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:52:04 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 void	error_at(const char *location, const char *err_msg);
 bool	is_expected(const char *op, t_token *token);
-t_tree	*new_num_leaf(int val);
 t_tree	*expr(t_token **token_p);
 t_tree	*value(t_token **token_p);
 

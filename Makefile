@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/04 02:46:55 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/04 13:52:56 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				called_func_args.c \
 				function.c \
 				dup_token_str.c \
+				set_data_type_int.c \
+				add_data_type.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

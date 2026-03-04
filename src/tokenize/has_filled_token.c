@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 12:23:37 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 13:53:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static bool	consumes_identifer(t_token *new, const char **str_p)
 		while (is_identifier_char(**str_p))
 			(*str_p)++;
 		new->len = *str_p - head;
-		new->node_type = TK_IDENT;
+		new->type = TK_IDENT;
 		return (true);
 	}
 	return (false);
@@ -52,7 +52,7 @@ static bool	consumes_digit(t_token *new, const char **str_p)
 	{
 		new->val = strtol(*str_p, (char **)str_p, 10);
 		new->len = *str_p - new->str;
-		new->node_type = TK_NUM;
+		new->type = TK_NUM;
 		return (true);
 	}
 	return (false);

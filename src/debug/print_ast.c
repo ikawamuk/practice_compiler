@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 03:05:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:45:08 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,25 @@ void	print_node_type(t_nd_type type)
 
 void	print_ast(t_tree *ast)
 {
-	print_node_type(ast->type);
-	if (ast->type == ND_NUM || ast->type == ND_NEG
-	|| ast->type == ND_LVAR || ast->type == ND_FUNC_CALL)
+	print_node_type(ast->node_type);
+	if (ast->node_type == ND_NUM || ast->node_type == ND_NEG
+	|| ast->node_type == ND_LVAR || ast->node_type == ND_FUNC_CALL)
 		return ;
-	if (ast->type == ND_RETURN || ast->type == ND_EXPR_STMT
-	|| ast->type == ND_BLOCK || ast->type == ND_ADDRESS || ast->type == ND_DEREFER)
+	if (ast->node_type == ND_RETURN || ast->node_type == ND_EXPR_STMT
+	|| ast->node_type == ND_BLOCK || ast->node_type == ND_ADDRESS || ast->node_type == ND_DEREFER)
 	{
 		print_ast(ast->child);
 		if (ast->next)
 			print_ast(ast->next);
 		return ;
 	}
-	if (ND_ADD <= ast->type && ast->type <= ND_ASSIGN)
+	if (ND_ADD <= ast->node_type && ast->node_type <= ND_ASSIGN)
 	{
 		print_ast(ast->lhs);
 		print_ast(ast->rhs);
 		return ;
 	}
-	if (ast->type == ND_IF || ast->type == ND_WHILE)
+	if (ast->node_type == ND_IF || ast->node_type == ND_WHILE)
 	{
 		print_ast(ast->cond);
 		print_ast(ast->then);
