@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_ident_leaf.c                                   :+:      :+:    :+:   */
+/*   set_data_type_int.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:14:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 12:37:53 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/04 12:35:20 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/04 12:35:37 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arena.h"
-#include "tree.h"
-#include "local_variable.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "data_type.h"
+#include <stddef.h>
 
-void	*xaalloc(size_t size);
-
-t_tree	*new_ident_leaf(t_var *var)
+t_data_type	set_data_type_int(void)
 {
-	t_tree	*new = xaalloc(sizeof(t_tree));
-	new->node_type = ND_LVAR;
-	new->next = NULL;
-	new->local_var = var;
-	return (new);
+	t_data_type	d_type;
+
+	d_type.kind = TYPE_INT;
+	d_type.base = NULL;
+	return (d_type);
 }

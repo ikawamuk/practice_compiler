@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type.h                                             :+:      :+:    :+:   */
+/*   data_type.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 12:11:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 12:13:34 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:26:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPE_H
-# define TYPE_H
+#ifndef DATA_TYPE_H
+# define DATA_TYPE_H
 
-typedef enum {
+typedef enum e_type_kind {
 	TYPE_INT
 }	t_type_kind;
 
