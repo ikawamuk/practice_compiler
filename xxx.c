@@ -2,7 +2,12 @@ main()
 {
 	a = 8;
 	x = 2;
-	return (ret(a + x));
+	while (a < 10)
+	{
+		if (1)
+			a = a + 1;
+	}
+	return (ret(a + x) == 10);
 }
 
 ret(x)

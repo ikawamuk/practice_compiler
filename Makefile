@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/04 13:52:56 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/04 21:45:19 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					new_control_stmt.c \
 					new_func_call_leaf.c \
 					new_function.c \
+					new_stmt.c \
 				) \
 				add.c \
 				assign.c \
@@ -70,7 +71,6 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				function.c \
 				dup_token_str.c \
 				set_data_type_int.c \
-				add_data_type.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

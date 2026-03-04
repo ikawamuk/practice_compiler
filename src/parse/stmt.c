@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 04:06:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 21:45:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 void	error_at(const char *location, const char *err_msg);
 bool	is_expected(const char *op, t_token *token);
-t_tree	*expr(t_token **token_p);
-t_tree	*new_unary(t_nd_type type, t_tree *child_node);
 t_tree	*while_stmt(t_token **token_p);
 t_tree	*if_stmt(t_token **token_p);
 t_tree	*block(t_token **token_p);
+t_tree	*expr(t_token **token_p);
+t_tree	*new_stmt(t_nd_type type, t_tree *child);
 
 
 void	print_token_type(t_tk_type type);
@@ -47,10 +47,10 @@ t_tree	*stmt(t_token **token_p)
 	if (is_expected("return", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_RETURN, expr(token_p));
+		node = new_stmt(ND_RETURN, expr(token_p));
 	}
 	else
-		node = new_unary(ND_EXPR_STMT, expr(token_p));
+		node = new_stmt(ND_EXPR_STMT, expr(token_p));
 	if (is_expected(";", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
