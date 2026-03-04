@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 12:11:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 12:26:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 20:46:13 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define DATA_TYPE_H
 
 typedef enum e_type_kind {
-	TYPE_INT
+	UNSETED = 0,
+	TYPE_INT = 1
 }	t_type_kind;
 
 typedef struct s_type	t_data_type;

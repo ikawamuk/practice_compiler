@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 12:45:08 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 20:46:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ struct s_nd_str {
 	char		*str;
 };
 
-void	print_node_type(t_nd_type type)
+struct s_dt_str {
+	t_type_kind	kind;
+	char		*str;
+};
+
+void	print_node_type(t_tree *node)
 {
-	static const struct s_nd_str table[] = {
+	static const struct s_nd_str nd_table[] = {
 		{ND_NUM, "ND_NUM"},
 		{ND_NE, "ND_NEG"},
 		{ND_ADDRESS, "ND_ADDRESS"}, // &
@@ -43,14 +48,23 @@ void	print_node_type(t_nd_type type)
 		{ND_BLOCK, "ND_BLOCK"},
 		{ND_FUNC_CALL, "ND_FUNC_CALL"}
 	};
-	for (size_t i = 0; i < sizeof(table) / sizeof(*table); i++)
-		if (type == table[i].type)
-			printf("type: %s\n", table[i].str);
+	for (size_t i = 0; i < sizeof(nd_table) / sizeof(*nd_table); i++)
+		if (node->node_type == nd_table[i].type)
+			printf("node type: %s\n", nd_table[i].str);
+	static const struct s_dt_str	dt_table[] = {
+		{UNSETED, "unseted"},
+		{TYPE_INT, "int"}
+	};
+	for (size_t i = 0; i < sizeof(dt_table) / sizeof(*dt_table); i++)
+		if (node->data_type.kind == dt_table[i].kind)
+			printf("data type: %s\n", dt_table[i].str);
 }
+
+
 
 void	print_ast(t_tree *ast)
 {
-	print_node_type(ast->node_type);
+	print_node_type(ast);
 	if (ast->node_type == ND_NUM || ast->node_type == ND_NEG
 	|| ast->node_type == ND_LVAR || ast->node_type == ND_FUNC_CALL)
 		return ;

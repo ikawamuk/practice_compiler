@@ -127,7 +127,95 @@ typedef s_result
 
 - stmtでは現在のトークンをみてwhile, if, blockへ分岐するが、while_stmtなどの中でもこのキーワードはチェックされている。重複した処理になってしまっているが、stmt側のチェックは消費ではなくあくまで分岐のための先読みに近い扱いである。これらは特殊ケースとして早期リターンされreturn文と通常の文がメインの処理になる。
 
-- 構文木のノードはその種類によって子ノードの数や保持するデータが変わるので、無名unionで分けた。block()の実装に現れているように、一つのツリーは各行を表しnextは次の行である。
+- 構文木のノードはその種類によって子ノードの数や保持するデータが変わるので、無名unionで分けた。block()の実装に現れているように、一つのツリーは各行を表しnextは次の行である。しかし、データ型を与えるときに元プロジェクトの関数のほうが分岐がなく簡素だったかもしれない
+```
+// chibicc
+void visit(Node *node) {
+  if (!node)
+    return;
+
+  visit(node->lhs);
+  visit(node->rhs);
+  visit(node->cond);
+  visit(node->then);
+  visit(node->els);
+  visit(node->init);
+  visit(node->inc);
+
+  for (Node *n = node->body; n; n = n->next)
+    visit(n);
+  for (Node *n = node->args; n; n = n->next)
+    visit(n);
+
+  switch (node->kind) {
+  case ND_MUL:
+  case ND_DIV:
+  case ND_EQ:
+  case ND_NE:
+  case ND_LT:
+  case ND_LE:
+  case ND_VAR:
+  case ND_FUNCALL:
+  case ND_NUM:
+    node->ty = int_type();
+    return;
+// ...
+```
+```
+
+void	assign_type(t_func_list *prog)
+{
+	for (t_func_list *cur = prog; cur; cur = cur->next)
+		for (t_tree *node = cur->func->body; node; node = node->next)
+			assign_type_recursive(node);
+}
+
+static void	assign_type_recursive(t_tree *node)
+{
+	if (node->next)
+		assign_type_recursive(node->next);
+	if (node->node_type == ND_LVAR)
+	{
+		// node->data_type = node->local_var.data_type;
+		node->data_type = set_data_type_int(); // 一旦int
+		return ;
+	}
+	// calling new_XX_leaf
+	if (node->node_type == ND_NUM || node->node_type == ND_LVAR
+	|| node->node_type == ND_FUNC_CALL)
+	{
+		node->data_type = set_data_type_int();
+		return ;
+	}
+	// calling new_unary
+	if (node->node_type == ND_BLOCK || node->node_type == ND_EXPR_STMT
+	|| node->node_type == ND_RETURN || node->node_type == ND_ADDRESS
+	|| node->node_type == ND_DEREFER || ND_NEG)
+	{
+		assign_type_recursive(node->child);
+		node->data_type = set_data_type_int();
+		return ;
+	}
+	// calling new_binary
+	if (ND_ADD <= node->node_type && node->node_type <= ND_ASSIGN)
+	{
+		assign_type_recursive(node->lhs);
+		assign_type_recursive(node->rhs);
+		node->data_type = set_data_type_int();
+		return ;
+	}
+	if (node->node_type == ND_IF || node->node_type == ND_WHILE)
+	{
+		assign_type_recursive(node->cond);
+		assign_type_recursive(node->then);
+		if (node->els)
+			assign_type_recursive(node->els);
+		node->data_type = set_data_type_int();
+		return ;
+	}
+}
+
+```
 
 - 関数のローカル変数は宣言された順に単方向リストで保持される。最初に並ぶのは関数の引数である。どこまでが引数かわかるようにt_functionはその関数の引数の数を持つ。
 
