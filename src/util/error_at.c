@@ -6,16 +6,18 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 01:50:12 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 04:17:20 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:31:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-char	*get_src_name(void);
-char	*get_content_head(void);
+char		*get_src_name(void);
+char		*get_content_head(void);
+static int	count_pos(const char *start, const char *loc, int indent);
 
 void	error_at(const char *location, const char *err_msg)
 {
@@ -31,7 +33,21 @@ void	error_at(const char *location, const char *err_msg)
 			line_num++;
 	int indent = fprintf(stderr, "%s:%d: ", get_src_name(), line_num);
 	fprintf(stderr, "%.*s\n", (int)(line_end - line_start), line_start);
-	int	pos = location - line_start + indent;
-	fprintf(stderr, "%*s", pos, " ");
+	int	pos = count_pos(line_start, location, indent);
+	fprintf(stderr, "%*s", pos, "");
 	fprintf(stderr, "^ %s\n", err_msg);
+}
+
+static int	count_pos(const char *start, const char *loc, int indent)
+{
+	static int	TAB_WIDTH = 8;
+	int	pos = indent;
+	while (start < loc)
+	{
+		if (*start++ == '\t')
+			pos += (TAB_WIDTH - (pos % TAB_WIDTH));
+		else
+			pos++;
+	}
+	return (pos);
 }

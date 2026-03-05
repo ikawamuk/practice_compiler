@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 22:06:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:19:35 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_function	*function(t_token **token_p)
 	}
 	t_function	func_data = {};
 	func_data.data_type = data_kw(*token_p);
-	printf("-------%d---------\n", func_data.data_type->kind);
 	*token_p = (*token_p)->next;
 	func_data.name = dup_token_str(*token_p);
 	*token_p = (*token_p)->next;
