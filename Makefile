@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/05 21:54:58 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/05 22:45:43 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				func_call.c \
 				called_func_args.c \
 				function.c \
+				var_declar.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

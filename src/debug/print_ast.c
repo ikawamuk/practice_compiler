@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 22:08:57 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:49:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	print_node_type(t_tree *node)
 		{ND_IF, "ND_IF"},
 		{ND_WHILE, "ND_WHILE"},
 		{ND_BLOCK, "ND_BLOCK"},
-		{ND_FUNC_CALL, "ND_FUNC_CALL"}
+		{ND_FUNC_CALL, "ND_FUNC_CALL"},
+		{ND_DECLAR, "ND_DECLAR"}
 	};
 	for (size_t i = 0; i < sizeof(nd_table) / sizeof(*nd_table); i++)
 		if (node->node_type == nd_table[i].type)

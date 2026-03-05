@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 19:48:44 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:49:00 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef enum {
 	ND_IF,
 	ND_WHILE,
 	ND_BLOCK,
-	ND_FUNC_CALL
+	ND_FUNC_CALL,
+	ND_DECLAR
 }	t_nd_type;
 
 typedef struct s_tree	t_tree;

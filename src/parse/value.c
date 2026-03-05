@@ -22,7 +22,7 @@ t_tree	*value(t_token **token_p)
 		return (num(token_p));
 	if ((*token_p)->type == TK_IDENT)
 		return (ident(token_p));
-	error_at((*token_p)->str, "unexpected token %.*s\n");
+	error_at((*token_p)->str, "unexpected token\n");
 	clear_arena();
 	exit(EXIT_FAILURE);
 }
