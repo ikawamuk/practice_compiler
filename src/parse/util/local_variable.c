@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 19:43:13 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:39:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void				*xaalloc(size_t size);
 char				*dup_token_str(const t_token *token);
 static t_var_list	*create_var_node(const t_token *token, int current_offset);
+static t_var	*new_var(const t_token *token, int current_offset);
 
 static t_var_list	*local_list = NULL;
 
@@ -50,12 +51,17 @@ t_var	*push_lval(const t_token *token)
 
 static t_var_list	*create_var_node(const t_token *token, int current_offset)
 {
+	t_var_list	*new = xaalloc(sizeof(t_var_list));
+	new->var = new_var(token, current_offset);
+	return (new);
+}
+
+static t_var	*new_var(const t_token *token, int current_offset)
+{
 	t_var *var = xaalloc(sizeof(t_var));
 	var->name = dup_token_str(token);
 	var->offset = current_offset + 8;
-	t_var_list	*new = xaalloc(sizeof(t_var_list));
-	new->var = var;
-	return (new);
+	return (var);
 }
 
 t_var_list	*get_var_list(void)

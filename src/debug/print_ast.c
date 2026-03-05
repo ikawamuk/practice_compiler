@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 20:46:49 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:52:13 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,20 @@ void	print_node_type(t_tree *node)
 	for (size_t i = 0; i < sizeof(nd_table) / sizeof(*nd_table); i++)
 		if (node->node_type == nd_table[i].type)
 			printf("node type: %s\n", nd_table[i].str);
-	static const struct s_dt_str	dt_table[] = {
-		{UNSETED, "unseted"},
-		{TYPE_INT, "int"}
-	};
-	for (size_t i = 0; i < sizeof(dt_table) / sizeof(*dt_table); i++)
-		if (node->data_type.kind == dt_table[i].kind)
-			printf("data type: %s\n", dt_table[i].str);
+	
 }
 
-
+void	print_data_type(t_tree *node)
+{
+	static const struct s_dt_str	dt_table[] = {
+		{UNSETED, "unseted"},
+		{TYPE_INT, "int"},
+		{TYPE_PTR, "ptr"}
+	};
+	for (size_t i = 0; i < sizeof(dt_table) / sizeof(*dt_table); i++)
+		if (node->data_type->kind == dt_table[i].kind)
+			printf("data type: %s\n", dt_table[i].str);
+}
 
 void	print_ast(t_tree *ast)
 {

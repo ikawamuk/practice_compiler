@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_ident_leaf.c                                   :+:      :+:    :+:   */
+/*   data_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 21:14:28 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 21:34:33 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/05 19:44:40 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/05 19:54:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arena.h"
-#include "tree.h"
-#include "local_variable.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "data_type.h"
+#include <stddef.h>
 
-void		*xaalloc(size_t size);
-t_data_type	set_data_type_int(void);
-
-t_tree	*new_ident_leaf(t_var *var)
+t_data_type	*new_data_type(t_type_kind kind, t_data_type *base)
 {
-	t_tree	*new = xaalloc(sizeof(t_tree));
-	new->node_type = ND_LVAR;
-	new->next = NULL;
-	new->local_var = var;
-	new->data_type = set_data_type_int();
+	t_data_type	*new = xaalloc(sizeof(t_data_type));
+	new->kind = kind;
+	new->base = base;
 	return (new);
+}
+
+t_data_type	*new_int(void)
+{
+	return (new_data_type(TYPE_INT, NULL));
+}
+
+t_data_type	*new_ptr_to(t_data_type *base)
+{
+	return (new_data_type(TYPE_PTR, base));
 }

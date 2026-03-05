@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/05 19:18:58 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/05 19:47:45 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,18 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				$(addprefix new_node/, \
 					new_binary.c \
 					new_unary.c \
-					new_ident_leaf.c \
+					new_variable_leaf.c \
 					new_num_leaf.c \
 					new_control_stmt.c \
 					new_func_call_leaf.c \
 					new_function.c \
 					new_stmt.c \
+				) \
+				$(addprefix util/, \
+					is_expected.c \
+					local_variable.c \
+					data_type.c \
+					dup_token_str.c \
 				) \
 				add.c \
 				assign.c \
@@ -69,8 +75,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				func_call.c \
 				called_func_args.c \
 				function.c \
-				dup_token_str.c \
-				set_data_type_int.c \
+				
+				data_type_kw.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:17:26 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 07:05:57 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:28:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
+
 bool	is_expected(const char *op, t_token *token)
 {
 	return (token->type == TK_RESERVED
