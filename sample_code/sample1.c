@@ -1,6 +1,8 @@
 
-main() {
+int	main() {
+	int a;
 	a = 10;
+	int i;
 	i = 0;
 	while (i < 5)
 	{

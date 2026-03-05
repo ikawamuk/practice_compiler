@@ -1,5 +1,6 @@
-main()
+int	main()
 {
+	int i;
 	i = 1;
 	while (i <= 50)
 	{
@@ -10,12 +11,12 @@ main()
 	return (0);
 }
 
-collatz(n)
+collatz(int n)
 {
 	return (collatz_recursive(n, 1));
 }
 
-collatz_recursive(n, steps)
+collatz_recursive(int n, int steps)
 {
 	if (n <= 1)
 		return (steps);

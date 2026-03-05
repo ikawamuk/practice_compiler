@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 02:01:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 22:19:35 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 23:00:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,19 @@ static t_tree	*args_declaration(t_token **token_p)
 	exit(EXIT_FAILURE);
 }
 
-t_tree	*variable(t_token **token_p);
+t_tree	*var_declar(t_token **token_p);
 
 /*
 params	= (variable ("," variable)*)
 */
 static t_tree	*params(t_token **token_p)
 {
-	t_tree	*head = variable(token_p);
+	t_tree	*head = var_declar(token_p);
 	t_tree  *cur = head;
 	while (is_expected(",", *token_p))
 	{
 		*token_p = (*token_p)->next;
-		cur->next = variable(token_p);
+		cur->next = var_declar(token_p);
 		cur = cur->next;
 	}
 	return (head);

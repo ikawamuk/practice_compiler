@@ -1,4 +1,4 @@
-main()
+int	main()
 {
 	putchar(104);
 	putchar(101);
@@ -17,7 +17,7 @@ main()
 	putchar(0);
 }
 
-putchar(c)
+int	putchar(int c)
 {
 	syscall(1, 1, &c, 1);
 }
