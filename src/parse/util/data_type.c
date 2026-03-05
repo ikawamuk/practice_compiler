@@ -6,12 +6,14 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:44:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 21:47:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 21:54:28 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_type.h"
 #include <stddef.h>
+
+void	*xaalloc(size_t size);
 
 t_data_type	*new_data_type(t_type_kind kind, t_data_type *base)
 {

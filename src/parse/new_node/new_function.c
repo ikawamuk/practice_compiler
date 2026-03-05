@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 08:39:08 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/03 15:35:53 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:08:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	*xaalloc(size_t size);
 t_function	*new_function(t_function func_data)
 {
 	t_function	*function = xaalloc(sizeof(t_function));
+	function->data_type = func_data.data_type;
 	function->name = func_data.name;
 	function->argc = func_data.argc;
 	function->body = func_data.body;

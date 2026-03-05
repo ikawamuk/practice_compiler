@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/05 19:47:45 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/05 21:54:58 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,13 +50,13 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 					local_variable.c \
 					data_type.c \
 					dup_token_str.c \
+					data_kw.c \
 				) \
 				add.c \
 				assign.c \
 				equality.c \
 				expr.c \
 				variable.c \
-				is_expected.c \
 				ident.c \
 				mul.c \
 				num.c \
@@ -68,15 +68,12 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				while_stmt.c \
 				if_stmt.c \
 				term.c \
-				local_variable.c \
 				value.c \
 				condition.c \
 				block.c \
 				func_call.c \
 				called_func_args.c \
 				function.c \
-				
-				data_type_kw.c \
 			) \
 			$(addprefix compile/, \
 				compile.c \

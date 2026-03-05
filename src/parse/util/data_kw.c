@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_num_leaf.c                                     :+:      :+:    :+:   */
+/*   data_kw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 17:37:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 21:54:05 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/05 21:47:59 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/05 21:51:24 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arena.h"
-#include "tree.h"
-#include <stdlib.h>
+#include "data_type.h"
+#include "token.h"
+#include <stdbool.h>
 
-void		*xaalloc(size_t size);
+bool		is_expected(const char *op, t_token *token);
 t_data_type	*new_int(void);
 
-t_tree	*new_num_leaf(int val)
+t_data_type	*data_kw(t_token *token)
 {
-	t_tree	*new = xaalloc(sizeof(t_tree));
-	new->node_type = ND_NUM;
-	new->next = NULL;
-	new->value = val;
-	new->data_type = new_int();
-	return (new);
+	if (is_expected("int", token))
+		return (new_int());
+	return (NULL);
 }

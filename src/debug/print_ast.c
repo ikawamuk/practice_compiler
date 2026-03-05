@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 19:52:13 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:08:57 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,23 @@ void	print_node_type(t_tree *node)
 	
 }
 
-void	print_data_type(t_tree *node)
+void	print_data_type(t_data_type	*data_type)
 {
 	static const struct s_dt_str	dt_table[] = {
-		{UNSETED, "unseted"},
 		{TYPE_INT, "int"},
-		{TYPE_PTR, "ptr"}
+		// {TYPE_PTR, "ptr"}
 	};
 	for (size_t i = 0; i < sizeof(dt_table) / sizeof(*dt_table); i++)
-		if (node->data_type->kind == dt_table[i].kind)
+		if (!data_type)
+			printf("data type: unseted\n");
+		else if (data_type->kind == dt_table[i].kind)
 			printf("data type: %s\n", dt_table[i].str);
 }
 
 void	print_ast(t_tree *ast)
 {
 	print_node_type(ast);
+	print_data_type(ast->data_type);
 	if (ast->node_type == ND_NUM || ast->node_type == ND_NEG
 	|| ast->node_type == ND_LVAR || ast->node_type == ND_FUNC_CALL)
 		return ;
