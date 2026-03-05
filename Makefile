@@ -6,11 +6,11 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/04 21:45:19 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/05 19:18:58 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= cc0
+NAME= ccc
 
 CC = cc 
 CFLAG = -Werror -Wall -Wextra -I$(INCDIR) -g -O0
