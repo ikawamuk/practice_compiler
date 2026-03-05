@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:36:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 13:53:40 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/04 21:56:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	consumes_signle_letter_punctuator(t_token *new, const char **str_p)
 static bool	consumes_operator(t_token *new, const char **str_p)
 {
 	const char	*operators[] = {
-		"==", "!=", "<=", ">="
+		"==", "!=", "<=", ">=", "+=", "-="
 	};
 	for (size_t i = 0; i < sizeof(operators) / sizeof(*operators); i++)
 	{
@@ -64,7 +64,7 @@ static bool	consumes_operator(t_token *new, const char **str_p)
 static bool	consumes_key_word(t_token *new, const char **str_p)
 {
 	const char	*key_words[] = {
-		"return", "if", "else", "while"
+		"return", "if", "else", "while", "int"
 	};
 	for (size_t i = 0; i < sizeof(key_words) / sizeof(*key_words); i++)
 	{
