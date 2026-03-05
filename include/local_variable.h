@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 22:50:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 19:23:20 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 20:04:00 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_var
 {
 	char		*name;
-	t_data_type	dt_type;
+	t_data_type	*dt_type;
 	int			offset;
 }	t_var;
 

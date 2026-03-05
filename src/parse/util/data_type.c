@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:44:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 19:54:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/05 21:47:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_data_type	*new_int(void)
 	return (new_data_type(TYPE_INT, NULL));
 }
 
-t_data_type	*new_ptr_to(t_data_type *base)
-{
-	return (new_data_type(TYPE_PTR, base));
-}
+// t_data_type	*new_ptr_to(t_data_type *base)
+// {
+// 	return (new_data_type(TYPE_PTR, base));
+// }
