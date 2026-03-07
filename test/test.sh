@@ -61,4 +61,6 @@ assert 55 "int main(){return (fib(9));} int fib(int x){if(x<=1) return 1; return
 assert 7 "int main(){int x; x=7; return *(&x);}"
 assert 7 "int main(){int x; x=5; int y; y=&x; *y=7; return x;}"
 
+assert 99 "int	main(){int	a = 99; int	*b = &a; return (*b);}"
+
 echo OK
