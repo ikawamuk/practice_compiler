@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 22:53:30 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/08 01:24:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_tree	*if_stmt(t_token **token_p);
 t_tree	*block(t_token **token_p);
 t_tree	*expr(t_token **token_p);
 t_tree	*new_stmt(t_nd_type type, t_tree *child);
-bool	is_data_type_kw(t_token *token);
-t_tree	*var_declar(t_token **token_p);
+bool	is_data_type_reserved(t_token *token);
+t_tree	*declaration_stmt(t_token **token_p);
 
 void	print_token_type(t_tk_type type);
 
@@ -44,14 +44,14 @@ t_tree	*stmt(t_token **token_p)
 		return (if_stmt(token_p));
 	if (is_expected("{", *token_p))
 		return (block(token_p));
+	if (is_data_type_reserved(*token_p))
+		return (declaration_stmt(token_p));
 	t_tree	*node;
 	if (is_expected("return", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
 		node = new_stmt(ND_RETURN, expr(token_p));
 	}
-	else if (is_data_type_kw(*token_p))
-		node = var_declar(token_p);
 	else
 		node = new_stmt(ND_EXPR_STMT, expr(token_p));
 	if (is_expected(";", *token_p))

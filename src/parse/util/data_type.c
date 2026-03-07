@@ -6,20 +6,24 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:44:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 21:54:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/08 01:00:50 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_type.h"
+#include <token.h>
 #include <stddef.h>
+#include <stdbool.h>
 
-void	*xaalloc(size_t size);
+void		*xaalloc(size_t size);
+bool		is_expected(const char *op, t_token *token);
+t_data_type	*new_ptr_to(t_data_type *ptr_to);
 
-t_data_type	*new_data_type(t_type_kind kind, t_data_type *base)
+t_data_type	*new_data_type(t_type_kind kind, t_data_type *ptr_to)
 {
 	t_data_type	*new = xaalloc(sizeof(t_data_type));
 	new->kind = kind;
-	new->base = base;
+	new->ptr_to = ptr_to;
 	return (new);
 }
 
@@ -28,7 +32,7 @@ t_data_type	*new_int(void)
 	return (new_data_type(TYPE_INT, NULL));
 }
 
-// t_data_type	*new_ptr_to(t_data_type *base)
-// {
-// 	return (new_data_type(TYPE_PTR, base));
-// }
+t_data_type	*new_ptr_to(t_data_type *ptr_to)
+{
+	return (new_data_type(TYPE_PTR, ptr_to));
+}

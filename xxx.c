@@ -1,6 +1,12 @@
 int	main()
 {
-	int	a;
-	a = 0;
-	return (a);
+	int	a = 99;
+	int	*b;
+	b = pointer(&a);
+	return (b);
+}
+
+int	*pointer(int *x)
+{
+	return (x);
 }
