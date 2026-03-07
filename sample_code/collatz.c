@@ -11,12 +11,12 @@ int	main()
 	return (0);
 }
 
-collatz(int n)
+int collatz(int n)
 {
 	return (collatz_recursive(n, 1));
 }
 
-collatz_recursive(int n, int steps)
+int collatz_recursive(int n, int steps)
 {
 	if (n <= 1)
 		return (steps);
