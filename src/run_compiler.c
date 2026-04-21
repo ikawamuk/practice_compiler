@@ -15,9 +15,9 @@ int 		link(const char *assem_src_file, char **argv);
 void	print_token_list(const t_token *token);
 void	print_program(t_func_list *program);
 
-int	run_compiler(char **argv)
+int	run_compiler(char **file_names)
 {
-	char	*file_content = read_src(argv[1]);
+	char	*file_content = read_src(file_names[0]);
 	if (!file_content)
 		return (clear_arena(), EXIT_FAILURE);
 	
@@ -37,7 +37,7 @@ int	run_compiler(char **argv)
 	if (!obj_name)
 		return (free(assem_src_name), EXIT_FAILURE);
 	free(assem_src_name);
-	if (link(obj_name, argv + 2) < 0)
+	if (link(obj_name, file_names + 1) < 0)
 		return (free(obj_name), EXIT_FAILURE);
 	free(obj_name);
 	return (EXIT_SUCCESS);
