@@ -3,46 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   file_path_to_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:10:48 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/01 20:55:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 08:08:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arena.h"
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdio.h>
-#include <aio.h>
+#include <unistd.h>
 
-static ssize_t	get_file_size(FILE *fp);
+static ssize_t	get_file_size(const char *file_path);
 
-char	*file_path_to_str(const char *file_path)
+int	file_path_to_str(char **file_content, const char *file_path)
 {
-	FILE	*fp = fopen(file_path, "rb");
-	if (!fp)
-		return (NULL);
-	ssize_t	size = get_file_size(fp);
+	ssize_t	size = get_file_size(file_path);
 	if (size < 0)
-		return (NULL);
-	char	*buffer = aalloc(size + 2);
-	if (!buffer)
-		return (fclose(fp), NULL);
-	if (fread(buffer, sizeof(char), (size_t)size, fp) != (size_t)size)
-		return (fclose(fp), NULL);
-	fclose(fp);
-	if (size == 0 || buffer[size - 1] != '\n')
-		buffer[size++] = '\n';
-	buffer[size] = '\0';
-	return (buffer);
+		return (-1);
+	*file_content = aalloc(size + 2);
+	if (!*file_content)
+	{
+		perror("malloc");
+		return (-1);
+	}
+	int	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("open");
+		return (-1);
+	}
+	if (read(fd, *file_content, size) != size)
+	{
+		perror("read");
+		return (close(fd), -1);
+	}
+	close(fd);
+	if (size == 0 || (*file_content)[size - 1] != '\n')
+		(*file_content)[size++] = '\n';
+	(*file_content)[size] = '\0'; 
+	return (0);
 }
 
-static ssize_t	get_file_size(FILE *fp)
+static ssize_t	get_file_size(const char *file_path)
 {
-	rewind(fp);
-	fseek(fp, 0, SEEK_END);
-	ssize_t	size = (ssize_t)ftell(fp);
-	if (size == -1)
+	struct stat st;
+
+	if (stat(file_path, &st) == -1)
+	{
+		perror("stat");
 		return (-1);
-	rewind(fp);
-	return (size);
+	}
+	return ((ssize_t)st.st_size);
 }

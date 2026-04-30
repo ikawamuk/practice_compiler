@@ -4,7 +4,7 @@
 # include "function.h"
 #include <stdlib.h>
 
-char		*read_src(const char *file_path);
+int	read_src(char** file_content, const char *file_path);
 t_token 	*tokenize(const char *str);
 t_func_list	*parse(t_token *token_list);
 char		*compile(t_func_list *program);
@@ -17,10 +17,9 @@ void	print_program(t_func_list *program);
 
 int	run_compiler(char **file_names)
 {
-	char	*file_content = read_src(file_names[0]);
-	if (!file_content)
+	char	*file_content = NULL;
+	if (read_src(&file_content, file_names[0]) < 0)
 		return (clear_arena(), EXIT_FAILURE);
-	
 	t_token	*token_list = tokenize(file_content);
 	if (!token_list)
 		return (clear_arena(), EXIT_FAILURE);

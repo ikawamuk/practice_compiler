@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_src.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:55:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 03:56:37 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 08:09:21 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@
 
 static t_file_info	src_info;
 
-char		*file_path_to_str(const char *file_path);
+int	file_path_to_str(char **file_content, const char *file_path);
 static void	set_src_info(char *file_name, char *content_head);
 
-char	*read_src(const char *file_path)
+int	read_src(char **file_content, const char *file_path)
 {
-	char *file_content = file_path_to_str(file_path);
-	if (!file_content)
-	{
-		perror("read_src");
-		return (NULL);
-	}
-	set_src_info((char *)file_path, file_content);
-	return (file_content);
+	if (file_path_to_str(file_content, file_path) < 0)
+		return (-1);
+	set_src_info((char *)file_path, *file_content);
+	return (0);
 }
 
 char	*get_content_head(void)

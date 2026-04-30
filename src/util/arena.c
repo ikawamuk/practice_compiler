@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 12:11:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/28 06:49:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 07:52:14 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static t_arena	arena = {0};
 void	*aalloc(size_t size)
 {
 	if (size == 0)
-		size = !size;
+		size = 1;
 	size_t	aligned_size = (size + 7)&~7; // round up to 8 bytes
 	if (!arena.cur)
 		arena.cur = &arena.dummy_head;
-	while (!arena.cur->buffer
-		|| arena.cur->offset + aligned_size > arena.cur->size)
+	while (!arena.cur->buffer || arena.cur->offset + aligned_size > arena.cur->size)
 	{
 		if (!arena.cur->next)
 		{
