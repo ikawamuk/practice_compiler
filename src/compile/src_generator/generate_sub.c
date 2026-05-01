@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   generate_sub.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 21:57:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 23:00:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 10:45:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "tree.h"
 #include <stdio.h>
 
-void	generate_sub(FILE *assem_src)
+void	generate_sub(FILE *assem_src, const t_tree *node)
 {
+	if (node->data_type->kind == TYPE_PTR)
+	{
+		t_data_type*	base_type = node->lhs->data_type->ptr_to;
+		fprintf(assem_src, "\timul rdi, %d\n", size_of_kind(base_type->kind));
+	}
 	fprintf(assem_src, "\tsub rax, rdi\n");
 }

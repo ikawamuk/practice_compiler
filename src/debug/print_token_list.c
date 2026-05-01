@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_token_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 20:50:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 01:17:04 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 09:33:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_token_type(t_tk_type type)
 	};
 	for (size_t i = 0; i < sizeof(table) / sizeof(*table); i++)
 		if (type == i)
-			printf("type: %s\n", table[i]);
+			printf("type: %s ", table[i]);
 }
 
 void	print_token_list(const t_token *token)

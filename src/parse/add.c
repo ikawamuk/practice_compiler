@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:51:56 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 21:33:35 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 09:30:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 #include "arena.h"
 #include "token.h"
 #include <stdbool.h>
+#include <stdlib.h>
 
 t_tree	*mul(t_token **token_p);
 bool	is_expected(const char *op, t_token *token);
 t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
+void	error_at(const char *location, const char *err_msg);
 
 /*
 add	= mul ("+" mul | "-" mul)*
@@ -39,5 +41,11 @@ t_tree	*add(t_token **token_p)
 		}
 		else
 			return (node);
+		if (!node->data_type)
+		{
+			error_at((*token_p)->str, "invalid operands to binary expression\n");
+			clear_arena();
+			exit(EXIT_FAILURE);
+		}
 	}
 }

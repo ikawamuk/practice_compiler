@@ -15,6 +15,7 @@ int	main()
 	putchar(33);
 	putchar(10);
 	putchar(0);
+	return (0);
 }
 
 int	putchar(int c)

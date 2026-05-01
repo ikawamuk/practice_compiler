@@ -1,6 +1,13 @@
 int	main()
 {
-	int	a = 99;
-	int	*b = &a;
-	return (*b);
+	int *p;
+	alloc4(&p, 1, 2, 4, 8);
+	int *q;
+	q = p + 2;
+	*q;
+	q = p + 3;
+	return *q; 
 }
+
+
+

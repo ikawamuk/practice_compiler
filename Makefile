@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/05 22:45:43 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/05/01 10:19:04 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				create_assem_src.c \
 				write_assemble_src.c \
 				generate.c \
-				gen_op_table.c \
+				gen_op_generator.c \
 				$(addprefix src_generator/, \
 					generate_num.c \
 					generate_operator.c \

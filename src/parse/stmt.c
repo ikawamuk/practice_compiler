@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stmt.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/08 01:24:01 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/05/01 08:31:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,4 @@ t_tree	*stmt(t_token **token_p)
 	clear_arena();
 	exit(EXIT_FAILURE);
 }
+
