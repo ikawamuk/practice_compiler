@@ -17,27 +17,27 @@
 #include <stdbool.h>
 #include <string.h>
 
-void		generate_num(FILE *assem_src, const t_tree *node);
-void		generate_negative(FILE *assem_src, const t_tree *node);
-void		generate_address(FILE *assem_src, const t_tree *node);
-void		generate_dereference(FILE *assem_src, const t_tree *node);
-void		generate_assign(FILE *assem_src, const t_tree *node);
-void		generate_local_variable(FILE *assem_src, const t_tree *node);
-void		generate_expr_stmt(FILE *assem_src, const t_tree *node);
-void		generate_return(FILE *assem_src, const t_tree *node);
-void		generate_if(FILE *assem_src, const t_tree *node);
-void		generate_while(FILE *assem_src, const t_tree *node);
-void		generate_block(FILE *assem_src, const t_tree *node);
-void		generate_operator(FILE *assem_src, const t_tree *node);
-void		generate_func_call(FILE *assem_src, const t_tree *node);
-static void	generate_decalrtion(FILE *assem_src, const t_tree *node);
-static void	(*get_generator(t_nd_type type))(FILE *, const t_tree *);
+void		generate_num(int assem_src_fd, const t_tree *node);
+void		generate_negative(int assem_src_fd, const t_tree *node);
+void		generate_address(int assem_src_fd, const t_tree *node);
+void		generate_dereference(int assem_src_fd, const t_tree *node);
+void		generate_assign(int assem_src_fd, const t_tree *node);
+void		generate_local_variable(int assem_src_fd, const t_tree *node);
+void		generate_expr_stmt(int assem_src_fd, const t_tree *node);
+void		generate_return(int assem_src_fd, const t_tree *node);
+void		generate_if(int assem_src_fd, const t_tree *node);
+void		generate_while(int assem_src_fd, const t_tree *node);
+void		generate_block(int assem_src_fd, const t_tree *node);
+void		generate_operator(int assem_src_fd, const t_tree *node);
+void		generate_func_call(int assem_src_fd, const t_tree *node);
+static void	generate_decalrtion(int assem_src_fd, const t_tree *node);
+static void	(*get_generator(t_nd_type type))(int, const t_tree *);
 static bool	is_operator(t_nd_type type);
 
 struct s_nd_gen
 {
 	t_nd_type	type;
-	void		(*gen)(FILE *, const t_tree *);
+	void		(*gen)(int, const t_tree *);
 };
 
 static const struct s_nd_gen	gen_table[] = {
@@ -56,19 +56,19 @@ static const struct s_nd_gen	gen_table[] = {
 	{ND_DECLAR, generate_decalrtion}
 };
 
-void	generate(FILE *assem_src, const t_tree *node)
+void	generate(int assem_src_fd, const t_tree *node)
 {
 	if (!node)
 		return ;
 	if (is_operator(node->node_type))
 	{
-		generate_operator(assem_src, node);
+		generate_operator(assem_src_fd, node);
 		return ;
 	}
-	get_generator(node->node_type)(assem_src, node);
+	get_generator(node->node_type)(assem_src_fd, node);
 }
 
-static void	(*get_generator(t_nd_type type))(FILE *, const t_tree *)
+static void	(*get_generator(t_nd_type type))(int, const t_tree *)
 {
 	for (size_t i = 0; i < sizeof(gen_table)/sizeof(*gen_table); i++)
 	{
@@ -83,8 +83,8 @@ static bool	is_operator(t_nd_type type)
 	return (ND_ADD <= type && type <= ND_LE);
 }
 
-static void	generate_decalrtion(FILE *assem_src, const t_tree *node)
+static void	generate_decalrtion(int assem_src_fd, const t_tree *node)
 {
-	(void)assem_src;
+	(void)assem_src_fd;
 	(void)node;
 }

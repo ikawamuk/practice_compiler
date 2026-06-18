@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   generate_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:39:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 02:35:27 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/06/19 00:02:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
 
-void	generate(FILE *assem_src, const t_tree *node);
+void	generate(int assem_src_fd, const t_tree *node);
 
-void	generate_if(FILE *assem_src, const t_tree *node)
+void	generate_if(int assem_src_fd, const t_tree *node)
 {
 	static size_t	label_idx = 0;
 
-	generate(assem_src, node->cond);
-	fprintf(assem_src, "\tpop rax\n");
-	fprintf(assem_src, "\tcmp rax, 0\n");
-	fprintf(assem_src, "\tje .Lelse%zu\n", label_idx);
-	generate(assem_src, node->then);
-	fprintf(assem_src, "\tjmp .Lend%zu\n", label_idx);
-	fprintf(assem_src, ".Lelse%zu:\n", label_idx);
+	generate(assem_src_fd, node->cond);
+	dprintf(assem_src_fd, "\tpop rax\n");
+	dprintf(assem_src_fd, "\tcmp rax, 0\n");
+	dprintf(assem_src_fd, "\tje .Lelse%zu\n", label_idx);
+	generate(assem_src_fd, node->then);
+	dprintf(assem_src_fd, "\tjmp .Lend%zu\n", label_idx);
+	dprintf(assem_src_fd, ".Lelse%zu:\n", label_idx);
 	if (node->els)
-		generate(assem_src, node->els);
-	fprintf(assem_src, ".Lend%zu:\n", label_idx);
+		generate(assem_src_fd, node->els);
+	dprintf(assem_src_fd, ".Lend%zu:\n", label_idx);
 	label_idx++;
 	return ;
 }

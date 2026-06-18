@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/05/01 10:19:04 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/06/19 00:00:47 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 			) \
 			$(addprefix compile/, \
 				compile.c \
-				create_assem_src.c \
+				open_assem_fd.c \
 				write_assemble_src.c \
 				generate.c \
 				gen_op_generator.c \

@@ -17,7 +17,7 @@ int	link(char *obj_name, char **extra_objs)
 	}
 	if (run_command(args) != 0)
 	{
-		fprintf(stderr, "Error: Failed to link\n");
+		dprintf(2, "Error: Failed to link\n");
 		return (-1);
 	}
 	free(args);

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 01:50:12 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/05/01 08:01:42 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/06/19 00:03:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	error_at(const char *location, const char *err_msg)
 	for (char *p = get_content_head(); p < line_start; p++)
 		if (*p == '\n')
 			line_num++;
-	int indent = fprintf(stderr, "%s:%d: ", get_src_name(), line_num);
-	fprintf(stderr, "%.*s\n", (int)(line_end - line_start), line_start);
+	int indent = dprintf(2, "%s:%d: ", get_src_name(), line_num);
+	dprintf(2, "%.*s\n", (int)(line_end - line_start), line_start);
 	int	pos = count_pos(line_start, location, indent);
-	fprintf(stderr, "%*s", pos, "");
-	fprintf(stderr, "^ %s\n", err_msg);
+	dprintf(2, "%*s", pos, "");
+	dprintf(2, "^ %s\n", err_msg);
 }
 
 static int	count_pos(const char *start, const char *loc, int indent)

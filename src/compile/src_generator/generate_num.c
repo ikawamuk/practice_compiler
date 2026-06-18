@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   generate_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:34:08 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/15 02:35:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/06/19 00:02:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
 
-void	generate_num(FILE *assem_src, const t_tree *node)
+void	generate_num(int assem_src_fd, const t_tree *node)
 {
-	fprintf(assem_src, "\tpush %d\n", node->value);
+	dprintf(assem_src_fd, "\tpush %d\n", node->value);
 	return ;
 }

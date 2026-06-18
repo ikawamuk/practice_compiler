@@ -8,8 +8,8 @@ int	read_src(char** file_content, const char *file_path);
 t_token 	*tokenize(const char *str);
 t_func_list	*parse(t_token *token_list);
 char		*compile(t_func_list *program);
-char		*assemble(const char *assem_src_name);
-int 		link(const char *assem_src_file, char **argv);
+char		*assemble(const char *assem_src_fd_name);
+int 		link(const char *assem_src_fd_file, char **argv);
 
 #include <stdio.h>
 void	print_token_list(const t_token *token);
@@ -28,14 +28,14 @@ int	run_compiler(char **file_names)
 	if (!program)
 		return (clear_arena(), EXIT_FAILURE);
 	print_program(program);
-	char	*assem_src_name = compile(program);
-	if (!assem_src_name)
+	char	*assem_src_fd_name = compile(program);
+	if (!assem_src_fd_name)
 		return (clear_arena(), EXIT_FAILURE);
 	clear_arena();
-	char	*obj_name = assemble(assem_src_name);
+	char	*obj_name = assemble(assem_src_fd_name);
 	if (!obj_name)
-		return (free(assem_src_name), EXIT_FAILURE);
-	free(assem_src_name);
+		return (free(assem_src_fd_name), EXIT_FAILURE);
+	free(assem_src_fd_name);
 	if (link(obj_name, file_names + 1) < 0)
 		return (free(obj_name), EXIT_FAILURE);
 	free(obj_name);

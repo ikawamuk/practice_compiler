@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   generate_local_variable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 22:43:39 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 02:26:25 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/06/19 00:02:59 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 #include <stdio.h>
 
-void	generate_local_var_address(FILE *assem_src, const t_tree *node);
-void	generate_load(FILE *assem_src);
+void	generate_local_var_address(int assem_src_fd, const t_tree *node);
+void	generate_load(int assem_src_fd);
 
-void	generate_local_variable(FILE *assem_src, const t_tree *node)
+void	generate_local_variable(int assem_src_fd, const t_tree *node)
 {
-	generate_local_var_address(assem_src, node);
-	generate_load(assem_src);
+	generate_local_var_address(assem_src_fd, node);
+	generate_load(assem_src_fd);
 }
 
-void	generate_load(FILE *assem_src)
+void	generate_load(int assem_src_fd)
 {
-	fprintf(assem_src, "\tpop rax\n");
-	fprintf(assem_src, "\tmov rax, [rax]\n");
-	fprintf(assem_src, "\tpush rax\n");
+	dprintf(assem_src_fd, "\tpop rax\n");
+	dprintf(assem_src_fd, "\tmov rax, [rax]\n");
+	dprintf(assem_src_fd, "\tpush rax\n");
 }
