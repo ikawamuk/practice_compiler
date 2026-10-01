@@ -6,10 +6,11 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:12:04 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/04 04:12:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/02 02:38:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "compilation.h"
 #include "arena.h"
 #include "token.h"
 #include <ctype.h>
@@ -22,8 +23,9 @@ static t_token	*new_token(const char **str_p);
 bool			has_filled_token(t_token *new, const char **str_p);
 static t_token	*new_eof_token(const char *str);
 
-t_token *tokenize(const char *str)
+int	tokenize(t_compilation *ctx)
 {
+	const char	*str = ctx->src_content;
 	t_token		dummy_head = {0};
 	t_token		*cur = &dummy_head;
 	while (*str)
@@ -34,11 +36,13 @@ t_token *tokenize(const char *str)
 			break ;
 		cur->next = new_token(&str);
 		if (!cur->next)
-			return (NULL);
+			return (-1);
 		cur = cur->next;
 	}
 	cur->next = new_eof_token(str);
-	return (dummy_head.next);
+	ctx->token_list = dummy_head.next;
+	ctx->phase = TOKEN_LIST;
+	return (0);
 }
 
 static t_token	*new_token(const char **str_p)

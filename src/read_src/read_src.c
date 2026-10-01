@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_src.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:55:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/05/01 08:09:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/02 02:27:46 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "compilation.h"
 #include "arena.h"
 #include "file_info.h"
 #include <stdio.h>
@@ -20,11 +21,11 @@ static t_file_info	src_info;
 int	file_path_to_str(char **file_content, const char *file_path);
 static void	set_src_info(char *file_name, char *content_head);
 
-int	read_src(char **file_content, const char *file_path)
+int	read_source(t_compilation *ctx, const char *src_file_path)
 {
-	if (file_path_to_str(file_content, file_path) < 0)
+	if (file_path_to_str(&ctx->src_content, src_file_path) < 0)
 		return (-1);
-	set_src_info((char *)file_path, *file_content);
+	set_src_info((char *)src_file_path, ctx->src_content);
 	return (0);
 }
 

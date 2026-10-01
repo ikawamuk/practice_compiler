@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+         #
+#    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/06/19 00:00:47 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/10/02 02:31:31 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RMDIR = $(RM) -rf
 
 SRCS =	$(addprefix $(SRCDIR)/, \
 			main.c \
-			run_compiler.c \
+			compile.c \
 			$(addprefix util/, \
 				arena.c \
 				error_at.c \
@@ -76,8 +76,8 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				function.c \
 				var_declar.c \
 			) \
-			$(addprefix compile/, \
-				compile.c \
+			$(addprefix code_gen/, \
+				code_gen.c \
 				open_assem_fd.c \
 				write_assemble_src.c \
 				generate.c \

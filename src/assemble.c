@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:39:32 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/06/19 00:04:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/02 02:36:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "compilation.h"
 #include "ccc_define.h"
 #include "arena.h"
 #include <stdlib.h>
@@ -23,20 +24,22 @@ static char	*make_obj_name(const char *assem_src_fd_name);
 int 		run_command(char *const args[]);
 
 
-char	*assemble(const char *assem_src_fd_name)
+int	assemble(t_compilation *ctx)
 {
-	char	*obj_name = make_obj_name(assem_src_fd_name);
+	char	*obj_name = make_obj_name(ctx->asm_file_name);
 	if (!obj_name)
-		return (NULL);
-	char	*args[] = {"gcc", "-c", (char *)assem_src_fd_name, "-o", obj_name, NULL};
+		return (-1);
+	char	*args[] = {"gcc", "-c", (char *)ctx->asm_file_name, "-o", obj_name, NULL};
 	if (run_command(args) != 0)
 	{
 		free(obj_name);
-		dprintf(2, "Error: Failed to assemble %s\n", assem_src_fd_name);
-		return (NULL);
+		dprintf(2, "Error: Failed to assemble %s\n", ctx->asm_file_name);
+		return (-1);
 	}
 	printf("Object file generated: %s\n", obj_name);
-	return (obj_name);
+	ctx->obj_file_name = obj_name;
+	ctx->phase = OBJ_FILE_NAME;
+	return (0);
 }
 
 int run_command(char *const args[])
