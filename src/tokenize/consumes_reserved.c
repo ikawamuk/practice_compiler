@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:36:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/08 18:51:52 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/08 19:24:38 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	consumes_reserved(t_token *new, const char **str_p)
 
 static bool	consumes_signle_letter_punctuator(t_token *new, const char **str_p)
 {
-	if (strchr("+-*/%()<>;={},&", **str_p))
+	if (strchr("+-*/%()<>;={},&[]", **str_p))
 	{
 		*str_p += 1;
 		new->len = 1;

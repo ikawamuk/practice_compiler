@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:44:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/05/01 10:43:10 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/08 20:03:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,29 @@ t_data_type	*new_data_type(t_type_kind kind, t_data_type *ptr_to)
 
 t_data_type	*new_int(void)
 {
-	return (new_data_type(TYPE_INT, NULL));
+	t_data_type	*new = xaalloc(sizeof(t_data_type));
+	new->kind = TYPE_INT;
+	new->ptr_to = NULL;
+	new->array_size = 0;
+	return (new);
 }
 
 t_data_type	*new_ptr_to(t_data_type *ptr_to)
 {
-	return (new_data_type(TYPE_PTR, ptr_to));
+	t_data_type	*new = xaalloc(sizeof(t_data_type));
+	new->kind = TYPE_PTR;
+	new->ptr_to = ptr_to;
+	new->array_size = 0;
+	return (new);
+}
+
+t_data_type	*new_array_of(t_data_type *array_of, size_t size)
+{
+	t_data_type	*new = xaalloc(sizeof(t_data_type));
+	new->kind = TYPE_PTR;
+	new->ptr_to = array_of;
+	new->array_size = size;
+	return (new);
 }
 
 int	size_of_kind(t_type_kind kind)

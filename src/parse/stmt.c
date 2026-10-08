@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stmt.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 20:40:36 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/05/01 08:31:03 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/08 19:27:58 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	print_token_type(t_tk_type type);
 stmt	= while_stmt
 		| if_stmt
 		| "return" expr ";"
-		| exor ";"
+		| expr ";"
 		| block
+		| declaration_stmt
 */
 t_tree	*stmt(t_token **token_p)
 {
