@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:59:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/08 19:15:14 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/08 19:18:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void				*xaalloc(size_t size);
 static t_data_type	*detect_data_type(t_nd_type type, t_tree *child);
 t_data_type			*new_int(void);
 t_data_type			*new_ptr_to(t_data_type *ptr_to);
+static int			size_of(t_data_type *data_type);
 
 t_tree	*new_unary(t_nd_type type, t_tree *child)
 {

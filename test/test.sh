@@ -63,4 +63,10 @@ assert 7 "int main(){int x; x=5; int y; y=&x; *y=7; return x;}"
 
 assert 99 "int	main(){int	a = 99; int	*b = &a; return (*b);}"
 
+assert 4 "int main() { return (sizeof(1)); }"
+assert 8 "int main() { int x; return (sizeof(&x)); }"
+assert 8 "int main() { int *x; return (sizeof(x)); }"
+assert 4 "int main() { int *x; return (sizeof(*x)); }"
+assert 4 "int main() { return (sizeof(sizeof(1))); }"
+
 echo OK

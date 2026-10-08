@@ -52,7 +52,7 @@ t_tree	*term(t_token **token_p)
 	{
 		(*token_p) = (*token_p)->next;
 		// node = new_unary(ND_SIZEOF, term(token_p));
-		node = new_sizeof(token_p);
+		node = new_sizeof(term(token_p));
 	}
 	if (node && !node->data_type)
 	{
