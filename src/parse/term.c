@@ -19,10 +19,11 @@
 t_tree	*pri(t_token **token_p);
 bool	is_expected(const char *op, t_token *token);
 t_tree	*new_unary(t_nd_type type, t_tree *child);
+t_tree	*new_sizeof(t_tree *child);
 void	error_at(const char *location, const char *err_msg);
 
 /*
-term	= ("+" | "-")? primary
+term	= "sizeof" term | ("+" | "-")? primary
 */
 t_tree	*term(t_token **token_p)
 {
@@ -47,6 +48,12 @@ t_tree	*term(t_token **token_p)
 		(*token_p) = (*token_p)->next;
 		node = new_unary(ND_DEREFER, pri(token_p));
 	}
+	else if (is_expected("sizeof", *token_p))
+	{
+		(*token_p) = (*token_p)->next;
+		// node = new_unary(ND_SIZEOF, term(token_p));
+		node = new_sizeof(token_p);
+	}
 	if (node && !node->data_type)
 	{
 		error_at((*token_p)->str, "invalid operand\n");
@@ -57,3 +64,5 @@ t_tree	*term(t_token **token_p)
 		return (node);
 	return (pri(token_p));
 }
+
+

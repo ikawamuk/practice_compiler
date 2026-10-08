@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 02:54:13 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 22:49:00 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/08 19:00:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum {
 	ND_NE, // !=
 	ND_LT, // <
 	ND_LE, // <=
-	ND_ASSIGN, // = 
+	ND_ASSIGN, // =
+	ND_SIZEOF,
 	ND_LVAR, // local variable
 	ND_EXPR_STMT,
 	ND_RETURN,
@@ -49,7 +50,7 @@ struct s_tree
 	t_tree		*next;
 	t_data_type	*data_type;
 	union {
-		// return, block
+		// return, block, sizeof
 		t_tree	*child;
 		// operator
 		struct {
