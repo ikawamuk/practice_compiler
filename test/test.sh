@@ -69,4 +69,6 @@ assert 8 "int main() { int *x; return (sizeof(x)); }"
 assert 4 "int main() { int *x; return (sizeof(*x)); }"
 assert 4 "int main() { return (sizeof(sizeof(1))); }"
 
+assert 0 "int main() { int arr[3][2 + 1]; return (f(arr)); } int f(int arr[3][3]) { return (0); } "
+
 echo OK

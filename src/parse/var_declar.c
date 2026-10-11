@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:39:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/08 20:10:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/11 20:49:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,36 @@
 void		*xaalloc(size_t size);
 void		error_at(const char *location, const char *err_msg);
 t_data_type	*data_type_kw(t_token **token_p);
-t_var		*push_lval(const t_token *token, t_data_type *data_type);
+t_var		*push_lval(const char *name, t_data_type *data_type);
 bool		is_expected(const char *op, t_token *token);
 t_tree		*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs);
 t_tree		*expr(t_token **token_p);
 t_tree		*new_variable_leaf(t_var *var);
+t_data_type	*new_array_of(t_data_type *array_of, int size);
+char		*dup_token_str(const t_token *token);
 
 // declaration = data_type_kw ident ("[" num "]")* ("=" expr) ";"
 t_tree	*var_declar(t_token **token_p)
 {
 	t_data_type	*base_type = data_type_kw(token_p);
-	
-
-	// TODO1: name = expect_ident(token_p);
-	
-	// TODO3へ移行
-	t_var *var = push_lval(*token_p, base_type);
+	char *var_name = dup_token_str(*token_p);
 	*token_p = (*token_p)->next;
 
-	// TODO2: suffixでデータ型を更新する
-	if (is_expected("["))
+	t_data_type	*data_type = base_type;
+	while (is_expected("[", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		size_t	size = expr(token_p);
-		if (is_expected("]"))
-			return ();
+		t_tree *arr_size = expr(token_p);
+		if (is_expected("]", *token_p)) {
+			(*token_p) = (*token_p)->next;
+			data_type = new_array_of(data_type, arr_size->value);
+			continue ;
+		}
 		error_at((*token_p)->str, "expected \'}\'\n");
+		return (NULL);
 	}
-	
-	// TODO3: var = push_lval(name, dt_type);
 
+	t_var *var = push_lval(var_name, base_type);
 	t_tree	*new = xaalloc(sizeof(t_tree));
 	new->node_type = ND_DECLAR;
 	new->next = NULL;
