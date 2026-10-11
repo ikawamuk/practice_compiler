@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:26:45 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/11 20:46:10 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/11 21:18:50 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static t_var	*new_var(const char *name, int current_offset, t_data_type *data_ty
 {
 	t_var *var = xaalloc(sizeof(t_var));
 	var->name = (char *)name;
-	var->offset = current_offset + 8;
+	var->offset = current_offset + ((size_of(data_type) + 7) & ~7);
 	var->dt_type = data_type;
 	return (var);
 }
