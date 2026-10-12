@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term.c                                             :+:      :+:    :+:   */
+/*   unary.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:42:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/12 16:37:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 16:42:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-t_tree	*pri(t_token **token_p);
+t_tree	*postfix(t_token **token_p);
 bool	is_expected(const char *op, t_token *token);
 t_tree	*new_unary(t_nd_type type, t_tree *child);
 t_tree	*new_sizeof(t_tree *child);
 void	error_at(const char *location, const char *err_msg);
 
 /*
-unary	= "sizeof" unary | ("+" | "-")? primary
+unary	= "sizeof" unary | ("+" | "-" | "*" | "&")? postfix
 */
 t_tree	*unary(t_token **token_p)
 {
@@ -31,22 +31,22 @@ t_tree	*unary(t_token **token_p)
 	if (is_expected("+", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		node = pri(token_p);
+		node = unary(token_p);
 	}
 	else if (is_expected("-", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_NEG, pri(token_p));
+		node = new_unary(ND_NEG, unary(token_p));
 	}
 	else if (is_expected("&", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_ADDRESS, pri(token_p));
+		node = new_unary(ND_ADDRESS, unary(token_p));
 	}
 	else if (is_expected("*", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		node = new_unary(ND_DEREFER, pri(token_p));
+		node = new_unary(ND_DEREFER, unary(token_p));
 	}
 	else if (is_expected("sizeof", *token_p))
 	{
@@ -62,7 +62,7 @@ t_tree	*unary(t_token **token_p)
 	}
 	if (node)
 		return (node);
-	return (pri(token_p));
+	return (postfix(token_p));
 }
 
 

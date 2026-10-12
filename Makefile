@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/10/12 16:37:05 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/10/12 16:52:42 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				mul.c \
 				num.c \
 				parse.c \
+				postfix.c \
 				pri.c \
 				program.c \
 				relational.c \

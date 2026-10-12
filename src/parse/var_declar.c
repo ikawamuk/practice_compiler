@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:39:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/11 20:49:51 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 16:46:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ t_tree	*var_declar(t_token **token_p)
 			data_type = new_array_of(data_type, arr_size->value);
 			continue ;
 		}
-		error_at((*token_p)->str, "expected \'}\'\n");
+		error_at((*token_p)->str, "expected \']\'\n");
+		clear_arena();
+		exit(EXIT_FAILURE);
 		return (NULL);
 	}
 

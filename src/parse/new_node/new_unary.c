@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:59:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/12 15:39:34 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 16:51:45 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "data_type.h"
 #include <stdlib.h>
 #include <assert.h>
+#include <stdio.h>
 
 void				*xaalloc(size_t size);
 static t_data_type	*detect_data_type(t_nd_type type, t_tree *child);
