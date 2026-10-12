@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term.c                                            :+:      :+:    :+:   */
+/*   term.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:42:16 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/12 16:15:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 16:37:05 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_tree	*new_sizeof(t_tree *child);
 void	error_at(const char *location, const char *err_msg);
 
 /*
-term	= "sizeof" term | ("+" | "-")? primary
+unary	= "sizeof" unary | ("+" | "-")? primary
 */
-t_tree	*term(t_token **token_p)
+t_tree	*unary(t_token **token_p)
 {
 	t_tree	*node = NULL;
 	if (is_expected("+", *token_p))
@@ -51,8 +51,8 @@ t_tree	*term(t_token **token_p)
 	else if (is_expected("sizeof", *token_p))
 	{
 		(*token_p) = (*token_p)->next;
-		// node = new_unary(ND_SIZEOF, term(token_p));
-		node = new_sizeof(term(token_p));
+		// node = new_unary(ND_SIZEOF, unary(token_p));
+		node = new_sizeof(unary(token_p));
 	}
 	if (node && !node->data_type)
 	{

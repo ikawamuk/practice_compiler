@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/31 21:39:30 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/10/02 02:31:31 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/10/12 16:37:05 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ SRCS =	$(addprefix $(SRCDIR)/, \
 				stmt.c \
 				while_stmt.c \
 				if_stmt.c \
-				term.c \
+				unary.c \
 				value.c \
 				condition.c \
 				block.c \
