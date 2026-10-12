@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 16:59:29 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/11 20:47:05 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 15:39:34 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ t_tree	*new_sizeof(t_tree *child)
 
 static t_data_type	*detect_data_type(t_nd_type type, t_tree *child)
 {
-	if (type == ND_ADDRESS)
+	if (type == ND_ADDRESS) {
+		if (child->data_type->kind == TYPE_ARRAY)
+			return (new_ptr_to(child->data_type->base));
 		return (new_ptr_to(child->data_type));
+	}
 	if (type == ND_DEREFER)
 	{
-		if (child->data_type->kind == TYPE_PTR)
+		if (child->data_type->base)
 			return (child->data_type->base);
-		return (new_int());
+		perror("invalid pointer dereference");
+		return (NULL);
 	}
 	return (new_int());
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_binary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:31:39 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/05/01 10:04:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 15:09:09 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ void	swap_tree(t_tree **a, t_tree **b)
 
 static t_data_type	*detect_data_type_add(t_tree **lhs, t_tree **rhs)
 {
-	if ((*rhs)->data_type->kind == TYPE_PTR)
+	if ((*rhs)->data_type->base)
 		swap_tree(lhs, rhs);
-	if ((*rhs)->data_type->kind == TYPE_PTR)
+	if ((*rhs)->data_type->base)
 		return (NULL);
 	return ((*lhs)->data_type);
 }
 
 static t_data_type	*detect_data_type_sub(t_tree *lhs, t_tree *rhs)
 {
-	if (rhs->data_type->kind == TYPE_PTR)
+	if (rhs->data_type->base)
 		return (NULL);
 	return (lhs->data_type);
 }
