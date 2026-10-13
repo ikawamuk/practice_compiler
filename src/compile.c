@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/02 02:25:31 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/02 02:40:00 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 09:07:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	link(t_compilation *ctx, const char **obj_file_names);
 
 static void	clean_compilation(t_compilation *ctx);
 
+void	print_program(t_func_list *program);
+
 int	compile(const char **file_names) {
 	t_compilation	compile_ctx;
 
@@ -32,6 +34,7 @@ int	compile(const char **file_names) {
 		return (clean_compilation(&compile_ctx), -1);
 	if (parse(&compile_ctx) < 0)
 		return (clean_compilation(&compile_ctx), -1);
+	print_program(compile_ctx.function_list);
 	if (code_gen(&compile_ctx) < 0)
 		return (clean_compilation(&compile_ctx), -1);
 	clear_arena();

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:01:43 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/02/14 21:33:01 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/12 19:39:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_tree	*relational(t_token **token_p)
 		else if (is_expected(">=", *token_p))
 		{
 			*token_p = (*token_p)->next;
-			node = new_binary(ND_LE, node, add(token_p));
+			node = new_binary(ND_LE, add(token_p), node);
 		}
 		else
 			return (node);

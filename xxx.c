@@ -1,13 +1,1 @@
-int	main()
-{
-	int *p;
-	alloc4(&p, 1, 2, 4, 8);
-	int *q;
-	q = p + 2;
-	*q;
-	q = p + 3;
-	return *q; 
-}
-
-
-
+int main() { int x[2][3]; int *y=x; *y=0; return **x; }

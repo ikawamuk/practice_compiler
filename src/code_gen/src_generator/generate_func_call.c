@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_func_call.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:09:09 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/06/19 00:02:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 12:34:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 #include <string.h>
 #include <stdio.h>
 
-const char	*arg_registers[] = {
-	"rdi", "rsi", "rdx", "rcx", "r8", "r9"
-};
+static const char *arg_reg64[] = {"rdi", "rsi", "rdx", "rcx", "r8", "r9"};
+static const char *arg_reg32[] = {"edi", "esi", "edx", "ecx", "r8d", "r9d"};
 
-void		generate(int assem_src_fd, const t_tree *node);
-const char		**get_arg_registers(void);
-static void	generate_syscall(int assem_src_fd, const t_tree *node);
+const char *get_arg_registers(int index, t_data_type *type)
+{
+	if (size_of(type) == 4)
+	{
+		return arg_reg32[index];
+	}
+	return arg_reg64[index];
+}
+
+void			generate(int assem_src_fd, const t_tree *node);
+const char		*get_arg_registers(int index, t_data_type *type);
+static void		generate_syscall(int assem_src_fd, const t_tree *node);
 
 void		generate_func_call(int assem_src_fd, const t_tree *node)
 {
@@ -29,22 +37,17 @@ void		generate_func_call(int assem_src_fd, const t_tree *node)
 		generate_syscall(assem_src_fd, node);
 		return ;
 	}
+	t_tree *args[6];
 	int	argc = 0;
 	for (t_tree *arg = node->args; arg; arg = arg->next)
-	{
-		generate(assem_src_fd, arg);
-		argc++;
-	}
+		args[argc++] = arg;
+	for (int i = 0; i < argc; ++i)
+		generate(assem_src_fd, args[i]);
 	for (int i = argc - 1; i >= 0; i--)
-		dprintf(assem_src_fd, "\tpop %s\n", get_arg_registers()[i]);
+		dprintf(assem_src_fd, "\tpop %s\n", arg_reg64[i]);
 	// need 16bytes alinement!;
 	dprintf(assem_src_fd, "\tcall %s\n", node->func_name);
 	dprintf(assem_src_fd, "\tpush rax\n");
-}
-
-const char	**get_arg_registers(void)
-{
-	return (arg_registers);
 }
 
 static void	generate_syscall(int assem_src_fd, const t_tree *node)

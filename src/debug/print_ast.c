@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:46:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/05 22:49:29 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 11:34:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	print_node_type(t_tree *node)
 		{ND_NE, "ND_NE"}, // !=
 		{ND_LT, "ND_LT"}, // <
 		{ND_LE, "ND_LE"}, // <=
-		{ND_ASSIGN, "ND_ASSIGN"}, // = 
+		{ND_ASSIGN, "ND_ASSIGN"}, // =
+		{ND_SIZEOF, "ND_SIZEOF"},
 		{ND_LVAR, "ND_LVAR"}, // local variable
 		{ND_EXPR_STMT, "ND_EXPR_STMT"},
 		{ND_RETURN, "ND_RETURN"},
@@ -59,7 +60,8 @@ void	print_data_type(t_data_type	*data_type)
 {
 	static const struct s_dt_str	dt_table[] = {
 		{TYPE_INT, "int"},
-		// {TYPE_PTR, "ptr"}
+		{TYPE_PTR, "ptr"},
+		{TYPE_ARRAY, "array"}
 	};
 	for (size_t i = 0; i < sizeof(dt_table) / sizeof(*dt_table); i++)
 		if (!data_type)

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:39:17 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/12 16:46:10 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 11:56:08 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,36 +27,39 @@ t_tree		*new_variable_leaf(t_var *var);
 t_data_type	*new_array_of(t_data_type *array_of, int size);
 char		*dup_token_str(const t_token *token);
 
+static t_data_type	*read_postfix(t_token **token_p, t_data_type *base);
+
 // declaration = data_type_kw ident ("[" num "]")* ("=" expr) ";"
 t_tree	*var_declar(t_token **token_p)
 {
 	t_data_type	*base_type = data_type_kw(token_p);
 	char *var_name = dup_token_str(*token_p);
 	*token_p = (*token_p)->next;
-
-	t_data_type	*data_type = base_type;
-	while (is_expected("[", *token_p))
-	{
-		(*token_p) = (*token_p)->next;
-		t_tree *arr_size = expr(token_p);
-		if (is_expected("]", *token_p)) {
-			(*token_p) = (*token_p)->next;
-			data_type = new_array_of(data_type, arr_size->value);
-			continue ;
-		}
-		error_at((*token_p)->str, "expected \']\'\n");
-		clear_arena();
-		exit(EXIT_FAILURE);
-		return (NULL);
-	}
-
-	t_var *var = push_lval(var_name, base_type);
+	t_data_type	*data_type = read_postfix(token_p, base_type);
+	t_var *var = push_lval(var_name, data_type);
 	t_tree	*new = xaalloc(sizeof(t_tree));
 	new->node_type = ND_DECLAR;
 	new->next = NULL;
 	new->local_var = var;
 	new->data_type = var->dt_type;
 	return (new);
+}
+
+static t_data_type	*read_postfix(t_token **token_p, t_data_type *base)
+{
+	if (!is_expected("[", *token_p))
+		return (base);
+	(*token_p) = (*token_p)->next;
+	t_tree *arr_size = expr(token_p);
+	if (!is_expected("]", *token_p))
+	{
+		error_at((*token_p)->str, "expected \']\'\n");
+		clear_arena();
+		exit(EXIT_FAILURE);
+		return (NULL);
+	}
+	(*token_p) = (*token_p)->next;
+	return (new_array_of(read_postfix(token_p, base), arr_size->value));
 }
 
 t_tree	*declaration_stmt(t_token **token_p)

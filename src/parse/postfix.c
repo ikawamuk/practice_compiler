@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 16:38:20 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/12 16:53:54 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 11:53:04 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_tree	*postfix(t_token **token_p)
 	while (is_expected("[", *token_p))
 	{
 		*token_p = (*token_p)->next;
-		t_tree	*exp = node = new_binary(ND_ADD, node, mul(token_p));
+		t_tree	*exp = new_binary(ND_ADD, node, mul(token_p));
 		if (!is_expected("]", *token_p))
 		{
 			error_at((*token_p)->str, "unclosed parenthesis\n");

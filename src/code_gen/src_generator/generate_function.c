@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_function.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 03:32:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/06/19 00:02:59 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 12:22:48 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 void		generate_block(int assem_src_fd, const t_tree *node);
-const char	**get_arg_registers(void);
+const char *get_arg_registers(int index, t_data_type *type);
 static void	generate_functinon_header(int assem_src_fd, t_function *prog);
 static void	generate_function_params(int assem_src_fd, t_function *func);
 static void	generate_functinon_footer(int assem_src_fd);
@@ -48,7 +48,7 @@ static void	generate_function_params(int assem_src_fd, t_function *func)
 {
 	int	i = 0;
 	for (t_var_list *cur = func->locals; i < func->argc; cur = cur->next)
-		dprintf(assem_src_fd, "\tmov [rbp-%d], %s\n", cur->var->offset, get_arg_registers()[i++]);
+		dprintf(assem_src_fd, "\tmov [rbp-%d], %s\n", cur->var->offset, get_arg_registers(i++, cur->var->dt_type));
 }
 
 static void	generate_functinon_footer(int assem_src_fd)

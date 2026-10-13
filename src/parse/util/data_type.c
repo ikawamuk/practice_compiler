@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 19:44:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/11 21:16:53 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 09:15:40 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_data_type	*new_ptr_to(t_data_type *ptr_to)
 t_data_type	*new_array_of(t_data_type *array_of, int size)
 {
 	t_data_type	*new = xaalloc(sizeof(t_data_type));
-	new->kind = TYPE_PTR;
+	new->kind = TYPE_ARRAY;
 	new->base = array_of;
 	new->array_size = size;
 	return (new);

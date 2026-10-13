@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:31:39 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/10/12 15:09:09 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/10/13 08:59:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void		*xaalloc(size_t size);
 t_data_type	*new_int(void);
-static t_data_type	*detect_data_type(t_nd_type type, t_tree *lhs, t_tree *rhs);
+static t_data_type	*detect_data_type(t_nd_type type, t_tree **lhs, t_tree **rhs);
 static t_data_type	*detect_data_type_add(t_tree **lhs, t_tree **rhs);
 static t_data_type	*detect_data_type_sub(t_tree *lhs, t_tree *rhs);
 static t_data_type	*detect_data_type_assign(t_tree *lhs, t_tree *rhs);
@@ -27,24 +27,24 @@ t_tree	*new_binary(t_nd_type type, t_tree *lhs, t_tree *rhs)
 {
 	t_tree	*new = xaalloc(sizeof(t_tree));
 	new->node_type = type;
-	new->data_type = detect_data_type(type, lhs, rhs);
+	new->data_type = detect_data_type(type, &lhs, &rhs);
 	new->lhs = lhs;
 	new->rhs = rhs;
 	return (new);
 }
 
-static t_data_type	*detect_data_type(t_nd_type type, t_tree *lhs, t_tree *rhs)
+static t_data_type	*detect_data_type(t_nd_type type, t_tree **lhs, t_tree **rhs)
 {
 	if (type == ND_ADD)
-		return (detect_data_type_add(&lhs, &rhs));
+		return (detect_data_type_add(lhs, rhs));
 	if (type == ND_SUB)
-		return (detect_data_type_sub(lhs, rhs));
+		return (detect_data_type_sub(*lhs, *rhs));
 	if (type == ND_ASSIGN)
-		return (detect_data_type_assign(lhs, rhs));
+		return (detect_data_type_assign(*lhs, *rhs));
 	if (type == ND_MUL || type == ND_DIV || type == ND_MOD)
-		return (detect_data_type_mul(lhs, rhs));
+		return (detect_data_type_mul(*lhs, *rhs));
 	if (type == ND_EQ || type == ND_NE)
-		return (detect_data_type_eq(lhs, rhs));
+		return (detect_data_type_eq(*lhs, *rhs));
 	return (new_int());
 }
 
